@@ -1,14 +1,16 @@
 # encoding: utf-8
 
 from django.views.generic.edit import FormView
+from braces.views import AnonymousRequiredMixin
 
 from userflow import conf
+from userflow.views.base import SignLayoutMixin
 
 
 __all__ = 'SigninView',
 
 
-class SigninView(FormView):
+class SigninView(AnonymousRequiredMixin, SignLayoutMixin, FormView):
     template_name = 'userflow/signin.html'
 
     def get_form_class(self):

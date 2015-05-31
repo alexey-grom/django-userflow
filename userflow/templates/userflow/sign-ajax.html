@@ -1,0 +1,20 @@
+{% extends 'userflow/modal.html' %}
+
+{% load i18n %}
+
+{% block content %}
+    <div class="ui grid">
+        <div class="eight wide column">
+            <div class="ui blue segment">
+                <h3>{% trans 'Sign In' %}</h3>
+                {% block signin %}{% endblock %}
+            </div>
+        </div>
+        <div class="eight wide column">
+            <div class="ui teal segment">
+                <h3>{% trans 'Sign Up' %}</h3>
+                {% block signup %}{% endblock %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

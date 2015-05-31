@@ -53,8 +53,7 @@ class BaseUser(auth_models.AbstractBaseUser,
 
     email = models.EmailField(_('email address'), unique=True, blank=False)
 
-    first_name = models.CharField(_('first name'), max_length=30, blank=True)
-    last_name = models.CharField(_('last name'), max_length=30, blank=True)
+    name = models.CharField(_('display name'), max_length=30, blank=True)
 
     is_staff = models.BooleanField(_('staff status'), default=False, help_text=_('Designates whether the user can log into this admin site.'))
     is_active = models.BooleanField(_('active'), default=False, help_text=_('Designates whether this user should be treated as active. Unselect this instead of deleting accounts.'))
@@ -67,9 +66,7 @@ class BaseUser(auth_models.AbstractBaseUser,
     USERNAME_FIELD = 'email'
 
     def get_full_name(self):
-        result = u'{} {}'.format(self.first_name, self.last_name)
-        result = result.strip()
-        return result or self.get_short_name()
+        return self.name or self.get_short_name()
 
     def get_short_name(self):
         return self.email

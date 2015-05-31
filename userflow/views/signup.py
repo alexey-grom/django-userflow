@@ -5,12 +5,13 @@ from django.views.generic import FormView
 from braces.views import AnonymousRequiredMixin
 
 from userflow import conf
+from userflow.views.base import SignLayoutMixin
 
 
 __all__ = 'SignupView',
 
 
-class SignupView(AnonymousRequiredMixin, FormView):
+class SignupView(AnonymousRequiredMixin, SignLayoutMixin, FormView):
     template_name = 'userflow/signup.html'
 
     def get_form_class(self):
