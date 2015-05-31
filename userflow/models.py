@@ -29,7 +29,7 @@ class UserManager(auth_models.BaseUserManager.from_queryset(UserQueryset)):
         """
         email = self.normalize_email(email)
         user = self.model(email=email,
-                          is_staff=is_staff, is_active=True,
+                          is_staff=is_staff,
                           is_superuser=is_superuser,
                           **extra_fields)
         user.set_password(password)
@@ -37,6 +37,7 @@ class UserManager(auth_models.BaseUserManager.from_queryset(UserQueryset)):
         return user
 
     def create_user(self, email, password=None, **extra_fields):
+        extra_fields.setdefault('is_active', True)
         return self._create_user(email, password, False, False,
                                  **extra_fields)
 

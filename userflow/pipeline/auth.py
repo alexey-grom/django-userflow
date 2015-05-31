@@ -15,11 +15,14 @@ def signin(request, user=None, is_new=False, **kwargs):
     signals.user_logged_in.send(get_user_model(), user=user)
 
 
-def signup(request, user=None, is_new=False, **kwargs):
+def signup(request, is_new=False, data=None, **kwargs):
     if not is_new:
         return
 
+    user = get_user_model().objects.create_user(**data)
     signals.user_registered.send(get_user_model(), user=user)
+
+    return {'user': user}
 
 
 def signout(request, **kwargs):

@@ -17,10 +17,10 @@ class SignupView(AnonymousRequiredMixin, SignLayoutMixin, FormView):
     def get_form_class(self):
         return conf.USERS_SIGNUP_FORM
 
+    @atomic
     def form_valid(self, form):
-        with atomic():
-            form.user.save()
-            return conf.run_flow('USERS_FLOW_UP',
-                                 request=self.request,
-                                 user=form.user,
-                                 is_new=True)
+        return conf.run_flow('USERS_FLOW_UP',
+                             request=self.request,
+                             data=form.cleaned_data,
+                             user=None,
+                             is_new=True)

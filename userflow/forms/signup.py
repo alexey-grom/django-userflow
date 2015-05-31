@@ -13,7 +13,7 @@ __all__ = 'SignupForm',
 
 class SignupForm(forms.Form):
     email = forms.EmailField(required=True, label=_('Email'))
-    first_name = forms.CharField(max_length=30, required=True, label=_('Your name'))
+    name = forms.CharField(max_length=30, required=True, label=_('Your name'))
     password = forms.CharField(widget=forms.PasswordInput, min_length=8, required=True, label=_('Password'))
     confirm = forms.CharField(widget=forms.PasswordInput, required=True, label=_('Password confirm'))
 

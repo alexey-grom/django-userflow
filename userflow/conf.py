@@ -52,8 +52,9 @@ def import_attr(attr):
 
 SETTINGS = settings(
     setting('USERS_FLOW_UP',
-            ('userflow.pipeline.auth.signin',
+            ('userflow.pipeline.defaults.defaults',
              'userflow.pipeline.auth.signup',
+             'userflow.pipeline.auth.signin',
              'userflow.pipeline.redirects.next_redirect',
              'userflow.pipeline.redirects.login_redirect', ),
             auto_import=True),
@@ -89,9 +90,11 @@ class Wrapper(object):
     def run_flow(self, flow, *args, **kwargs):
         flow_actions = getattr(self, flow)
         for action in flow_actions:
-            response = action(*args, **kwargs)
-            if isinstance(response, HttpResponse):
-                return response
+            result = action(*args, **kwargs)
+            if isinstance(result, HttpResponse):
+                return result
+            if result and isinstance(result, dict):
+                kwargs.update(result)
         raise ImproperlyConfigured()
 
     def __getattribute__(self, name):
