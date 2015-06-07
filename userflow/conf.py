@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 import sys
+import datetime
 import importlib
 
 from django.contrib.sites.models import get_current_site
@@ -58,6 +59,7 @@ SETTINGS = settings(
             ('userflow.pipeline.defaults.active_by_default',
              'userflow.pipeline.auth.signup',
              'userflow.pipeline.mails.signup_email',
+             'userflow.pipeline.mails.email_verify',
              'userflow.pipeline.auth.signin',
              'userflow.pipeline.redirects.next_redirect',
              'userflow.pipeline.redirects.login_redirect', ),
@@ -79,6 +81,8 @@ SETTINGS = settings(
     setting('USERS_SITE_NAME', utils.dummy_site_name),
 
     setting('USERS_DUMMY_EMAIL', 'nobody@localhost'),
+
+    setting('USERS_CONFIRMATION_EXPIRATION', datetime.timedelta(days=3)),
 
 )
 

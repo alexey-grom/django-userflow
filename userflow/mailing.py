@@ -19,7 +19,7 @@ def send_mail(to, email_template, request=None, context=None):
 
     template = lambda frmt: frmt.format(email_template)
     render = lambda frmt: render_to_string(template(frmt),
-                                           template_context)
+                                           template_context.copy())
 
     _send_mail(
         render('userflow/emails/{}-subject.txt').strip(),

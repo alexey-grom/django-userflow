@@ -39,8 +39,13 @@ def signup_email(request, user=None, is_new=False, **kwargs):
 
 @if_new_user
 @if_has_email
-def activate_by_email_verify(request, user=None, is_new=False, **kwargs):
+def email_verify(request, user=None, is_new=False, **kwargs):
+    confirmation = user.primary_email.create_confirmation()
+    context = {
+        'user': user,
+        'confirmation': confirmation,
+    }
     send_mail(user.email,
               email_template='verify',
               request=request,
-              context={'user': user})
+              context=context)

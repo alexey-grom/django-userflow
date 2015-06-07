@@ -5,7 +5,7 @@
 {% block content %}
     <p>
         {% blocktrans %}
-            Hey, we want to verify that you are indeed “{{ user.name  }}”.
+            Hey, we want to verify that you are indeed “{{ user.name }}”.
         {% endblocktrans %}
     </p>
     <p>
@@ -14,7 +14,7 @@
         {% endblocktrans %}
     </p>
     <p>{% trans 'If you wish to continue, please follow the link below:' %}</p>
-    <a href="#">##########</a>
+    <a href="{{ site_url }}{{ confirmation.get_absolute_url }}">{% trans 'Confirm' %}</a>
     <p>
         {% blocktrans %}
             If you’re not {{ user.name }} or didn’t request verification, you can ignore this email.

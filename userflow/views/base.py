@@ -1,5 +1,10 @@
 # encoding: utf-8
 
+from django.http.response import Http404, HttpResponse
+from django.views.generic.detail import DetailView
+
+from userflow.models import Confirmation
+
 
 class LayoutMixin(object):
     default_layout = 'userflow/base.html'
@@ -16,3 +21,44 @@ class LayoutMixin(object):
 class SignLayoutMixin(LayoutMixin):
     default_layout = 'userflow/sign/sign-default.html'
     ajax_layout = 'userflow/sign/sign-ajax.html'
+
+
+class ConfirmView(DetailView):
+    model = Confirmation
+    context_object_name = 'confirmation'
+
+    def get_queryset(self):
+        return super(ConfirmView, self).get_queryset().unfinished()
+
+    def get_object(self, queryset=None):
+        try:
+            return super(ConfirmView, self).get_object(queryset)
+        except Http404:
+            pass
+
+    def is_valid_confirmation(self):
+        return self.object and \
+               self.object.wait_key == self.kwargs.get('key')
+
+    def render_to_response(self, context, **response_kwargs):
+        is_ok = self.is_valid_confirmation()
+
+        if not is_ok:
+            context.update({
+                self.context_object_name: None,
+            })
+
+        result = self.success() if is_ok else self.fail()
+
+        if result and isinstance(result, HttpResponse):
+            return result
+
+        context.update(result)
+
+        return super(ConfirmView, self).render_to_response(context, **response_kwargs)
+
+    def success(self):
+        return {}
+
+    def fail(self):
+        return {}

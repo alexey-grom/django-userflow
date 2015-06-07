@@ -9,7 +9,7 @@ Verifying this address will let you receive notifications and password resets fr
 
 If you wish to continue, please follow the link below:
 
-############
+{{ site_url }}{{ confirmation.get_absolute_url }}
 
 If you’re not {{ user.name }} or didn’t request verification, you can ignore this email.
 

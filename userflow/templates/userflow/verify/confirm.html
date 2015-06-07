@@ -1,0 +1,11 @@
+{% extends 'userflow/base.html' %}
+
+{% block content %}
+    {% if not confirmation %}
+        <h1>Expired link :(</h1>
+        <p>Sorry, your link is expired</p>
+    {% else %}
+        <h1>Email verify success</h1>
+        <p>Thank you for confirm your email <strong>{{ confirmation.email.email }}</strong></p>
+    {% endif %}
+{% endblock %}

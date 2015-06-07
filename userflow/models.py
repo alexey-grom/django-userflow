@@ -1,10 +1,9 @@
 # encoding: utf-8
 
 from hashlib import sha1
-from datetime import timedelta
 
 from django.conf import settings
-from django.contrib.auth import models as auth_models, get_user_model
+from django.contrib.auth import models as auth_models
 from django.db import models
 from django.db.transaction import atomic
 from django.utils.translation import ugettext_lazy as _
@@ -89,11 +88,16 @@ class BaseUser(auth_models.AbstractBaseUser,
     @property
     def email(self):
         # compat
-        user_email = self.emails.filter(is_primary=True).first() or \
-                     self.emails.first()
+        user_email = self.primary_email
         if user_email:
             return user_email.email
         return conf.USERS_DUMMY_EMAIL
+
+    @property
+    def primary_email(self):
+        user_email = self.emails.filter(is_primary=True).first() or \
+                     self.emails.first()
+        return user_email
 
     class Meta:
         verbose_name = _('user')
@@ -110,6 +114,12 @@ class UserEmail(models.Model):
 
     created = models.DateTimeField(auto_now_add=True)
 
+    def create_confirmation(self):
+        return EmailConfirmation.objects.create(email=self)
+
+    def __unicode__(self):
+        return self.email
+
     class Meta:
         verbose_name = _('email')
         verbose_name_plural = _('emails')
@@ -123,6 +133,78 @@ if conf.is_generic_user_model:
         """
         Common user model implementation
         """
+
+
+class ConfirmationQueryset(models.QuerySet):
+    def unexpired(self):
+        deadline = now() - conf.USERS_CONFIRMATION_EXPIRATION
+        return self.filter(created__gte=deadline)
+
+    def undone(self):
+        return self.filter(is_done=False)
+
+    def unfinished(self):
+        return self.unexpired().undone()
+
+
+class Confirmation(models.Model):
+    is_done = models.BooleanField(default=False)
+    created = models.DateTimeField(auto_now_add=True)
+
+    objects = ConfirmationQueryset.as_manager()
+
+    def confirm(self):
+        self.is_done = True
+        self.save()
+
+    def get_key_params(self):
+        return self.pk,
+
+    def key(self, *args, **kwargs):
+        result = sha1()
+        result.update(repr((settings.SECRET_KEY,
+                            self.get_key_params(),
+                            args,
+                            kwargs)))
+        return result.hexdigest()
+
+    @property
+    def confirm_key(self):
+        return self.key('confirm')
+
+    @property
+    def wait_key(self):
+        return self.key('wait')
+
+    class Meta:
+        abstract = True
+
+
+class EmailConfirmation(Confirmation):
+    email = models.ForeignKey(UserEmail)
+
+    def confirm(self):
+        self.email.is_active = True
+        self.email.save()
+        super(EmailConfirmation, self).confirm()
+
+    def get_key_params(self):
+        return super(EmailConfirmation, self).get_key_params() + \
+               (self.email.email, )
+
+    @models.permalink
+    def get_absolute_url(self):
+        return 'users:verify-confirm', (), {
+            'pk': self.pk,
+            'key': self.confirm_key,
+        }
+
+    @models.permalink
+    def get_wait_url(self):
+        return 'users:verify-wait', (), {
+            'pk': self.pk,
+            'key': self.wait_key,
+        }
 
 
 # class ConfirmationQueryset(models.QuerySet):

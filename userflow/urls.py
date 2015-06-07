@@ -28,5 +28,10 @@ urlpatterns = patterns('',
             url('^wait/$', views.reset.wait.ResetWaitView.as_view(), name='reset-wait'),
             url('^change/(?P<pk>\d+)/(?P<key>[^/]+)/$', views.reset.change.SetPasswordView.as_view(), name='set-password'),
         ])),
+        url(r'^verify/', include([
+            url('^confirm/(?P<pk>\d+)/(?P<key>[^/]+)/$', views.verify.confirm.ConfirmEmailView.as_view(), name='verify-confirm'),
+            url('^wait/(?P<pk>\d+)/(?P<key>[^/]+)/$', views.verify.wait.WaitConfirmEmailView.as_view(), name='verify-wait'),
+            # url('^change/(?P<pk>\d+)/(?P<key>[^/]+)/$', views.reset.change.SetPasswordView.as_view(), name='set-password'),
+        ])),
     ], namespace='users')),
 )

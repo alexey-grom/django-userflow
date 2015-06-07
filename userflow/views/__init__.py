@@ -1,4 +1,3 @@
 # encoding: utf-8
 
-from . import sign
-from . import reset
+from userflow.views import sign, reset, verify
