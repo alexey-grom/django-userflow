@@ -55,13 +55,16 @@ def import_attr(attr):
 
 SETTINGS = settings(
     setting('USERS_FLOW_UP',
-            ('userflow.pipeline.defaults.active_by_default',
-             'userflow.pipeline.auth.signup',
-             'userflow.pipeline.mails.signup_email',
-             'userflow.pipeline.mails.email_verify',
-             'userflow.pipeline.auth.signin',
-             'userflow.pipeline.redirects.next_redirect',
-             'userflow.pipeline.redirects.login_redirect', ),
+            (
+                # 'userflow.pipeline.defaults.activate_by_default',
+                'userflow.pipeline.auth.signup',
+                'userflow.pipeline.mails.signup_email',
+                'userflow.pipeline.defaults.activate_by_email_confirm',
+                # 'userflow.pipeline.mails.email_verify',
+                'userflow.pipeline.auth.signin',
+                'userflow.pipeline.redirects.next_redirect',
+                'userflow.pipeline.redirects.login_redirect',
+            ),
             auto_import=True),
     setting('USERS_FLOW_DOWN',
             ('userflow.pipeline.auth.signout',

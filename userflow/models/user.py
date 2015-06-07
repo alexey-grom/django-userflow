@@ -43,18 +43,17 @@ class UserManager(auth_models.BaseUserManager.from_queryset(UserQueryset)):
             user.save(using=self._db)
 
             user_email = UserEmail(email=email,
-                                   user=user,
-                                   is_active=True)
+                                   user=user)
             user_email.save(using=self._db)
 
         return user
 
     def create_user(self, email, password=None, **extra_fields):
-        extra_fields.setdefault('is_active', True)
         return self._create_user(email, password, False, False,
                                  **extra_fields)
 
     def create_superuser(self, email, password, **extra_fields):
+        extra_fields.setdefault('is_active', True)
         return self._create_user(email, password, True, True,
                                  **extra_fields)
 

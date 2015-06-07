@@ -18,7 +18,8 @@ class RequestConfirmEmailView(DetailView):
     def get_object(self, queryset=None):
         object = super(RequestConfirmEmailView, self).get_object(queryset)
         if object.user != self.request.user:
-            raise Http404
+            if object.user.is_active:
+                raise Http404
         confirmation = object.confirmations.\
             unfinished().\
             first()

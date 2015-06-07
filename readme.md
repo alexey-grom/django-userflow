@@ -16,7 +16,7 @@ Pipelines
 
 Composition of actions:
 
-    USERS_FLOW_UP = ('userflow.pipeline.defaults.active_by_default',
+    USERS_FLOW_UP = ('userflow.pipeline.defaults.activate_by_default',
                      'userflow.pipeline.auth.signup',
                      'userflow.pipeline.mails.signup_email',
                      'userflow.pipeline.auth.signin',

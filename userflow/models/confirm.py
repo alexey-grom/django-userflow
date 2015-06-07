@@ -3,6 +3,7 @@
 from hashlib import sha256 as sha
 
 from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.timezone import now
 
@@ -82,6 +83,11 @@ class EmailConfirmation(Confirmation):
     def confirm(self):
         self.email.is_active = True
         self.email.save()
+
+        if not self.email.user.is_active:
+            get_user_model().objects.\
+                filter(pk=self.email.user_id).\
+                update(is_active=True)
 
         super(EmailConfirmation, self).confirm()
         signals.user_email_confirmed.\
