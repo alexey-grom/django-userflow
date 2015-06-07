@@ -6,7 +6,7 @@ from django.conf import settings
 from django.db import models
 from django.utils.timezone import now
 
-from userflow import conf
+from userflow import conf, signals
 from userflow.mailing import send_mail
 
 
@@ -82,7 +82,10 @@ class EmailConfirmation(Confirmation):
     def confirm(self):
         self.email.is_active = True
         self.email.save()
+
         super(EmailConfirmation, self).confirm()
+        signals.user_email_confirmed.\
+            send(EmailConfirmation, user=self.email.user)
 
     def get_key_params(self):
         return super(EmailConfirmation, self).get_key_params() + \
@@ -108,6 +111,11 @@ class EmailConfirmation(Confirmation):
 
 class PasswordResetConfirmation(Confirmation):
     email = models.ForeignKey('UserEmail')
+
+    def confirm(self):
+        super(PasswordResetConfirmation, self).confirm()
+        signals.user_password_changed.\
+            send(PasswordResetConfirmation, user=self.email.user)
 
     def get_key_params(self):
         return super(PasswordResetConfirmation, self).get_key_params() + \

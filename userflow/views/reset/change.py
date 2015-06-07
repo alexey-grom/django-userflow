@@ -1,7 +1,5 @@
 # encoding: utf-8
 
-from django.core.urlresolvers import reverse
-from django.http.response import HttpResponseRedirect
 from django.views.generic.edit import FormMixin
 
 from userflow.models import PasswordResetConfirmation
