@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-from hashlib import sha1
+from hashlib import sha256 as sha
 
 from django.conf import settings
 from django.db import models
@@ -10,10 +10,16 @@ from userflow import conf
 from userflow.mailing import send_mail
 
 
-__all__ = 'Confirmation', 'EmailConfirmation',
+__all__ = 'Confirmation', \
+          'EmailConfirmation', \
+          'PasswordResetConfirmation',
 
 
 class ConfirmationQueryset(models.QuerySet):
+    def expired(self):
+        deadline = now() - conf.USERS_CONFIRMATION_EXPIRATION
+        return self.filter(created__lt=deadline)
+
     def unexpired(self):
         deadline = now() - conf.USERS_CONFIRMATION_EXPIRATION
         return self.filter(created__gte=deadline)
@@ -23,6 +29,9 @@ class ConfirmationQueryset(models.QuerySet):
 
     def unfinished(self):
         return self.unexpired().undone()
+
+    def clear_expired(self):
+        return self.expired().all().delete()
 
 
 class Confirmation(models.Model):
@@ -43,7 +52,7 @@ class Confirmation(models.Model):
         return self.key('wait')
 
     def key(self, *args, **kwargs):
-        result = sha1()
+        result = sha()
         result.update(repr((settings.SECRET_KEY,
                             self.get_key_params(),
                             args,
@@ -57,7 +66,7 @@ class Confirmation(models.Model):
     def send(self, email_template, user, request=None):
         context = {'user': user,
                    'confirmation': self, }
-        send_mail(user.email,
+        send_mail(self.email.email,  # todo: getter
                   email_template=email_template,
                   request=request,
                   context=context)
@@ -77,7 +86,7 @@ class EmailConfirmation(Confirmation):
 
     def get_key_params(self):
         return super(EmailConfirmation, self).get_key_params() + \
-               (self.email.email, )
+               (self.email_id, )
 
     @models.permalink
     def get_absolute_url(self):
@@ -89,6 +98,31 @@ class EmailConfirmation(Confirmation):
     @models.permalink
     def get_wait_url(self):
         return 'users:verify-wait', (), {
+            'pk': self.pk,
+            'key': self.wait_key,
+        }
+
+    class Meta:
+        app_label = 'userflow'
+
+
+class PasswordResetConfirmation(Confirmation):
+    email = models.ForeignKey('UserEmail')
+
+    def get_key_params(self):
+        return super(PasswordResetConfirmation, self).get_key_params() + \
+               (self.email_id, )
+
+    @models.permalink
+    def get_absolute_url(self):
+        return 'users:reset-confirm', (), {
+            'pk': self.pk,
+            'key': self.confirm_key,
+        }
+
+    @models.permalink
+    def get_wait_url(self):
+        return 'users:reset-wait', (), {
             'pk': self.pk,
             'key': self.wait_key,
         }

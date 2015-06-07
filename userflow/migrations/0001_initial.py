@@ -34,12 +34,28 @@ class Migration(migrations.Migration):
             },
         ),
         migrations.CreateModel(
+            name='EmailConfirmation',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('is_done', models.BooleanField(default=False)),
+                ('created', models.DateTimeField(auto_now_add=True)),
+            ],
+        ),
+        migrations.CreateModel(
+            name='PasswordResetConfirmation',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('is_done', models.BooleanField(default=False)),
+                ('created', models.DateTimeField(auto_now_add=True)),
+            ],
+        ),
+        migrations.CreateModel(
             name='UserEmail',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('email', models.EmailField(unique=True, max_length=254, verbose_name='email address')),
-                ('primary', models.BooleanField(default=False)),
-                ('active', models.BooleanField(default=False)),
+                ('is_primary', models.BooleanField(default=False)),
+                ('is_active', models.BooleanField(default=False)),
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('user', models.ForeignKey(related_name='emails', to=settings.AUTH_USER_MODEL)),
             ],
@@ -48,8 +64,18 @@ class Migration(migrations.Migration):
                 'verbose_name_plural': 'emails',
             },
         ),
+        migrations.AddField(
+            model_name='passwordresetconfirmation',
+            name='email',
+            field=models.ForeignKey(to='userflow.UserEmail'),
+        ),
+        migrations.AddField(
+            model_name='emailconfirmation',
+            name='email',
+            field=models.ForeignKey(related_name='confirmations', to='userflow.UserEmail'),
+        ),
         migrations.AlterUniqueTogether(
             name='useremail',
-            unique_together=set([('user', 'primary')]),
+            unique_together=set([('user', 'is_primary')]),
         ),
     ]

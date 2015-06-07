@@ -4,5 +4,5 @@
 
 {% block content %}
 {% trans 'Please follow link for reset your password:' %}
-{% url 'users:set-password' pk=confirm.pk key=confirm.key %}
+{{ site_url }}{{ confirmation.get_absolute_url }}
 {% endblock %}

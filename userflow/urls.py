@@ -13,9 +13,9 @@ urlpatterns = patterns('',
             url('^signout/$', views.sign.signout.SignoutView.as_view(), name='signout'),
         ])),
         url(r'^reset/', include([
-            url('^request/$', views.reset.request.PasswordResetView.as_view(), name='reset-password'),
-            url('^wait/$', views.reset.wait.ResetWaitView.as_view(), name='reset-wait'),
-            url('^change/(?P<pk>\d+)/(?P<key>[^/]+)/$', views.reset.change.SetPasswordView.as_view(), name='set-password'),
+            url('^request/$', views.reset.request.PasswordResetView.as_view(), name='reset-request'),
+            url('^wait/(?P<pk>\d+)/(?P<key>[^/]+)/$', views.reset.wait.ResetWaitView.as_view(), name='reset-wait'),
+            url('^change/(?P<pk>\d+)/(?P<key>[^/]+)/$', views.reset.change.SetPasswordView.as_view(), name='reset-confirm'),
         ])),
         url(r'^verify/', include([
             url('^confirm/(?P<pk>\d+)/(?P<key>[^/]+)/$', views.verify.confirm.ConfirmEmailView.as_view(), name='verify-confirm'),

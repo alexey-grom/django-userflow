@@ -23,7 +23,7 @@ class SigninForm(forms.Form):
     helper.layout = Layout(
         'email', 'password',
         Submit('signin', _('Sign In')),
-        Link(reverse_lazy('users:reset-password'), _('Lost your password?')),
+        Link(reverse_lazy('users:reset-request'), _('Lost your password?')),
     )
 
     error_messages = {

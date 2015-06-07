@@ -43,11 +43,9 @@ class ConfirmView(DetailView):
     def render_to_response(self, context, **response_kwargs):
         is_ok = self.is_valid_confirmation()
 
-        if not is_ok:
-            context.update({
-                self.context_object_name: None,
-            })
-
+        context.update({
+            self.context_object_name: None if not is_ok else self.object,
+        })
         result = self.success() if is_ok else self.fail()
 
         if result and isinstance(result, HttpResponse):

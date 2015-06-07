@@ -1,17 +1,20 @@
 {% extends 'userflow/base.html' %}
 
 {% load i18n %}
-{% load crispy_forms_tags %}
 
 {% block title %}{% endblock %}
 
 {% block content %}
-    <div class="ui doubling three column centered grid">
-        <div class="column">
-            <div class="ui orange segment">
-                <h3>{% trans 'Reset password' %}</h3>
-                <p>Ok</p>
-            </div>
-        </div>
-    </div>
+    {% if not confirmation %}
+        <h1>{% trans 'Expired link :(' %}</h1>
+        <p>{% trans 'Sorry, your link is expired' %}</p>
+    {% else %}
+        <h1>{% trans 'Password reset' %}</h1>
+        <p>{% trans 'We have sent your confirmation email to' %} <strong>{{ confirmation.email }}</strong>.</p>
+        <form action="{% url 'users:reset-request' %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="email" value="{{ confirmation.email.email }}" />
+            <input type="submit" value="{% trans 'Resend' %}" />
+        </form>
+    {% endif %}
 {% endblock %}

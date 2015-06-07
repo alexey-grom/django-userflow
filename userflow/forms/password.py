@@ -19,7 +19,7 @@ class PasswordResetForm(forms.Form):
     email = forms.EmailField(label=_('Email'))
 
     helper = FormHelper()
-    helper.form_action = reverse_lazy('users:reset-password')
+    helper.form_action = reverse_lazy('users:reset-request')
     helper.layout = Layout(
         'email',
         Submit('submit', _('Submit')),
@@ -34,7 +34,7 @@ class PasswordResetForm(forms.Form):
     def clean_email(self):
         email = self.cleaned_data.get('email')
         self.user_cache = get_user_model().objects.\
-            filter(email=email).\
+            filter(emails__email=email).\
             first()
         if not self.user_cache:
             raise ValidationError(_('Can\'t find that email, sorry'))
@@ -48,15 +48,10 @@ class PasswordResetForm(forms.Form):
 class SetPasswordForm(auth_forms.SetPasswordForm):
     helper = FormHelper()
     helper.form_action = ''
-    helper.form_action = reverse_lazy('users:signin')
-    helper.layout = Layout(
-        'email',
-        Submit('submit', _('Submit')),
-        Link(reverse_lazy('users:signin'), _('Sign In')),
-    )
+    helper.add_input(Submit('change', _('Change')))
 
 
 class PasswordChangeForm(auth_forms.PasswordChangeForm):
     helper = FormHelper()
     helper.form_action = ''
-    helper.add_input(Submit('save', _('Save')))
+    helper.add_input(Submit('change', _('Change')))

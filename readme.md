@@ -1,6 +1,7 @@
 Features
 ========
 
+* email as primary auth credential
 * flexible sign(in/up/out) flow by **pipelines** *(like python-social-auth)*
 * customizable user model
 * multiple emails
@@ -85,15 +86,15 @@ Settings
 Quick start
 ===========
 
-1. Install app
-1. `settings.py`
+* Install app
+* `settings.py`
 
 ```
 AUTH_USER_MODEL = 'userflow.User'  # or your inheritor
 ```
 
-1. `urls.py`
+* `urls.py`
 
 ```
-url(r'^', include('userflow.urls')),
+url(r'^', include('userflow.urls')),  # or your urls composition 
 ```

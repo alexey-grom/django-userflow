@@ -1,0 +1,27 @@
+{% extends 'userflow/base.html' %}
+
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+    {% if not confirmation %}
+        <h1>{% trans 'Expired link :(' %}</h1>
+        <p>{% trans 'Sorry, your link is expired' %}</p>
+    {% else %}
+        {% if confirmation.is_done %}
+            <h1>Password changed</h1>
+            <p>Please <a href="{% url 'users:signin' %}">signin</a> using new password.</p>
+        {% else %}
+            <div class="ui doubling three column centered grid">
+                <div class="column">
+                    <div class="ui orange segment">
+                        <h3>{% trans 'Change password' %}</h3>
+                        {% crispy form %}
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    {% endif %}
+{% endblock %}

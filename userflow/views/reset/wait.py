@@ -1,7 +1,16 @@
 # encoding: utf-8
 
-from django.views.generic.base import TemplateView
+from userflow.models import PasswordResetConfirmation
+from userflow.views.base import ConfirmView
 
 
-class ResetWaitView(TemplateView):
+__all__ = 'ResetWaitView',
+
+
+class ResetWaitView(ConfirmView):
+    model = PasswordResetConfirmation
     template_name = 'userflow/reset/wait.html'
+
+    def is_valid_confirmation(self):
+        return self.object and \
+               self.object.wait_key == self.kwargs.get('key')
