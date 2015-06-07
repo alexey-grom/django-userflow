@@ -17,19 +17,7 @@ def if_new_user(func):
     return wrapper
 
 
-def if_has_email(func):
-    @wraps(func)
-    def wrapper(*args, **kwargs):
-        from userflow import conf
-        user = kwargs.get('user', None)
-        if user.email == conf.USERS_DUMMY_EMAIL:
-            return
-        return func(*args, **kwargs)
-    return wrapper
-
-
 @if_new_user
-@if_has_email
 def signup_email(request, user=None, is_new=False, **kwargs):
     send_mail(user.email,
               email_template='signup',
@@ -38,14 +26,10 @@ def signup_email(request, user=None, is_new=False, **kwargs):
 
 
 @if_new_user
-@if_has_email
 def email_verify(request, user=None, is_new=False, **kwargs):
-    confirmation = user.primary_email.create_confirmation()
-    context = {
-        'user': user,
-        'confirmation': confirmation,
-    }
-    send_mail(user.email,
-              email_template='verify',
-              request=request,
-              context=context)
+    from userflow.models import EmailConfirmation
+    email = user.primary_email
+    if email.is_dummy:
+        return
+    confirmation = EmailConfirmation(email=email)
+    confirmation.send('verify', user, request)

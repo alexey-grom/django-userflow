@@ -11,6 +11,9 @@ __all__ = 'send_mail',
 def send_mail(to, email_template, request=None, context=None):
     from userflow import conf
 
+    if to == conf.USERS_DUMMY_EMAIL:
+        return
+
     template_context = {
         'site_url': conf.get_site_url(request),
         'site_name': conf.get_site_name(request),

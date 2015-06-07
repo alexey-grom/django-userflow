@@ -4,7 +4,6 @@ import sys
 import datetime
 import importlib
 
-from django.contrib.sites.models import get_current_site
 from django.conf import settings as django_settings
 from django.core.exceptions import ImproperlyConfigured
 from django.http.response import HttpResponse
@@ -77,12 +76,16 @@ SETTINGS = settings(
             'userflow.forms.signin.SigninForm',
             auto_import=True),
 
-    setting('USERS_SITE_URL', utils.dummy_site_url),
-    setting('USERS_SITE_NAME', utils.dummy_site_name),
+    setting('USERS_SITE_URL',
+            utils.dummy_site_url),
+    setting('USERS_SITE_NAME',
+            utils.dummy_site_name),
 
-    setting('USERS_DUMMY_EMAIL', 'nobody@localhost'),
+    setting('USERS_DUMMY_EMAIL',
+            'nobody@localhost'),
 
-    setting('USERS_CONFIRMATION_EXPIRATION', datetime.timedelta(days=3)),
+    setting('USERS_CONFIRMATION_EXPIRATION',
+            datetime.timedelta(days=3)),
 
 )
 

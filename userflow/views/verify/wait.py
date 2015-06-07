@@ -13,4 +13,5 @@ class WaitConfirmEmailView(ConfirmView):
 
     def is_valid_confirmation(self):
         return self.object and \
+               not self.object.email.is_active and \
                self.object.wait_key == self.kwargs.get('key')

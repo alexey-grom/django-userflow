@@ -3,21 +3,9 @@
 {% load i18n %}
 
 {% block content %}
-    <p>
-        {% blocktrans %}
-            Hey, we want to verify that you are indeed “{{ user.name }}”.
-        {% endblocktrans %}
-    </p>
-    <p>
-        {% blocktrans %}
-            Verifying this address will let you receive notifications and password resets from' %} {{ site_name }}.
-        {% endblocktrans %}
-    </p>
+    <p>{% trans 'Hey, we want to verify that you are indeed' %} “{{ user.name }}”.</p>
+    <p>{% trans 'Verifying this address will let you receive notifications and password resets from' %} {{ site_name }}.</p>
     <p>{% trans 'If you wish to continue, please follow the link below:' %}</p>
     <a href="{{ site_url }}{{ confirmation.get_absolute_url }}">{% trans 'Confirm' %}</a>
-    <p>
-        {% blocktrans %}
-            If you’re not {{ user.name }} or didn’t request verification, you can ignore this email.
-        {% endblocktrans %}
-    </p>
+    <p>{% trans 'If you’re not' %} {{ user.name }} {% trans 'or didn’t request verification, you can ignore this email.' %}.</p>
 {% endblock %}

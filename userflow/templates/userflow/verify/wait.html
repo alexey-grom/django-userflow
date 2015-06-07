@@ -1,13 +1,14 @@
 {% extends 'userflow/base.html' %}
 
-{% load userflow_tags %}
+{% load i18n %}
 
 {% block content %}
     {% if not confirmation %}
-        <h1>Expired link :(</h1>
-        <p>Sorry, your link is expired</p>
+        <h1>{% trans 'Expired link :(' %}</h1>
+        <p>{% trans 'Sorry, your link is expired' %}</p>
     {% else %}
-        <h1>Email verify</h1>
-        <p>We have sent your confirmation email to <strong>{{ confirmation.email.email|hidden_email }}</strong>.</p>
+        <h1>{% trans 'Email verify' %}</h1>
+        <p>{% trans 'We have sent your confirmation email to' %} <strong>{{ confirmation.email }}</strong>.</p>
+        <p><a href="{% url 'users:verify-request' pk=confirmation.email.pk %}">{% trans 'Resend' %}</a></p>
     {% endif %}
 {% endblock %}
