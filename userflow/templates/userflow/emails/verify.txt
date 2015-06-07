@@ -1,0 +1,17 @@
+{% extends 'userflow/emails/base.txt' %}
+
+{% load i18n %}
+
+{% block content %}
+{% blocktrans %}
+Hey, we want to verify that you are indeed “{{ user.name }}”.
+Verifying this address will let you receive notifications and password resets from {{ site_name }}.
+
+If you wish to continue, please follow the link below:
+
+############
+
+If you’re not {{ user.name }} or didn’t request verification, you can ignore this email.
+
+{% endblocktrans %}
+{% endblock %}

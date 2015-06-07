@@ -3,9 +3,12 @@
 import sys
 import importlib
 
+from django.contrib.sites.models import get_current_site
 from django.conf import settings as django_settings
 from django.core.exceptions import ImproperlyConfigured
 from django.http.response import HttpResponse
+
+from userflow import utils
 
 
 __all__ = ()
@@ -52,8 +55,9 @@ def import_attr(attr):
 
 SETTINGS = settings(
     setting('USERS_FLOW_UP',
-            ('userflow.pipeline.defaults.defaults',
+            ('userflow.pipeline.defaults.active_by_default',
              'userflow.pipeline.auth.signup',
+             'userflow.pipeline.mails.signup_email',
              'userflow.pipeline.auth.signin',
              'userflow.pipeline.redirects.next_redirect',
              'userflow.pipeline.redirects.login_redirect', ),
@@ -70,6 +74,11 @@ SETTINGS = settings(
     setting('USERS_SIGNIN_FORM',
             'userflow.forms.signin.SigninForm',
             auto_import=True),
+
+    setting('USERS_SITE_URL', utils.dummy_site_url),
+    setting('USERS_SITE_NAME', utils.dummy_site_name),
+
+    setting('USERS_DUMMY_EMAIL', 'nobody@localhost'),
 
 )
 
@@ -96,6 +105,18 @@ class Wrapper(object):
             if result and isinstance(result, dict):
                 kwargs.update(result)
         raise ImproperlyConfigured()
+
+    def get_site_url(self, request):
+        site_url = self.USERS_SITE_URL
+        if callable(site_url):
+            return site_url(request)
+        return site_url
+
+    def get_site_name(self, request):
+        site_name = self.USERS_SITE_NAME
+        if callable(site_name):
+            return site_name(request)
+        return site_name
 
     def __getattribute__(self, name):
         try:

@@ -1,0 +1,17 @@
+{% extends 'userflow/base.html' %}
+
+{% load i18n %}
+{% load crispy_forms_tags %}
+
+{% block title %}{% endblock %}
+
+{% block content %}
+    <div class="ui doubling three column centered grid">
+        <div class="column">
+            <div class="ui orange segment">
+                <h3>{% trans 'Reset password' %}</h3>
+                {% crispy form %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

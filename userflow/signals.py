@@ -3,5 +3,6 @@
 from django.dispatch.dispatcher import Signal
 
 
-user_registered = Signal(providing_args='user', )
-user_logged_in = Signal(providing_args='user', )
+user_signup = Signal(providing_args='user', )
+user_signin = Signal(providing_args='user', )
+user_signout = Signal(providing_args='user', )

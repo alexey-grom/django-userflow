@@ -6,7 +6,9 @@ from django.core.urlresolvers import reverse_lazy
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
+from crispy_forms.layout import Submit, Layout
+
+from userflow.layout import Link
 
 
 __all__ = 'SigninForm',
@@ -18,7 +20,11 @@ class SigninForm(forms.Form):
 
     helper = FormHelper()
     helper.form_action = reverse_lazy('users:signin')
-    helper.add_input(Submit('signin', _('Sign In')))
+    helper.layout = Layout(
+        'email', 'password',
+        Submit('signin', _('Sign In')),
+        Link(reverse_lazy('users:reset-password'), _('Lost your password?')),
+    )
 
     error_messages = {
         'invalid_login': _('Please enter a correct %(username)s and password. '

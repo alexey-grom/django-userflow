@@ -1,0 +1,5 @@
+django
+six
+django-braces
+django-crispy-forms
+crispy-semantic-ui

@@ -2,6 +2,7 @@
 
 from django import forms
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 from crispy_forms.helper import FormHelper
@@ -51,10 +52,11 @@ class SignupForm(forms.Form):
         return data
 
     def check_user(self, email=None, **kwargs):
-        user = get_user_model().\
-            objects.\
-            filter(email=email).\
-            first()
+        user = None
+        try:
+            user = get_user_model().objects.get_by_natural_key(email)
+        except ObjectDoesNotExist:
+            pass
 
         if user:
             if not user.is_active:

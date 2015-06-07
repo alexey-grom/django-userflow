@@ -12,7 +12,7 @@ __all__ = 'SignupView',
 
 
 class SignupView(AnonymousRequiredMixin, SignLayoutMixin, FormView):
-    template_name = 'userflow/signup.html'
+    template_name = 'userflow/sign/signup.html'
 
     def get_form_class(self):
         return conf.USERS_SIGNUP_FORM

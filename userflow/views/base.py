@@ -14,5 +14,5 @@ class LayoutMixin(object):
 
 
 class SignLayoutMixin(LayoutMixin):
-    default_layout = 'userflow/sign-default.html'
-    ajax_layout = 'userflow/sign-ajax.html'
+    default_layout = 'userflow/sign/sign-default.html'
+    ajax_layout = 'userflow/sign/sign-ajax.html'

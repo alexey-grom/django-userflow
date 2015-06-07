@@ -1,7 +1,4 @@
 # encoding: utf-8
 
-from userflow.views import (
-    signin,
-    signup,
-    signout,
-)
+from . import sign
+from . import reset

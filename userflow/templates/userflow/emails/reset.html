@@ -1,0 +1,8 @@
+{% extends 'userflow/emails/base.html' %}
+
+{% load i18n %}
+
+{% block content %}
+    <p>{% trans 'Please follow link for reset your password:' %}</p>
+    <p><a href="{{ site_url }}{% url 'users:set-password' pk=confirm.pk key=confirm.key %}">Change password</a></p>
+{% endblock %}

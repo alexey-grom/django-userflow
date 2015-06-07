@@ -1,0 +1,8 @@
+{% extends 'userflow/emails/base.html' %}
+
+{% load i18n %}
+
+{% block content %}
+    <h1>{% trans 'Welcome to' %} {{ site_name }}</h1>
+    <p>{% trans 'You’ve taken your first step into a larger world' %}, <strong>{{ user.name }}</strong></p>
+{% endblock %}

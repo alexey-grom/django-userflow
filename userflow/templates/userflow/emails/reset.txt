@@ -1,0 +1,8 @@
+{% extends 'userflow/emails/base.txt' %}
+
+{% load i18n %}
+
+{% block content %}
+{% trans 'Please follow link for reset your password:' %}
+{% url 'users:set-password' pk=confirm.pk key=confirm.key %}
+{% endblock %}

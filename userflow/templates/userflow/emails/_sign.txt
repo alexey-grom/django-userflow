@@ -1,0 +1,6 @@
+{% load i18n %}
+
+{% blocktrans %}
+Cheers,
+Your {{ site_name }} Team
+{% endblocktrans %}
