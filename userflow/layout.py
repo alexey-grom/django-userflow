@@ -13,7 +13,7 @@ class Link(object):
         self.css_classes = css_classes or ''
 
     def render(self, form, form_style, context, template_pack=TEMPLATE_PACK):
-        return format_html('<a class="{css_classes}" href="{url}">{title}</a>',
+        return format_html(u'<a class="{css_classes}" href="{url}">{title}</a>',
                            css_classes=self.css_classes,
                            url=self.url,
                            title=self.title)
