@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-13 14:27+0000\n"
+"POT-Creation-Date: 2015-06-13 14:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -42,7 +42,7 @@ msgstr ""
 msgid "Submit"
 msgstr ""
 
-#: userflow/forms/password.py:26 userflow/forms/signin.py:25
+#: userflow/forms/password.py:26
 #: userflow/templates/userflow/sign/sign-ajax.html:9
 #: userflow/templates/userflow/sign/sign-default.html:9
 #: userflow/templates/userflow/sign/signin.html:7
@@ -60,6 +60,10 @@ msgstr ""
 #: userflow/forms/signin.py:19 userflow/forms/signup.py:18
 msgid "Password"
 msgstr ""
+
+#: userflow/forms/signin.py:25
+msgid "Signin"
+msgstr "Sign in"
 
 #: userflow/forms/signin.py:26
 msgid "Lost your password?"
@@ -88,11 +92,8 @@ msgid "Password confirm"
 msgstr ""
 
 #: userflow/forms/signup.py:23
-#: userflow/templates/userflow/sign/sign-ajax.html:15
-#: userflow/templates/userflow/sign/sign-default.html:15
-#: userflow/templates/userflow/sign/signup.html:7
-msgid "Sign Up"
-msgstr ""
+msgid "Signup"
+msgstr "Sign up"
 
 #: userflow/forms/signup.py:26
 msgid "This email already exists."
@@ -276,6 +277,12 @@ msgstr ""
 #: userflow/templates/userflow/reset/wait.html:17
 #: userflow/templates/userflow/verify/wait.html:12
 msgid "Resend"
+msgstr ""
+
+#: userflow/templates/userflow/sign/sign-ajax.html:15
+#: userflow/templates/userflow/sign/sign-default.html:15
+#: userflow/templates/userflow/sign/signup.html:7
+msgid "Sign Up"
 msgstr ""
 
 #: userflow/templates/userflow/verify/confirm.html:10

@@ -20,7 +20,7 @@ class SignupForm(forms.Form):
 
     helper = FormHelper()
     helper.form_action = reverse_lazy('users:signup')
-    helper.add_input(Submit('signup', _('Sign Up')))
+    helper.add_input(Submit('signup', _('Signup')))
 
     error_messages = {
         'email_exists': _('This email already exists.'),
