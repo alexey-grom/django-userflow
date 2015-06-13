@@ -11,8 +11,8 @@
         <p>{% trans 'Sorry, your link is expired' %}</p>
     {% else %}
         {% if confirmation.is_done %}
-            <h1>Password changed</h1>
-            <p>Please <a href="{% url 'users:signin' %}">signin</a> using new password.</p>
+            <h1>{% trans 'Password changed' %}</h1>
+            <p>{% trans 'Please' %} <a href="{% url 'users:signin' %}">{% trans 'signin' %}</a> {% trans 'using new password.' %}</p>
         {% else %}
             <div class="ui doubling three column centered grid">
                 <div class="column">

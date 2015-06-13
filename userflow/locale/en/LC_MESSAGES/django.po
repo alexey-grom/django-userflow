@@ -1,0 +1,292 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2015-06-13 14:17+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: userflow/admin.py:28
+msgid "Personal info"
+msgstr ""
+
+#: userflow/admin.py:29
+msgid "Permissions"
+msgstr ""
+
+#: userflow/admin.py:31
+msgid "Important dates"
+msgstr ""
+
+#: userflow/apps.py:12
+msgid "Users"
+msgstr ""
+
+#: userflow/forms/password.py:19 userflow/forms/signin.py:18
+#: userflow/forms/signup.py:16
+msgid "Email"
+msgstr ""
+
+#: userflow/forms/password.py:25
+msgid "Submit"
+msgstr ""
+
+#: userflow/forms/password.py:26 userflow/forms/signin.py:25
+#: userflow/templates/userflow/sign/sign-ajax.html:9
+#: userflow/templates/userflow/sign/sign-default.html:9
+#: userflow/templates/userflow/sign/signin.html:7
+msgid "Sign In"
+msgstr ""
+
+#: userflow/forms/password.py:40
+msgid "Can't find that email, sorry"
+msgstr ""
+
+#: userflow/forms/password.py:51 userflow/forms/password.py:57
+msgid "Change"
+msgstr ""
+
+#: userflow/forms/signin.py:19 userflow/forms/signup.py:18
+msgid "Password"
+msgstr ""
+
+#: userflow/forms/signin.py:26
+msgid "Lost your password?"
+msgstr ""
+
+#: userflow/forms/signin.py:30
+#, python-format
+msgid ""
+"Please enter a correct %(username)s and password. Note that both fields may "
+"be case-sensitive."
+msgstr ""
+
+#: userflow/forms/signin.py:32 userflow/forms/signup.py:27
+msgid "This account is inactive."
+msgstr ""
+
+#: userflow/forms/signin.py:33 userflow/forms/signup.py:28
+msgid "This account is removed."
+msgstr ""
+
+#: userflow/forms/signup.py:17
+msgid "Your name"
+msgstr ""
+
+#: userflow/forms/signup.py:19
+msgid "Password confirm"
+msgstr ""
+
+#: userflow/forms/signup.py:23
+#: userflow/templates/userflow/sign/sign-ajax.html:15
+#: userflow/templates/userflow/sign/sign-default.html:15
+#: userflow/templates/userflow/sign/signup.html:7
+msgid "Sign Up"
+msgstr ""
+
+#: userflow/forms/signup.py:26
+msgid "This email already exists."
+msgstr ""
+
+#: userflow/forms/signup.py:29
+msgid "Password and confirmation does not match."
+msgstr ""
+
+#: userflow/models/emails.py:20
+msgid "email address"
+msgstr ""
+
+#: userflow/models/emails.py:38
+msgid "email"
+msgstr ""
+
+#: userflow/models/emails.py:39
+msgid "emails"
+msgstr ""
+
+#: userflow/models/user.py:71
+msgid "display name"
+msgstr ""
+
+#: userflow/models/user.py:73
+msgid "staff status"
+msgstr ""
+
+#: userflow/models/user.py:73
+msgid "Designates whether the user can log into this admin site."
+msgstr ""
+
+#: userflow/models/user.py:74
+msgid "active"
+msgstr ""
+
+#: userflow/models/user.py:74
+msgid ""
+"Designates whether this user should be treated as active. Unselect this "
+"instead of deleting accounts."
+msgstr ""
+
+#: userflow/models/user.py:75
+msgid "removed"
+msgstr ""
+
+#: userflow/models/user.py:105
+msgid "user"
+msgstr ""
+
+#: userflow/models/user.py:106
+msgid "users"
+msgstr ""
+
+#: userflow/templates/userflow/emails/_sign.html:5
+#, python-format
+msgid ""
+"\n"
+"        Cheers,<br/>\n"
+"        Your %(site_name)s Team\n"
+"    "
+msgstr ""
+
+#: userflow/templates/userflow/emails/_sign.txt:3
+#, python-format
+msgid ""
+"\n"
+"Cheers,\n"
+"Your %(site_name)s Team\n"
+msgstr ""
+
+#: userflow/templates/userflow/emails/reset-subject.txt:3
+#: userflow/templates/userflow/reset/request.html:12
+msgid "Reset password"
+msgstr ""
+
+#: userflow/templates/userflow/emails/reset.html:6
+#: userflow/templates/userflow/emails/reset.txt:6
+msgid "Please follow link for reset your password:"
+msgstr ""
+
+#: userflow/templates/userflow/emails/signup-subject.txt:3
+msgid "Thanks for Joining"
+msgstr ""
+
+#: userflow/templates/userflow/emails/signup.html:6
+msgid "Welcome to"
+msgstr ""
+
+#: userflow/templates/userflow/emails/signup.html:7
+msgid "You’ve taken your first step into a larger world"
+msgstr ""
+
+#: userflow/templates/userflow/emails/signup.txt:6
+#, python-format
+msgid ""
+"\n"
+"Welcome to %(site_name)s\n"
+"You’ve taken your first step into a larger world, %(user.name)s\n"
+msgstr ""
+
+#: userflow/templates/userflow/emails/verify-subject.txt:3
+msgid "Please verify your email"
+msgstr ""
+
+#: userflow/templates/userflow/emails/verify.html:6
+#: userflow/templates/userflow/emails/verify.txt:6
+msgid "Hey, we want to verify that you are indeed"
+msgstr ""
+
+#: userflow/templates/userflow/emails/verify.html:7
+#: userflow/templates/userflow/emails/verify.txt:7
+msgid ""
+"Verifying this address will let you receive notifications and password "
+"resets from"
+msgstr ""
+
+#: userflow/templates/userflow/emails/verify.html:8
+#: userflow/templates/userflow/emails/verify.txt:8
+msgid "If you wish to continue, please follow the link below:"
+msgstr ""
+
+#: userflow/templates/userflow/emails/verify.html:9
+msgid "Confirm"
+msgstr ""
+
+#: userflow/templates/userflow/emails/verify.html:10
+#: userflow/templates/userflow/emails/verify.txt:10
+msgid "If you’re not"
+msgstr ""
+
+#: userflow/templates/userflow/emails/verify.html:10
+#: userflow/templates/userflow/emails/verify.txt:10
+msgid "or didn’t request verification, you can ignore this email."
+msgstr ""
+
+#: userflow/templates/userflow/reset/change.html:10
+#: userflow/templates/userflow/reset/wait.html:9
+#: userflow/templates/userflow/verify/confirm.html:7
+#: userflow/templates/userflow/verify/wait.html:7
+msgid "Expired link :("
+msgstr ""
+
+#: userflow/templates/userflow/reset/change.html:11
+#: userflow/templates/userflow/reset/wait.html:10
+#: userflow/templates/userflow/verify/confirm.html:8
+#: userflow/templates/userflow/verify/wait.html:8
+msgid "Sorry, your link is expired"
+msgstr ""
+
+#: userflow/templates/userflow/reset/change.html:14
+msgid "Password changed"
+msgstr ""
+
+#: userflow/templates/userflow/reset/change.html:15
+msgid "Please"
+msgstr ""
+
+#: userflow/templates/userflow/reset/change.html:15
+msgid "signin"
+msgstr ""
+
+#: userflow/templates/userflow/reset/change.html:15
+msgid "using new password."
+msgstr ""
+
+#: userflow/templates/userflow/reset/change.html:20
+msgid "Change password"
+msgstr ""
+
+#: userflow/templates/userflow/reset/wait.html:12
+msgid "Password reset"
+msgstr ""
+
+#: userflow/templates/userflow/reset/wait.html:13
+#: userflow/templates/userflow/verify/wait.html:11
+msgid "We have sent your confirmation email to"
+msgstr ""
+
+#: userflow/templates/userflow/reset/wait.html:17
+#: userflow/templates/userflow/verify/wait.html:12
+msgid "Resend"
+msgstr ""
+
+#: userflow/templates/userflow/verify/confirm.html:10
+msgid "Email verify success"
+msgstr ""
+
+#: userflow/templates/userflow/verify/confirm.html:11
+msgid "Thank you for confirm your email"
+msgstr ""
+
+#: userflow/templates/userflow/verify/wait.html:10
+msgid "Email verify"
+msgstr ""
