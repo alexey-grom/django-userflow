@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-13 14:37+0000\n"
+"POT-Creation-Date: 2015-06-14 18:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -192,23 +192,14 @@ msgid "Thanks for Joining"
 msgstr "Спасибо что присоединились к"
 
 #: userflow/templates/userflow/emails/signup.html:6
+#: userflow/templates/userflow/emails/signup.txt:6
 msgid "Welcome to"
 msgstr "Добро пожаловать на"
 
 #: userflow/templates/userflow/emails/signup.html:7
+#: userflow/templates/userflow/emails/signup.txt:7
 msgid "You’ve taken your first step into a larger world"
 msgstr "Вы только что сделали первый шаг в огромный мир"
-
-#: userflow/templates/userflow/emails/signup.txt:6
-#, python-format
-msgid ""
-"\n"
-"Welcome to %(site_name)s\n"
-"You’ve taken your first step into a larger world, %(user.name)s\n"
-msgstr ""
-"\n"
-"Добро пожаловать на %(site_name)s\n"
-"Вы только что сделали первый шаг в огромный мир, %(user.name)s\n"
 
 #: userflow/templates/userflow/emails/verify-subject.txt:3
 msgid "Please verify your email"
@@ -270,8 +261,8 @@ msgid "Please"
 msgstr "Пожалуйста,"
 
 #: userflow/templates/userflow/reset/change.html:15
-msgid "signin"
-msgstr "вход"
+msgid "do signin"
+msgstr "войдите"
 
 #: userflow/templates/userflow/reset/change.html:15
 msgid "using new password."
@@ -312,3 +303,12 @@ msgstr "Спасибо что подтвердили свой адрес эле�
 #: userflow/templates/userflow/verify/wait.html:10
 msgid "Email verify"
 msgstr "Подтверждение почты"
+
+#~ msgid ""
+#~ "\n"
+#~ "Welcome to %(site_name)s\n"
+#~ "You’ve taken your first step into a larger world, %(user.name)s\n"
+#~ msgstr ""
+#~ "\n"
+#~ "Добро пожаловать на %(site_name)s\n"
+#~ "Вы только что сделали первый шаг в огромный мир, %(user.name)s\n"

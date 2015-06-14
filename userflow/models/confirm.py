@@ -41,6 +41,12 @@ class Confirmation(models.Model):
 
     objects = ConfirmationQueryset.as_manager()
 
+    def get_owner(self):
+        raise NotImplementedError
+
+    def get_email(self):
+        raise NotImplementedError
+
     def get_key_params(self):
         return self.pk,
 
@@ -67,7 +73,7 @@ class Confirmation(models.Model):
     def send(self, email_template, user, request=None):
         context = {'user': user,
                    'confirmation': self, }
-        send_mail(self.email.email,  # todo: getter
+        send_mail(self.get_email(),
                   email_template=email_template,
                   request=request,
                   context=context)
@@ -79,6 +85,12 @@ class Confirmation(models.Model):
 
 class EmailConfirmation(Confirmation):
     email = models.ForeignKey('UserEmail', related_name='confirmations')
+
+    def get_owner(self):
+        return self.email.user
+
+    def get_email(self):
+        return self.email.email
 
     def confirm(self):
         self.email.is_active = True
@@ -117,6 +129,12 @@ class EmailConfirmation(Confirmation):
 
 class PasswordResetConfirmation(Confirmation):
     email = models.ForeignKey('UserEmail')
+
+    def get_owner(self):
+        return self.email.user
+
+    def get_email(self):
+        return self.email.email
 
     def confirm(self):
         super(PasswordResetConfirmation, self).confirm()

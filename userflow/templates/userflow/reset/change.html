@@ -12,7 +12,7 @@
     {% else %}
         {% if confirmation.is_done %}
             <h1>{% trans 'Password changed' %}</h1>
-            <p>{% trans 'Please' %} <a href="{% url 'users:signin' %}">{% trans 'signin' %}</a> {% trans 'using new password.' %}</p>
+            <p>{% trans 'Please' %} <a href="{% url 'users:signin' %}">{% trans 'do signin' %}</a> {% trans 'using new password.' %}</p>
         {% else %}
             <div class="ui doubling three column centered grid">
                 <div class="column">

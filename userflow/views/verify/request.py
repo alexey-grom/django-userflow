@@ -29,5 +29,7 @@ class RequestConfirmEmailView(DetailView):
         return confirmation
 
     def render_to_response(self, context, **response_kwargs):
-        self.object.send('verify', self.request.user, self.request)
+        self.object.send('verify',
+                         self.object.get_owner(),
+                         self.request)
         return HttpResponseRedirect(self.object.get_wait_url())

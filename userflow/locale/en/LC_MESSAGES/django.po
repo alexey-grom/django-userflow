@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-13 14:37+0000\n"
+"POT-Creation-Date: 2015-06-14 18:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -181,19 +181,13 @@ msgid "Thanks for Joining"
 msgstr ""
 
 #: userflow/templates/userflow/emails/signup.html:6
+#: userflow/templates/userflow/emails/signup.txt:6
 msgid "Welcome to"
 msgstr ""
 
 #: userflow/templates/userflow/emails/signup.html:7
+#: userflow/templates/userflow/emails/signup.txt:7
 msgid "You’ve taken your first step into a larger world"
-msgstr ""
-
-#: userflow/templates/userflow/emails/signup.txt:6
-#, python-format
-msgid ""
-"\n"
-"Welcome to %(site_name)s\n"
-"You’ve taken your first step into a larger world, %(user.name)s\n"
 msgstr ""
 
 #: userflow/templates/userflow/emails/verify-subject.txt:3
@@ -254,8 +248,8 @@ msgid "Please"
 msgstr ""
 
 #: userflow/templates/userflow/reset/change.html:15
-msgid "signin"
-msgstr ""
+msgid "do signin"
+msgstr "signin"
 
 #: userflow/templates/userflow/reset/change.html:15
 msgid "using new password."

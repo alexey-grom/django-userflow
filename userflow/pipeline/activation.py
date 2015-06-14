@@ -20,4 +20,5 @@ def activate_by_email_confirm(request, is_new=False, user=None, **kwargs):
     if email.is_dummy:
         return
     confirmation = EmailConfirmation.objects.create(email=email)
+    confirmation.send('verify', user, request)
     return HttpResponseRedirect(confirmation.get_wait_url())
