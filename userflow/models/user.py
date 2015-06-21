@@ -80,6 +80,9 @@ class BaseUser(auth_models.AbstractBaseUser,
 
     USERNAME_FIELD = 'id'  # compat
 
+    def __unicode__(self):
+        return self.get_full_name()
+
     def get_full_name(self):
         return self.name or self.get_short_name()
 
@@ -95,6 +98,10 @@ class BaseUser(auth_models.AbstractBaseUser,
         return conf.USERS_DUMMY_EMAIL
 
     @property
+    def is_has_email(self):
+        return self.email != conf.USERS_DUMMY_EMAIL
+
+    @property
     def primary_email(self):
         user_email = self.emails.filter(is_primary=True).first() or \
                      self.emails.first()
@@ -108,7 +115,12 @@ class BaseUser(auth_models.AbstractBaseUser,
 
 
 if conf.is_generic_user_model:
-    class User(BaseUser):
-        """
-        Common user model implementation
-        """
+    bases = (BaseUser, )
+
+    if conf.USERS_PERSONAL_MIXIN:
+        bases = (conf.USERS_PERSONAL_MIXIN, ) + \
+                bases
+
+    User = type('User', bases, {
+        '__module__': BaseUser.__module__,
+    })

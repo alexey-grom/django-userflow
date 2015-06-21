@@ -21,6 +21,7 @@ class UserEmail(models.Model):
 
     is_primary = models.BooleanField(default=False)
     is_active = models.BooleanField(default=False)
+    is_public = models.BooleanField(default=False)
 
     created = models.DateTimeField(auto_now_add=True)
 

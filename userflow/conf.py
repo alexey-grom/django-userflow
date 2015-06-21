@@ -35,8 +35,7 @@ class setting(object):
 
 class settings(dict):
     def __init__(self, *args, **kwargs):
-        iterable = (self._check_value(item)
-                    for item in args)
+        iterable = ((item.name, item) for item in args)
         super(settings, self).__init__(iterable, **kwargs)
 
     def _check_value(self, item):
@@ -45,6 +44,12 @@ class settings(dict):
 
     def update(self, other=None, **kwargs):
         raise RuntimeError
+
+    def __getitem__(self, key):
+        value = super(settings, self).__getitem__(key)
+        if isinstance(value, setting):
+            value = self[key] = value.value()
+        return value
 
 
 def import_attr(attr):
@@ -83,7 +88,11 @@ SETTINGS = settings(
             utils.dummy_site_name),
 
     setting('USERS_DUMMY_EMAIL',
-            'nobody@localhost'),
+            None),
+
+    setting('USERS_PERSONAL_MIXIN',
+            'userflow.models.personal.UserInfoMixin',
+            auto_import=True),
 
     setting('USERS_CONFIRMATION_EXPIRATION',
             datetime.timedelta(days=3)),
@@ -95,10 +104,6 @@ class Wrapper(object):
     def __init__(self, wrapped):
         super(Wrapper, self).__init__()
         self.wrapped = wrapped
-
-    @property
-    def is_default_user_model(self):
-        return getattr(django_settings, 'AUTH_USER_MODEL') == 'auth.User'
 
     @property
     def is_generic_user_model(self):
