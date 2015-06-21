@@ -14,6 +14,12 @@ class UserEmailQueryset(models.QuerySet):
     def inactive(self):
         return self.filter(is_active=False)
 
+    def active(self):
+        return self.filter(is_active=True)
+
+    def public(self):
+        return self.filter(is_public=True)
+
 
 class UserEmail(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='emails')

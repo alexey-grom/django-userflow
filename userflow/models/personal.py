@@ -14,8 +14,8 @@ GENDERS = {'f': _(u'Female'),
 
 class UserInfoMixin(models.Model):
     real_name = models.CharField(max_length=255, blank=True, verbose_name=_('Real name'))
-    birthday = models.DateTimeField(default=None, null=True, blank=True, verbose_name=_('Birthday'))
-    gender = models.CharField(max_length=1, choices=GENDERS.items(), verbose_name=_('Gender'))
+    birthday = models.DateField(default=None, null=True, blank=True, verbose_name=_('Birthday'))
+    gender = models.CharField(max_length=1, choices=GENDERS.items(), blank=True, verbose_name=_('Gender'))
     location = models.CharField(max_length=255, blank=True, verbose_name=_('Location'))
     about = models.TextField(blank=True)
     photo = models.ImageField(upload_to='avatars', blank=True, verbose_name=_('Photo'))

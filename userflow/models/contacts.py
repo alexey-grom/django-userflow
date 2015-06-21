@@ -33,8 +33,12 @@ class ContactType(six.with_metaclass(ContactTypeMeta)):
     abstract = True
     alias = None
     title = None
+    icon = None
 
     def validate(self, value):
+        pass
+
+    def as_link(self, value):
         pass
 
 
@@ -50,22 +54,38 @@ class RegexContactType(ContactType):
 class SiteContactType(ContactType):
     alias = 'site'
     title = _(u'Site')
+    icon = 'world'
 
     def validate(self, value):
         URLValidator()(value)
+
+    def as_link(self, value):
+        return value
 
 
 class SkypeContactType(RegexContactType):
     alias = 'skype'
     title = _('Skype')
+    icon = 'skype'
     regex = re.compile(r'^[a-z][[a-z0-9.-]{5,31}$', re.IGNORECASE or re.UNICODE)
+
+
+class PhoneContactType(RegexContactType):
+    alias = 'phone'
+    title = _('Phone')
+    icon = 'text telephone'
+    regex = re.compile(r'^\+?[\d\-]{5,15}$', re.IGNORECASE or re.UNICODE)
 
 
 class FacebookContactType(RegexContactType):
     alias = 'facebook'
     title = _('Facebook')
+    icon = 'facebook'
     regex = re.compile(r'(?:(?:http|https):\/\/)?(?:www.)?facebook.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[?\w\-]*\/)?(?:profile.php\?id=(?=\d.*))?([\w\-]*)?',
                        re.IGNORECASE)
+
+    def as_link(self, value):
+        return value
 
 
 def get_contact_types():
@@ -81,6 +101,20 @@ class Contact(models.Model):
     @property
     def contact_type(self):
         return ContactTypeMeta.register.get(self.type, None)
+
+    @property
+    def contact_name(self):
+        contact_type = self.contact_type
+        if not contact_type:
+            return
+        return contact_type.title
+
+    @property
+    def as_link(self):
+        contact_type = self.contact_type
+        if not contact_type:
+            return
+        return contact_type().as_link(self.value)
 
     def clean(self):
         if self.type or self.value:

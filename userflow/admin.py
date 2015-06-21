@@ -29,7 +29,9 @@ class UserAdmin(auth_admin.UserAdmin):
     )
     fieldsets = (
         (None, {'fields': ('password', )}),
-        (_('Personal info'), {'fields': ('email', 'name', )}),
+        (_('Personal info'), {'fields': ('email', 'name', 'real_name',
+                                         'birthday', 'gender', 'location',
+                                         'about', )}),
         (_('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
                                        'groups', 'user_permissions')}),
         (_('Important dates'), {'fields': ('last_login', )}),
