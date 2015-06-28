@@ -1,0 +1,12 @@
+{% load i18n %}
+
+<form class="ui form{% if form.has_changed and not form.is_valid %} error{% endif %}" action="{% url 'users:profile:edit' name='about' %}" method="post">
+    {% csrf_token %}
+
+    {% for field in form %}
+        {% include 'userflow/forms/_field.html' %}
+    {% endfor %}
+
+    <input type="submit" name="submit" value="{% trans 'Change' %}" class="ui primary button">
+
+</form>

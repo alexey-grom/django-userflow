@@ -27,9 +27,8 @@ urlpatterns = patterns('',
         ], namespace='verify')),
 
         url(r'^profile/', include([
-            url('^$', views.profile.user.UserProfileView.as_view(), name='profile'),
-            url('^(?P<pk>\d+)/$', views.profile.user.UserProfileView.as_view(), name='profile'),
-
+            url('^$', views.profile.user.UserProfileView.as_view(), name='view'),
+            url('^(?P<pk>\d+)/$', views.profile.user.UserProfileView.as_view(), name='view'),
             url(r'edit/', include([
                 url(r'^$', views.profile.edit.PersonalEditView.as_view(), name='edit'),
                 url(r'^(?P<name>personal)/$', views.profile.edit.PersonalEditView.as_view(), name='edit'),
@@ -38,8 +37,7 @@ urlpatterns = patterns('',
                 url(r'^(?P<name>emails)/$', views.profile.edit.EmailsEditView.as_view(), name='edit'),
                 url(r'^(?P<name>contacts)/$', views.profile.edit.ContactsEditView.as_view(), name='edit'),
             ])),
-
-        ])),
+        ], namespace='profile')),
 
         url(r'rating/', include([
             url(r'^$', RedirectView.as_view(url='/'), name='rating'),

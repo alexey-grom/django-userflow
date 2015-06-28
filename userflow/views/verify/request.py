@@ -6,9 +6,6 @@ from django.views.generic.detail import DetailView
 from userflow.models import UserEmail
 
 
-__all__ = 'RequestConfirmEmailView',
-
-
 class RequestConfirmEmailView(DetailView):
     model = UserEmail
 

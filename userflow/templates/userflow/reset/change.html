@@ -1,7 +1,6 @@
 {% extends 'userflow/base.html' %}
 
 {% load i18n %}
-{% load crispy_forms_tags %}
 
 {% block title %}{% trans 'Reset password' %}{% endblock %}
 
@@ -18,7 +17,7 @@
                 <div class="column">
                     <div class="ui orange segment">
                         <h3>{% trans 'Change password' %}</h3>
-                        {% crispy form %}
+                        {% include 'userflow/forms/reset-change.html' %}
                     </div>
                 </div>
             </div>

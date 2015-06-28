@@ -3,12 +3,8 @@
 from django.views.generic.edit import FormMixin
 
 from userflow.models import PasswordResetConfirmation
-from userflow.forms.password import get_password_form_helper
 from userflow.views.base import ConfirmView
 from userflow import forms
-
-
-__all__ = 'SetPasswordView',
 
 
 class SetPasswordView(FormMixin, ConfirmView):
@@ -33,11 +29,6 @@ class SetPasswordView(FormMixin, ConfirmView):
         context = self.get_context_data(form=form,
                                         object=self.object)
         return self.render_to_response(context)
-
-    def get_form(self, form_class=None):
-        form = super(SetPasswordView, self).get_form(form_class)
-        form.helper = get_password_form_helper()
-        return form
 
     def get_form_kwargs(self):
         kwargs = super(SetPasswordView, self).get_form_kwargs()

@@ -1,0 +1,22 @@
+{% load i18n %}
+
+<form class="ui small form{% if formset.has_changed and not formset.is_valid %} error{% endif %}" action="{% url 'users:profile:edit' name='contacts' %}" method="post">
+    {% csrf_token %}
+    {{ formset.management_form }}
+
+    {% for form in formset %}
+        <div class="fields">
+            {% include 'userflow/forms/_field-short.html' with field=form.type field_classes='four wide field' %}
+            {% include 'userflow/forms/_field-short.html' with field=form.value field_classes='six wide field' %}
+            <div class="six wide field">
+                <a class="ui basic small button" href="javascript:void(0);"><i class="remove icon"></i>Remove</a>
+                {% for field in form.hidden_fields %}
+                    {{ field }}
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+
+    <input type="submit" name="submit" value="{% trans 'Change' %}" class="ui primary button">
+
+</form>

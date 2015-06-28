@@ -44,6 +44,3 @@ class UserEmail(models.Model):
         app_label = 'userflow'
         verbose_name = _('email')
         verbose_name_plural = _('emails')
-        unique_together = (
-            ('user', 'is_primary'),
-        )

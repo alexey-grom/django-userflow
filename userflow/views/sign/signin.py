@@ -7,9 +7,6 @@ from userflow import conf
 from userflow.views.base import SignLayoutMixin
 
 
-__all__ = 'SigninView',
-
-
 class SigninView(AnonymousRequiredMixin, SignLayoutMixin, FormView):
     template_name = 'userflow/sign/signin.html'
 

@@ -1,6 +1,5 @@
 # encoding: utf-8
 
-from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -8,8 +7,9 @@ from django.utils.translation import ugettext_lazy as _
 __all__ = 'UserInfoMixin',
 
 
-GENDERS = {'f': _(u'Female'),
-           'm': _(u'Male')}
+GENDER_MALE, GENDER_FEMALE = 'm', 'f'
+GENDERS = {GENDER_FEMALE: _(u'Female'),
+           GENDER_MALE: _(u'Male')}
 
 
 class UserInfoMixin(models.Model):

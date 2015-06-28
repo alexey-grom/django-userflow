@@ -2,29 +2,17 @@
 
 from django.contrib import auth
 from django.contrib.auth import get_user_model
-from django.core.urlresolvers import reverse_lazy
+from django.core.exceptions import MultipleObjectsReturned
 from django import forms
 from django.utils.translation import ugettext_lazy as _
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Layout
-
-from userflow.layout import Link
 
 
-__all__ = 'SigninForm',
+__all__ = ()
 
 
 class SigninForm(forms.Form):
     email = forms.EmailField(required=True, label=_('Email'))
     password = forms.CharField(required=True, widget=forms.PasswordInput, label=_('Password'))
-
-    helper = FormHelper()
-    helper.form_action = reverse_lazy('users:signin')
-    helper.layout = Layout(
-        'email', 'password',
-        Submit('signin', _('Signin')),
-        Link(reverse_lazy('users:reset:request'), _('Lost your password?')),
-    )
 
     error_messages = {
         'invalid_login': _('Please enter a correct email and password. '
@@ -39,9 +27,6 @@ class SigninForm(forms.Form):
 
     def clean(self):
         data = self.cleaned_data
-
-        if not data:
-            return data
 
         try:
             self.user_cache = self.check_user(**data)
@@ -59,7 +44,11 @@ class SigninForm(forms.Form):
     def check_user(self, email=None, password=None, **kwargs):
         credentials = {self.username_field.name: email,
                        'password': password}
-        user = auth.authenticate(**credentials)
+
+        try:
+            user = auth.authenticate(**credentials)
+        except MultipleObjectsReturned:
+            return
 
         if user is None:
             raise forms.ValidationError(

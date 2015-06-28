@@ -6,9 +6,6 @@ from braces.views import LoginRequiredMixin
 from userflow import conf
 
 
-__all__ = 'SignoutView',
-
-
 class SignoutView(LoginRequiredMixin, View):
     def get(self, request, *args, **kwargs):
         return conf.run_flow('USERS_FLOW_DOWN',

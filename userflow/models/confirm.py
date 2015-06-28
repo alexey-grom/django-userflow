@@ -97,6 +97,7 @@ class EmailConfirmation(Confirmation):
         self.email.save()
 
         if not self.email.user.is_active:
+            # TODO: flow
             get_user_model().objects.\
                 filter(pk=self.email.user_id).\
                 update(is_active=True)

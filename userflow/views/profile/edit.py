@@ -17,8 +17,8 @@ class ProfileEditMixin(ContextMixin):
         ('personal', lambda request: forms.profile.PersonalForm(instance=request.user)),
         ('about', lambda request: forms.profile.AboutForm(instance=request.user)),
         ('password', lambda request: get_password_form(request.user)(user=request.user)),
-        # ('emails', lambda request: forms.profile.EmailsFormset(queryset=request.user.emails.all())),
-        # ('contacts', lambda request: forms.profile.ContactsFormset(queryset=request.user.contacts.all())),
+        ('emails', lambda request: forms.profile.EmailsFormset(queryset=request.user.emails.all())),
+        ('contacts', lambda request: forms.profile.ContactsFormset(queryset=request.user.contacts.all())),
     ))
     template_name = 'userflow/profile/edit.html'
 
@@ -45,12 +45,7 @@ class ProfileEditMixin(ContextMixin):
         return context
 
     def get_success_url(self):
-        return reverse_lazy('users:edit')
-
-
-# class ProfileDispatchView(ProfileEditMixin, View):
-#     def dispatch(self, request, *args, **kwargs):
-#         return super(ProfileDispatchView, self).dispatch(request, *args, **kwargs)
+        return reverse_lazy('users:profile:edit')
 
 
 class PersonalEditView(ProfileEditMixin, UpdateView):

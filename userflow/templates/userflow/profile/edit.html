@@ -1,7 +1,6 @@
 {% extends 'userflow/base.html' %}
 
 {% load i18n %}
-{% load crispy_forms_tags %}
 {% load userflow_gravatar %}
 {% load userflow_tags %}
 
@@ -16,11 +15,9 @@
                     <i class="right chevron icon divider"></i>
                     <a href="{% url 'users:rating' %}" class="section">{% trans 'Users' %}</a>
                     <i class="right chevron icon divider"></i>
-                    {% if is_me %}
-                        <div class="active section">{% trans 'My profile' %}</div>
-                    {% else %}
-                        <div class="active section">{{ user.name }}</div>
-                    {% endif %}
+                    <a href="{% url 'users:profile:view' %}" class="section">{% trans 'My profile' %}</a>
+                    <i class="right chevron icon divider"></i>
+                    <div class="active section">{% trans 'Edit' %}</div>
                 </div>
             </div>
         </div>
@@ -34,31 +31,37 @@
 
             <div class="thirteen wide column">
                 <div class="ui horizontal divider" id="personal">{% trans 'Personal info' %}</div>
-                {% crispy forms.personal %}
+                {% with form=forms.personal %}
+                    {% include 'userflow/forms/profile-personal.html' %}
+                {% endwith %}
+
                 <br/>
 
                 <div class="ui horizontal divider" id="about">{% trans 'About' %}</div>
-                {% crispy forms.about %}
+                {% with form=forms.about %}
+                    {% include 'userflow/forms/profile-about.html' %}
+                {% endwith %}
+
                 <br/>
 
                 <div class="ui horizontal divider" id="password">{% trans 'Password' %}</div>
-                {% crispy forms.password %}
+                {% with form=forms.password %}
+                    {% include 'userflow/forms/profile-password.html' %}
+                {% endwith %}
+
                 <br/>
 
-{#                <div class="ui horizontal divider" id="emails">{% trans 'Emails' %}</div>#}
-{#                {% crispy forms.emails %}#}
-{#                {% with formset=forms.emails %}#}
-{#                    <form action="{% url 'users:edit' name='emails' %}">#}
-{#                        {{ formset.management_form }}#}
-{#                        {% for form in formset %}#}
-{#                            {% crispy form %}#}
-{#                        {% endfor %}#}
-{#                    </form>#}
-{#                {% endwith %}#}
-{#                <br/>#}
-{##}
-{#                <div class="ui horizontal divider" id="contacts">{% trans 'Contacts' %}</div>#}
-{#                {% crispy forms.contacts %}#}
+                <div class="ui horizontal divider" id="emails">{% trans 'Emails' %}</div>
+                {% with formset=forms.emails %}
+                    {% include 'userflow/forms/profile-emails.html' %}
+                {% endwith %}
+
+                <br/>
+
+                <div class="ui horizontal divider" id="contacts">{% trans 'Contacts' %}</div>
+                {% with formset=forms.contacts %}
+                    {% include 'userflow/forms/profile-contacts.html' %}
+                {% endwith %}
 
             </div>
         </div>

@@ -38,18 +38,14 @@
                         <div class="header">{% trans 'Display name' %}</div>
                         <span>{{ user.name }}</span>
                     </div>
-                    {% if user.real_name %}
-                        <div class="item">
-                            <div class="header">{% trans 'Real name' %}</div>
-                            <span>{{ user.real_name }}</span>
-                        </div>
-                    {% endif %}
-                    {% if user.location %}
-                        <div class="item">
-                            <div class="header">{% trans 'Location' %}</div>
-                            <span>{{ user.location }}</span>
-                        </div>
-                    {% endif %}
+                    <div class="item">
+                        <div class="header">{% trans 'Real name' %}</div>
+                        <span>{{ user.real_name|default:'&mdash;' }}</span>
+                    </div>
+                    <div class="item">
+                        <div class="header">{% trans 'Location' %}</div>
+                        <span>{{ user.location|default:'&mdash;' }}</span>
+                    </div>
                     {% if user.birthday %}
                         <div class="item">
                             <div class="header">{% trans 'Age' %}</div>
@@ -59,36 +55,43 @@
                 </div>
                 <br/>
 
-                <div class="ui horizontal divider">{% trans 'About' %}</div>
-                <p>{{ user.about }}</p>
-                <br/>
+                {% if user.about %}
+                    <div class="ui horizontal divider">{% trans 'About' %}</div>
+                    <p>{{ user.about }}</p>
+                    <br/>
+                {% endif %}
 
-                <div class="ui horizontal divider">{% trans 'Contacts' %}</div>
+                {% if user.emails.public.active.exists or contact in user.contacts.exists %}
+                    <div class="ui horizontal divider">{% trans 'Contacts' %}</div>
 
-                <div class="ui list">
-                    {% for email in user.emails.public.active %}
-                        <a class="item" href="mailto:{{ email.email }}">
-                            <i class="mail icon"></i>
-                            <div class="content">
-                                <div class="header">{% trans 'Email' %}</div>
-                                <div class="description">{{ email.email }}</div>
-                            </div>
-                        </a>
-                    {% endfor %}
-                    {% for contact in user.contacts.all %}
-                        {% with link=contact.as_link %}
-                            <a class="item"{% if link %} href="{{ link|safe }}" target="_blank"{% else %}{% endif %}>
-                                {% with type=contact.contact_type %}
-                                    <i class="{{ type.icon|default_if_none:type.alias }} icon"></i>
-                                {% endwith %}
+                    <div class="ui list">
+                        {% for email in user.emails.public.active %}
+                            <a class="item" href="mailto:{{ email.email }}">
+                                <i class="mail icon"></i>
                                 <div class="content">
-                                    <div class="header">{{ contact.contact_name }}</div>
-                                    <div class="description">{{ contact.value }}</div>
+                                    <div class="header">{% trans 'Email' %}</div>
+                                    <div class="description">{{ email.email }}</div>
                                 </div>
                             </a>
-                        {% endwith %}
-                    {% endfor %}
-                </div>
+                        {% endfor %}
+
+                        {% for contact in user.contacts.all %}
+                            {% with link=contact.as_link %}
+                                <a class="item"{% if link %} href="{{ link|safe }}" target="_blank"{% else %}{% endif %}>
+                                    {% with type=contact.contact_type %}
+                                        <i class="{{ type.icon|default_if_none:type.alias }} icon"></i>
+                                    {% endwith %}
+                                    <div class="content">
+                                        <div class="header">{{ contact.contact_name }}</div>
+                                        <div class="description">{{ contact.value }}</div>
+                                    </div>
+                                </a>
+                            {% endwith %}
+                        {% endfor %}
+
+                    </div>
+
+                {% endif %}
 
             </div>
         </div>

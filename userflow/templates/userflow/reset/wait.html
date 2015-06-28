@@ -14,7 +14,7 @@
         <form action="{% url 'users:reset:request' %}" method="post">
             {% csrf_token %}
             <input type="hidden" name="email" value="{{ confirmation.email.email }}" />
-            <input type="submit" value="{% trans 'Resend' %}" />
+            <input type="submit" class="ui primary button" value="{% trans 'Resend' %}" />
         </form>
     {% endif %}
 {% endblock %}
