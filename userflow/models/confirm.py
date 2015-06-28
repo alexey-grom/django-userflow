@@ -111,14 +111,14 @@ class EmailConfirmation(Confirmation):
 
     @models.permalink
     def get_absolute_url(self):
-        return 'users:verify-confirm', (), {
+        return 'users:verify:confirm', (), {
             'pk': self.pk,
             'key': self.confirm_key,
         }
 
     @models.permalink
     def get_wait_url(self):
-        return 'users:verify-wait', (), {
+        return 'users:verify:wait', (), {
             'pk': self.pk,
             'key': self.wait_key,
         }
@@ -147,14 +147,14 @@ class PasswordResetConfirmation(Confirmation):
 
     @models.permalink
     def get_absolute_url(self):
-        return 'users:reset-confirm', (), {
+        return 'users:reset:confirm', (), {
             'pk': self.pk,
             'key': self.confirm_key,
         }
 
     @models.permalink
     def get_wait_url(self):
-        return 'users:reset-wait', (), {
+        return 'users:reset:wait', (), {
             'pk': self.pk,
             'key': self.wait_key,
         }

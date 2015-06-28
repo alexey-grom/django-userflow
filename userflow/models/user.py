@@ -97,8 +97,7 @@ class BaseUser(auth_models.AbstractBaseUser,
             return user_email.email
         return conf.USERS_DUMMY_EMAIL
 
-    @property
-    def is_has_email(self):
+    def has_usable_email(self):
         return self.email != conf.USERS_DUMMY_EMAIL
 
     @property
@@ -118,8 +117,7 @@ if conf.is_generic_user_model:
     bases = (BaseUser, )
 
     if conf.USERS_PERSONAL_MIXIN:
-        bases = (conf.USERS_PERSONAL_MIXIN, ) + \
-                bases
+        bases = (conf.USERS_PERSONAL_MIXIN, ) + bases
 
     User = type('User', bases, {
         '__module__': BaseUser.__module__,

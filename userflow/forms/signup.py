@@ -36,6 +36,9 @@ class SignupForm(forms.Form):
     def clean(self):
         data = self.cleaned_data
 
+        if not data:
+            return data
+
         try:
             self.check_user(**data)
         except forms.ValidationError, e:

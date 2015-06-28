@@ -1,7 +1,3 @@
 # encoding: utf-8
 
-from userflow.forms import (
-    signin,
-    signup,
-    password
-)
+from userflow.forms import signin, signup, password, profile

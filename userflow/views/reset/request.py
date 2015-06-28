@@ -20,6 +20,7 @@ class PasswordResetView(FormView):
             filter(email=email).\
             first()
         if not confirm:
-            confirm = PasswordResetConfirmation.objects.create(email=email)
+            confirm = PasswordResetConfirmation.objects.\
+                create(email=email)
         confirm.send('reset', form.user, self.request)
         return HttpResponseRedirect(confirm.get_wait_url())

@@ -95,8 +95,8 @@ def get_contact_types():
 
 class Contact(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='contacts')
-    type = models.CharField(max_length=64, db_index=True, choices=get_contact_types(), blank=False)
-    value = models.CharField(max_length=255, blank=False)
+    type = models.CharField(max_length=64, db_index=True, choices=get_contact_types(), blank=False, verbose_name=_('Contact type'))
+    value = models.CharField(max_length=255, blank=False, verbose_name=_(u'Contact value'))
 
     @property
     def contact_type(self):

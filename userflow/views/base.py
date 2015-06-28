@@ -64,25 +64,25 @@ class ConfirmView(DetailView):
         return {}
 
 
-class MultiformView(FormView):
-    form_classes = None
-    active_form = None
-
-    def get_form_classes(self):
-        return (self.form_classes or {}).copy()
-
-    def get_active_form(self):
-        if self.active_form:
-            return self.active_form
-        form_classes = self.get_form_classes()
-        if form_classes:
-            return form_classes.keys()[0]
-        raise ImproperlyConfigured
-
-    def get_form_class(self):
-        return self.get_form_classes().get(self.get_active_form())
-
-    def get_context_data(self, **kwargs):
-        context_data = super(MultiformView, self).get_context_data(**kwargs)
-        kwargs.update(self.get_active_form(), context_data.get('form'))
-        return context_data
+# class MultiformView(FormView):
+#     form_classes = None
+#     active_form = None
+#
+#     def get_form_classes(self):
+#         return (self.form_classes or {}).copy()
+#
+#     def get_active_form(self):
+#         if self.active_form:
+#             return self.active_form
+#         form_classes = self.get_form_classes()
+#         if form_classes:
+#             return form_classes.keys()[0]
+#         raise ImproperlyConfigured
+#
+#     def get_form_class(self):
+#         return self.get_form_classes().get(self.get_active_form())
+#
+#     def get_context_data(self, **kwargs):
+#         context_data = super(MultiformView, self).get_context_data(**kwargs)
+#         kwargs.update(self.get_active_form(), context_data.get('form'))
+#         return context_data

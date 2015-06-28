@@ -23,7 +23,7 @@ class SigninForm(forms.Form):
     helper.layout = Layout(
         'email', 'password',
         Submit('signin', _('Signin')),
-        Link(reverse_lazy('users:reset-request'), _('Lost your password?')),
+        Link(reverse_lazy('users:reset:request'), _('Lost your password?')),
     )
 
     error_messages = {
@@ -40,12 +40,15 @@ class SigninForm(forms.Form):
     def clean(self):
         data = self.cleaned_data
 
+        if not data:
+            return data
+
         try:
             self.user_cache = self.check_user(**data)
         except forms.ValidationError, e:
             self.add_error('email', e)
 
-        return self.cleaned_data
+        return data
 
     @property
     def username_field(self):
