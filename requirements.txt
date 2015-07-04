@@ -3,3 +3,4 @@ six
 django-braces
 django-crispy-forms
 crispy-semantic-ui
+django-extra-views

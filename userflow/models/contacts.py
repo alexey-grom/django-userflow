@@ -90,7 +90,7 @@ class FacebookContactType(RegexContactType):
 
 def get_contact_types():
     return ((item.alias, item.title)
-            for item in ContactTypeMeta.register.itervalues())
+            for item in ContactTypeMeta.register.values())
 
 
 class Contact(models.Model):
@@ -121,7 +121,6 @@ class Contact(models.Model):
             Type = self.contact_type
             if Type is None:
                 raise ValidationError(_('Unknown contact type'))
-            print self.value, Type
             Type().validate(self.value)
 
     class Meta:

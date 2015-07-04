@@ -31,13 +31,13 @@ class SignupForm(forms.Form):
 
         try:
             self.check_user(**data)
-        except forms.ValidationError, e:
+        except forms.ValidationError as e:
             self.add_error('email', e)
 
         try:
             data.pop('confirm', None)
             self.check_passwords(**data)
-        except forms.ValidationError, e:
+        except forms.ValidationError as e:
             self.add_error('confirm', e)
 
         self.user_cache = get_user_model()(**data)

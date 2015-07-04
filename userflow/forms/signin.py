@@ -30,7 +30,7 @@ class SigninForm(forms.Form):
 
         try:
             self.user_cache = self.check_user(**data)
-        except forms.ValidationError, e:
+        except forms.ValidationError as e:
             self.add_error('email', e)
 
         return data

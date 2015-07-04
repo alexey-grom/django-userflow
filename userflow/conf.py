@@ -135,6 +135,9 @@ class Wrapper(object):
         try:
             return super(Wrapper, self).__getattribute__(name)
         except AttributeError:
+            if hasattr(self.wrapped, name):
+                return getattr(self.wrapped, name)
+
             return self.wrapped.SETTINGS[name]
 
 sys.modules[__name__] = Wrapper(sys.modules[__name__])
