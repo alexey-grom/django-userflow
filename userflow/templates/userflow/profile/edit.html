@@ -1,0 +1,70 @@
+{% extends 'userflow/base.html' %}
+
+{% load i18n %}
+{% load userflow_gravatar %}
+{% load userflow_tags %}
+
+{% block title %}{% trans 'My profile' %}{% endblock %}
+
+{% block content %}
+    <div class="ui grid">
+        <div class="row">
+            <div class="column">
+                <div class="ui large breadcrumb">
+                    <a href="/" class="section">{% trans 'Main' %}</a>
+                    <i class="right chevron icon divider"></i>
+                    <a href="{% url 'users:rating' %}" class="section">{% trans 'Users' %}</a>
+                    <i class="right chevron icon divider"></i>
+                    <a href="{% url 'users:profile:view' %}" class="section">{% trans 'My profile' %}</a>
+                    <i class="right chevron icon divider"></i>
+                    <div class="active section">{% trans 'Edit' %}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui grid">
+        <div class="row">
+            <div class="three wide column">
+                <img class="ui image" src="{% gravatar user.email size=200 default='identicon' %}">
+            </div>
+
+            <div class="thirteen wide column">
+                <div class="ui horizontal divider" id="personal">{% trans 'Personal info' %}</div>
+                {% with form=forms.personal %}
+                    {% include 'userflow/forms/profile-personal.html' %}
+                {% endwith %}
+
+                <br/>
+
+                <div class="ui horizontal divider" id="about">{% trans 'About' %}</div>
+                {% with form=forms.about %}
+                    {% include 'userflow/forms/profile-about.html' %}
+                {% endwith %}
+
+                <br/>
+
+                <div class="ui horizontal divider" id="password">{% trans 'Password' %}</div>
+                {% with form=forms.password %}
+                    {% include 'userflow/forms/profile-password.html' %}
+                {% endwith %}
+
+                <br/>
+
+                <div class="ui horizontal divider" id="emails">{% trans 'Emails' %}</div>
+                {% with formset=forms.emails %}
+                    {% include 'userflow/forms/profile-emails.html' %}
+                {% endwith %}
+
+                <br/>
+
+                <div class="ui horizontal divider" id="contacts">{% trans 'Contacts' %}</div>
+                {% with formset=forms.contacts %}
+                    {% include 'userflow/forms/profile-contacts.html' %}
+                {% endwith %}
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

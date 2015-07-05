@@ -14,13 +14,20 @@ class UserEmailQueryset(models.QuerySet):
     def inactive(self):
         return self.filter(is_active=False)
 
+    def active(self):
+        return self.filter(is_active=True)
+
+    def public(self):
+        return self.filter(is_public=True)
+
 
 class UserEmail(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='emails')
     email = models.EmailField(_('email address'), unique=True, blank=False)
 
-    is_primary = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=False)
+    is_primary = models.BooleanField(default=False, verbose_name=_('Is primary'))
+    is_active = models.BooleanField(default=False, verbose_name=_('Is active'))
+    is_public = models.BooleanField(default=False, verbose_name=_('Is public'))
 
     created = models.DateTimeField(auto_now_add=True)
 
@@ -37,6 +44,3 @@ class UserEmail(models.Model):
         app_label = 'userflow'
         verbose_name = _('email')
         verbose_name_plural = _('emails')
-        unique_together = (
-            ('user', 'is_primary'),
-        )

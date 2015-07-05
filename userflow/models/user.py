@@ -43,18 +43,17 @@ class UserManager(auth_models.BaseUserManager.from_queryset(UserQueryset)):
             user.save(using=self._db)
 
             user_email = UserEmail(email=email,
-                                   user=user,
-                                   is_active=True)
+                                   user=user)
             user_email.save(using=self._db)
 
         return user
 
     def create_user(self, email, password=None, **extra_fields):
-        extra_fields.setdefault('is_active', True)
         return self._create_user(email, password, False, False,
                                  **extra_fields)
 
     def create_superuser(self, email, password, **extra_fields):
+        extra_fields.setdefault('is_active', True)
         return self._create_user(email, password, True, True,
                                  **extra_fields)
 
@@ -81,6 +80,9 @@ class BaseUser(auth_models.AbstractBaseUser,
 
     USERNAME_FIELD = 'id'  # compat
 
+    def __unicode__(self):
+        return self.get_full_name()
+
     def get_full_name(self):
         return self.name or self.get_short_name()
 
@@ -94,6 +96,9 @@ class BaseUser(auth_models.AbstractBaseUser,
         if user_email:
             return user_email.email
         return conf.USERS_DUMMY_EMAIL
+
+    def has_usable_email(self):
+        return self.email != conf.USERS_DUMMY_EMAIL
 
     @property
     def primary_email(self):
@@ -109,7 +114,11 @@ class BaseUser(auth_models.AbstractBaseUser,
 
 
 if conf.is_generic_user_model:
-    class User(BaseUser):
-        """
-        Common user model implementation
-        """
+    bases = (BaseUser, )
+
+    if conf.USERS_PERSONAL_MIXIN:
+        bases = (conf.USERS_PERSONAL_MIXIN, ) + bases
+
+    User = type('User', bases, {
+        '__module__': BaseUser.__module__,
+    })

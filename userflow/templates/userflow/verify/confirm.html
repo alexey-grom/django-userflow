@@ -1,11 +1,15 @@
 {% extends 'userflow/base.html' %}
 
+{% load i18n %}
+
+{% block title %}{% trans 'Email verify' %}{% endblock %}
+
 {% block content %}
     {% if not confirmation %}
-        <h1>Expired link :(</h1>
-        <p>Sorry, your link is expired</p>
+        <h1>{% trans 'Expired link :(' %}</h1>
+        <p>{% trans 'Sorry, your link is expired' %}</p>
     {% else %}
-        <h1>Email verify success</h1>
-        <p>Thank you for confirm your email <strong>{{ confirmation.email.email }}</strong></p>
+        <h1>{% trans 'Email verify success' %}</h1>
+        <p>{% trans 'Thank you for confirm your email' %} <strong>{{ confirmation.email.email }}</strong></p>
     {% endif %}
 {% endblock %}

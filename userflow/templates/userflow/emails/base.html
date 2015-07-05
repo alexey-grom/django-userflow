@@ -1,13 +1,11 @@
-{% spaceless %}
-    <!DOCTYPE html>
-    <html>
-    <head lang="en">
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-        {% block content %}{% endblock %}
-        {% include 'userflow/emails/_sign.html' %}
-    </body>
-    </html>
-{% endspaceless %}
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    {% block content %}{% endblock %}
+    {% include 'userflow/emails/_sign.html' %}
+</body>
+</html>

@@ -16,31 +16,35 @@ Pipelines
 
 Composition of actions:
 
-    USERS_FLOW_UP = ('userflow.pipeline.defaults.active_by_default',
-                     'userflow.pipeline.auth.signup',
-                     'userflow.pipeline.mails.signup_email',
-                     'userflow.pipeline.auth.signin',
-                     'userflow.pipeline.redirects.next_redirect',
-                     'userflow.pipeline.redirects.login_redirect', )
-    USERS_FLOW_DOWN = ('userflow.pipeline.auth.signout',
-                       'userflow.pipeline.redirects.next_redirect',
-                       'userflow.pipeline.redirects.index_redirect', )
+```
+USERS_FLOW_UP = ('userflow.pipeline.activation.activate_by_default',
+                 'userflow.pipeline.auth.signup',
+                 'userflow.pipeline.mails.signup_email',
+                 'userflow.pipeline.auth.signin',
+                 'userflow.pipeline.redirects.next_redirect',
+                 'userflow.pipeline.redirects.login_redirect', )
+USERS_FLOW_DOWN = ('userflow.pipeline.auth.signout',
+                   'userflow.pipeline.redirects.next_redirect',
+                   'userflow.pipeline.redirects.index_redirect', )
+```
 
 Custom action signature:
 
-    def pipeline_action(request, user=None, is_new=None, data=None, **kwargs):
-        # dict for update kwargs
-        if is_new:
-            return {
-                'new data': 'to pipeline',
-            }
+```
+def pipeline_action(request, user=None, is_new=None, data=None, **kwargs):
+    # dict for update kwargs
+    if is_new:
+        return {
+            'new data': 'to pipeline',
+        }
 
-        # or response
-        elif user:
-            return HttpResponse()
+    # or response
+    elif user:
+        return HttpResponse()
 
-        # or none
-        # pass
+    # or none
+    # pass
+```
 
 
 Build-in actions
@@ -54,14 +58,50 @@ Build-in actions
 
 - Account activation
 
-    * `userflow.pipeline.defaults.active_by_default`
-    * `userflow.pipeline.emails.activate_by_email_verify`
+    * `userflow.pipeline.activation.active_by_default`
+    * `userflow.pipeline.activation.activate_by_email_verify`
+
+- Mails
+
+    * `userflow.pipeline.mails.signup_email`
+    * `userflow.pipeline.mails.email_verify`
 
 - Redirects
 
     * `userflow.pipeline.redirects.next_redirect` redirect to ?next=… if it present
     * `userflow.pipeline.redirects.index_redirect` redirect to /
     * `userflow.pipeline.redirects.login_redirect` redirect to `settings.LOGIN_REDIRECT_URL`
+
+
+Generic flow
+============
+
+- (default) User not activated after signup; account activation by email confirm 
+
+```
+USERS_FLOW_UP = (
+    'userflow.pipeline.auth.signup',
+    'userflow.pipeline.mails.signup_email',
+    'userflow.pipeline.activation.activate_by_email_confirm',
+    'userflow.pipeline.auth.signin',
+    'userflow.pipeline.redirects.next_redirect',
+    'userflow.pipeline.redirects.login_redirect',
+)
+```
+
+- User activated after signup; signin; optional mail confirm email
+
+```
+USERS_FLOW_UP = (
+    'userflow.pipeline.activation.activate_by_default',
+    'userflow.pipeline.auth.signup',
+    'userflow.pipeline.mails.signup_email',
+    'userflow.pipeline.mails.email_verify',
+    'userflow.pipeline.auth.signin',
+    'userflow.pipeline.redirects.next_redirect',
+    'userflow.pipeline.redirects.login_redirect',
+)
+```
 
 
 Settings

@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 import re
+from datetime import date
 
 from django import template
 
@@ -29,3 +30,11 @@ def hidden_email(email):
     parts = parts or ['', ]
     parts[0] = email_hide_regex.sub(email_hide_repl, parts[0])
     return u'@'.join(parts)
+
+
+@register.filter
+def age(value):
+    today = date.today()
+    return today.year - \
+           value.year - \
+           ((today.month, today.day) < (value.month, value.day))

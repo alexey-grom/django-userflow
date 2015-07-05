@@ -1,9 +1,8 @@
 {% extends 'userflow/base.html' %}
 
 {% load i18n %}
-{% load crispy_forms_tags %}
 
-{% block title %}{% endblock %}
+{% block title %}{% trans 'Reset password' %}{% endblock %}
 
 {% block content %}
     {% if not confirmation %}
@@ -11,14 +10,14 @@
         <p>{% trans 'Sorry, your link is expired' %}</p>
     {% else %}
         {% if confirmation.is_done %}
-            <h1>Password changed</h1>
-            <p>Please <a href="{% url 'users:signin' %}">signin</a> using new password.</p>
+            <h1>{% trans 'Password changed' %}</h1>
+            <p>{% trans 'Please' %} <a href="{% url 'users:signin' %}">{% trans 'do signin' %}</a> {% trans 'using new password.' %}</p>
         {% else %}
             <div class="ui doubling three column centered grid">
                 <div class="column">
                     <div class="ui orange segment">
                         <h3>{% trans 'Change password' %}</h3>
-                        {% crispy form %}
+                        {% include 'userflow/forms/reset-change.html' %}
                     </div>
                 </div>
             </div>

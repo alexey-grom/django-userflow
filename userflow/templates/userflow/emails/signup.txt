@@ -3,8 +3,6 @@
 {% load i18n %}
 
 {% block content %}
-{% blocktrans %}
-Welcome to {{ site_name }}
-You’ve taken your first step into a larger world, {{ user.name }}
-{% endblocktrans %}
+{% trans 'Welcome to' %} {{ site_name }}
+{% trans 'You’ve taken your first step into a larger world' %}, {{ user.name }}
 {% endblock %}

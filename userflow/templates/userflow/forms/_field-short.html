@@ -1,0 +1,10 @@
+<div class="{{ field_classes|default:'field' }}{% if field.errors %} error{% endif %}">
+    {{ field }}
+    {% if field.errors %}
+        <div class="ui error message">
+            {% for error in field.errors %}
+                <p><i class="warning sign icon"></i>&nbsp;<span>{{ error }}</span></p>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>

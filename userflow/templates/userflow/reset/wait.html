@@ -2,7 +2,7 @@
 
 {% load i18n %}
 
-{% block title %}{% endblock %}
+{% block title %}{% trans 'Reset password' %}{% endblock %}
 
 {% block content %}
     {% if not confirmation %}
@@ -11,10 +11,10 @@
     {% else %}
         <h1>{% trans 'Password reset' %}</h1>
         <p>{% trans 'We have sent your confirmation email to' %} <strong>{{ confirmation.email }}</strong>.</p>
-        <form action="{% url 'users:reset-request' %}" method="post">
+        <form action="{% url 'users:reset:request' %}" method="post">
             {% csrf_token %}
             <input type="hidden" name="email" value="{{ confirmation.email.email }}" />
-            <input type="submit" value="{% trans 'Resend' %}" />
+            <input type="submit" class="ui primary button" value="{% trans 'Resend' %}" />
         </form>
     {% endif %}
 {% endblock %}

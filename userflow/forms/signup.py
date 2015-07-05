@@ -2,14 +2,11 @@
 
 from django import forms
 from django.contrib.auth import get_user_model
-from django.core.exceptions import ObjectDoesNotExist
-from django.core.urlresolvers import reverse_lazy
+from django.core.exceptions import ObjectDoesNotExist, MultipleObjectsReturned
 from django.utils.translation import ugettext_lazy as _
-from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit
 
 
-__all__ = 'SignupForm',
+__all__ = ()
 
 
 class SignupForm(forms.Form):
@@ -17,10 +14,6 @@ class SignupForm(forms.Form):
     name = forms.CharField(max_length=30, required=True, label=_('Your name'))
     password = forms.CharField(widget=forms.PasswordInput, min_length=8, required=True, label=_('Password'))
     confirm = forms.CharField(widget=forms.PasswordInput, required=True, label=_('Password confirm'))
-
-    helper = FormHelper()
-    helper.form_action = reverse_lazy('users:signup')
-    helper.add_input(Submit('signup', _('Sign Up')))
 
     error_messages = {
         'email_exists': _('This email already exists.'),
@@ -38,13 +31,13 @@ class SignupForm(forms.Form):
 
         try:
             self.check_user(**data)
-        except forms.ValidationError, e:
+        except forms.ValidationError as e:
             self.add_error('email', e)
 
         try:
             data.pop('confirm', None)
             self.check_passwords(**data)
-        except forms.ValidationError, e:
+        except forms.ValidationError as e:
             self.add_error('confirm', e)
 
         self.user_cache = get_user_model()(**data)
@@ -55,6 +48,8 @@ class SignupForm(forms.Form):
         user = None
         try:
             user = get_user_model().objects.get_by_natural_key(email)
+        except MultipleObjectsReturned:
+            return
         except ObjectDoesNotExist:
             pass
 

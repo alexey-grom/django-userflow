@@ -4,9 +4,6 @@ from userflow.models import PasswordResetConfirmation
 from userflow.views.base import ConfirmView
 
 
-__all__ = 'ResetWaitView',
-
-
 class ResetWaitView(ConfirmView):
     model = PasswordResetConfirmation
     template_name = 'userflow/reset/wait.html'

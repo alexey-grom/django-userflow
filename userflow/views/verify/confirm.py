@@ -4,9 +4,6 @@ from userflow.models import EmailConfirmation
 from userflow.views.base import ConfirmView
 
 
-__all__ = 'ConfirmEmailView',
-
-
 class ConfirmEmailView(ConfirmView):
     model = EmailConfirmation
     template_name = 'userflow/verify/confirm.html'

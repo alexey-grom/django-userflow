@@ -1,7 +1,5 @@
 # encoding: utf-8
 
-from django.core.urlresolvers import reverse
-from django.http.response import HttpResponseRedirect
 from django.views.generic.edit import FormMixin
 
 from userflow.models import PasswordResetConfirmation
@@ -9,13 +7,10 @@ from userflow.views.base import ConfirmView
 from userflow import forms
 
 
-__all__ = 'SetPasswordView',
-
-
 class SetPasswordView(FormMixin, ConfirmView):
     model = PasswordResetConfirmation
     template_name = 'userflow/reset/change.html'
-    form_class = forms.password.SetPasswordForm
+    form_class = forms.password.PasswordSetForm
 
     def is_valid_confirmation(self):
         return self.object and \
@@ -26,12 +21,14 @@ class SetPasswordView(FormMixin, ConfirmView):
             form.user = self.object.email.user
             form.save()
             self.object.confirm()
-        return self.render_to_response(self.get_context_data(form=form,
-                                                             object=self.object))
+        context = self.get_context_data(form=form,
+                                        object=self.object)
+        return self.render_to_response(context)
 
     def form_invalid(self, form):
-        return self.render_to_response(self.get_context_data(form=form,
-                                                             object=self.object))
+        context = self.get_context_data(form=form,
+                                        object=self.object)
+        return self.render_to_response(context)
 
     def get_form_kwargs(self):
         kwargs = super(SetPasswordView, self).get_form_kwargs()

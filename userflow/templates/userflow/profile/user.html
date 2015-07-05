@@ -1,0 +1,100 @@
+{% extends 'userflow/base.html' %}
+
+{% load i18n %}
+{% load userflow_gravatar %}
+{% load userflow_tags %}
+
+{% block title %}{% trans 'My profile' %}{% endblock %}
+
+{% block content %}
+    <div class="ui grid">
+        <div class="row">
+            <div class="column">
+                <div class="ui large breadcrumb">
+                    <a href="/" class="section">{% trans 'Main' %}</a>
+                    <i class="right chevron icon divider"></i>
+                    <a href="{% url 'users:rating' %}" class="section">{% trans 'Users' %}</a>
+                    <i class="right chevron icon divider"></i>
+                    {% if is_me %}
+                        <div class="active section">{% trans 'My profile' %}</div>
+                    {% else %}
+                        <div class="active section">{{ user.name }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui grid">
+        <div class="row">
+            <div class="three wide column">
+                <img class="ui image" src="{% gravatar user.email size=200 default='identicon' %}">
+            </div>
+            <div class="thirteen wide column"> {% comment %}thirteen{% endcomment %}
+                <div class="ui horizontal divider">{% trans 'Personal info' %}</div>
+
+                <div class="ui list">
+                    <div class="item">
+                        <div class="header">{% trans 'Display name' %}</div>
+                        <span>{{ user.name }}</span>
+                    </div>
+                    <div class="item">
+                        <div class="header">{% trans 'Real name' %}</div>
+                        <span>{{ user.real_name|default:'&mdash;' }}</span>
+                    </div>
+                    <div class="item">
+                        <div class="header">{% trans 'Location' %}</div>
+                        <span>{{ user.location|default:'&mdash;' }}</span>
+                    </div>
+                    {% if user.birthday %}
+                        <div class="item">
+                            <div class="header">{% trans 'Age' %}</div>
+                            <span>{{ user.birthday|age }}</span>
+                        </div>
+                    {% endif %}
+                </div>
+                <br/>
+
+                {% if user.about %}
+                    <div class="ui horizontal divider">{% trans 'About' %}</div>
+                    <p>{{ user.about }}</p>
+                    <br/>
+                {% endif %}
+
+                {% if user.emails.public.active.exists or contact in user.contacts.exists %}
+                    <div class="ui horizontal divider">{% trans 'Contacts' %}</div>
+
+                    <div class="ui list">
+                        {% for email in user.emails.public.active %}
+                            <a class="item" href="mailto:{{ email.email }}">
+                                <i class="mail icon"></i>
+                                <div class="content">
+                                    <div class="header">{% trans 'Email' %}</div>
+                                    <div class="description">{{ email.email }}</div>
+                                </div>
+                            </a>
+                        {% endfor %}
+
+                        {% for contact in user.contacts.all %}
+                            {% with link=contact.as_link %}
+                                <a class="item"{% if link %} href="{{ link|safe }}" target="_blank"{% else %}{% endif %}>
+                                    {% with type=contact.contact_type %}
+                                        <i class="{{ type.icon|default_if_none:type.alias }} icon"></i>
+                                    {% endwith %}
+                                    <div class="content">
+                                        <div class="header">{{ contact.contact_name }}</div>
+                                        <div class="description">{{ contact.value }}</div>
+                                    </div>
+                                </a>
+                            {% endwith %}
+                        {% endfor %}
+
+                    </div>
+
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

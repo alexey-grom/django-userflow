@@ -1,16 +1,15 @@
 {% extends layout %}
 
 {% load i18n %}
-{% load crispy_forms_tags %}
 {% load userflow_tags %}
 
 {% block title %}{% trans 'Sign In' %}{% endblock %}
 
 {% block signin %}
-    {% crispy form %}
+    {% include 'userflow/forms/signin.html' %}
 {% endblock %}
 
 {% block signup %}
-    {% get_signup_form as signup_form %}
-    {% crispy signup_form %}
+    {% get_signup_form as form %}
+    {% include 'userflow/forms/signup.html' %}
 {% endblock %}

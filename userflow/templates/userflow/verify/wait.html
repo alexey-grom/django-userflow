@@ -2,6 +2,8 @@
 
 {% load i18n %}
 
+{% block title %}{% trans 'Email verify' %}{% endblock %}
+
 {% block content %}
     {% if not confirmation %}
         <h1>{% trans 'Expired link :(' %}</h1>
@@ -9,6 +11,6 @@
     {% else %}
         <h1>{% trans 'Email verify' %}</h1>
         <p>{% trans 'We have sent your confirmation email to' %} <strong>{{ confirmation.email }}</strong>.</p>
-        <p><a href="{% url 'users:verify-request' pk=confirmation.email.pk %}">{% trans 'Resend' %}</a></p>
+        <p><a href="{% url 'users:verify:request' pk=confirmation.email.pk %}" class="ui primary button" >{% trans 'Resend' %}</a></p>
     {% endif %}
 {% endblock %}
