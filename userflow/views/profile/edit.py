@@ -3,12 +3,11 @@
 from collections import OrderedDict
 
 from django.core.urlresolvers import reverse_lazy
-from django.views.generic.base import ContextMixin, View
+from django.views.generic.base import ContextMixin
 from django.views.generic.edit import UpdateView
 
 from userflow import forms
 from userflow.forms.password import get_password_form
-from userflow.views.formsets import ModelFormSetView
 from userflow.utils import redirect_to_signin
 
 
@@ -17,8 +16,6 @@ class ProfileEditMixin(ContextMixin):
         ('personal', lambda request: forms.profile.PersonalForm(instance=request.user)),
         ('about', lambda request: forms.profile.AboutForm(instance=request.user)),
         ('password', lambda request: get_password_form(request.user)(user=request.user)),
-        ('emails', lambda request: forms.profile.EmailsFormset(queryset=request.user.emails.all())),
-        ('contacts', lambda request: forms.profile.ContactsFormset(queryset=request.user.contacts.all())),
     ))
     template_name = 'userflow/profile/edit.html'
 
@@ -75,33 +72,3 @@ class PasswordView(ProfileEditMixin, UpdateView):
             kwargs['user'] = kwargs['instance']
             del kwargs['instance']
         return kwargs
-
-
-class EmailsEditView(ProfileEditMixin, ModelFormSetView):
-    def get_queryset(self):
-        return self.request.user.emails.all()
-
-    def get_formset(self):
-        return forms.profile.EmailsFormset
-
-    def formset_valid(self, formset):
-        for form in formset:
-            if not form.has_changed():
-                continue
-            form.instance.user = self.request.user
-        return super(EmailsEditView, self).formset_valid(formset)
-
-
-class ContactsEditView(ProfileEditMixin, ModelFormSetView):
-    def get_queryset(self):
-        return self.request.user.emails.all()
-
-    def get_formset(self):
-        return forms.profile.ContactsFormset
-
-    def formset_valid(self, formset):
-        for form in formset:
-            if not form.has_changed():
-                continue
-            form.instance.user = self.request.user
-        return super(ContactsEditView, self).formset_valid(formset)

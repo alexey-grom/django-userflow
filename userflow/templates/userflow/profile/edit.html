@@ -52,16 +52,37 @@
                 <br/>
 
                 <div class="ui horizontal divider" id="emails">{% trans 'Emails' %}</div>
-                {% with formset=forms.emails %}
-                    {% include 'userflow/forms/profile-emails.html' %}
-                {% endwith %}
+                {% for email in user.emails.all %}
+                    <p>
+                        <strong>{{ email.email }}&nbsp;</strong>
+                        {% if email.is_public %}
+                            <span class="ui blue label">{% trans 'Public' %}</span>
+                            <a class="ui basic tiny button" href="javascript:void(0);">{% trans 'Make private' %}</a>
+                        {% else %}
+                            <a class="ui basic tiny button" href="javascript:void(0);">{% trans 'Make public' %}</a>
+                        {% endif %}
+
+                        {% if email.is_primary %}
+                            <span class="ui blue label">{% trans 'Primary' %}</span>
+                        {% else %}
+                            <a class="ui basic tiny button" href="javascript:void(0);">{% trans 'Make primary' %}</a>
+                        {% endif %}
+                        {% if email.is_active %}
+                            <span class="ui green label">{% trans 'Verified' %}</span>
+                        {% else %}
+                            <a class="ui basic tiny button" href="javascript:void(0);">{% trans 'Verify' %}</a>
+                        {% endif %}
+                    </p>
+                {% endfor %}
+                <div class="clearfix"></div>
+                <input type="submit" name="submit" value="{% trans 'Add email' %}" class="ui primary button">
 
                 <br/>
 
                 <div class="ui horizontal divider" id="contacts">{% trans 'Contacts' %}</div>
-                {% with formset=forms.contacts %}
-                    {% include 'userflow/forms/profile-contacts.html' %}
-                {% endwith %}
+{#                {% with formset=forms.contacts %}#}
+{#                    {% include 'userflow/forms/profile-contacts.html' %}#}
+{#                {% endwith %}#}
 
             </div>
         </div>
