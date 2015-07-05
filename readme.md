@@ -127,10 +127,21 @@ Quick start
 ===========
 
 * Install app
+
+* Inherit user model `yourapp/models.py`
+
+```
+from userflow.models import BaseUser, UserInfoMixin
+
+class User(UserInfoMixin, BaseUser):
+    pass
+```
+
 * `settings.py`
 
 ```
-AUTH_USER_MODEL = 'userflow.User'  # or your inheritor
+INSTALLED_APPS += ('userflow', )
+AUTH_USER_MODEL = 'yourapp.User' 
 ```
 
 * `urls.py`

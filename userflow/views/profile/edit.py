@@ -5,10 +5,10 @@ from collections import OrderedDict
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic.base import ContextMixin, View
 from django.views.generic.edit import UpdateView
-from extra_views.formsets import ModelFormSetView
 
 from userflow import forms
 from userflow.forms.password import get_password_form
+from userflow.views.formsets import ModelFormSetView
 from userflow.utils import redirect_to_signin
 
 
