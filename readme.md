@@ -17,15 +17,17 @@ Pipelines
 Composition of actions:
 
 ```
-USERS_FLOW_UP = ('userflow.pipeline.activation.activate_by_default',
+USERS_FLOW_UP = ('userflow.pipeline.activation.activate_account',
                  'userflow.pipeline.auth.signup',
                  'userflow.pipeline.mails.signup_email',
                  'userflow.pipeline.auth.signin',
                  'userflow.pipeline.redirects.next_redirect',
                  'userflow.pipeline.redirects.login_redirect', )
+                 
 USERS_FLOW_DOWN = ('userflow.pipeline.auth.signout',
                    'userflow.pipeline.redirects.next_redirect',
                    'userflow.pipeline.redirects.index_redirect', )
+                   
 ```
 
 Custom action signature:
@@ -127,10 +129,21 @@ Quick start
 ===========
 
 * Install app
+
+* Inherit user model `yourapp/models.py`
+
+```
+from userflow.models import BaseUser, UserInfoMixin
+
+class User(UserInfoMixin, BaseUser):
+    pass
+```
+
 * `settings.py`
 
 ```
-AUTH_USER_MODEL = 'userflow.User'  # or your inheritor
+INSTALLED_APPS += ('userflow', )
+AUTH_USER_MODEL = 'yourapp.User' 
 ```
 
 * `urls.py`

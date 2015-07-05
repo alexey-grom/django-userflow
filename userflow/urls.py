@@ -34,8 +34,6 @@ urlpatterns = patterns('',
                 url(r'^(?P<name>personal)/$', views.profile.edit.PersonalEditView.as_view(), name='edit'),
                 url(r'^(?P<name>about)/$', views.profile.edit.AboutEditView.as_view(), name='edit'),
                 url(r'^(?P<name>password)/$', views.profile.edit.PasswordView.as_view(), name='edit'),
-                url(r'^(?P<name>emails)/$', views.profile.edit.EmailsEditView.as_view(), name='edit'),
-                url(r'^(?P<name>contacts)/$', views.profile.edit.ContactsEditView.as_view(), name='edit'),
             ])),
         ], namespace='profile')),
 

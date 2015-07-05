@@ -63,39 +63,32 @@ SETTINGS = settings(
             (
                 'userflow.pipeline.auth.signup',
                 'userflow.pipeline.mails.signup_email',
-                'userflow.pipeline.activation.activate_by_email_confirm',
+                'userflow.pipeline.activation.send_email_confirm',
                 'userflow.pipeline.auth.signin',
                 'userflow.pipeline.redirects.next_redirect',
                 'userflow.pipeline.redirects.login_redirect',
             ),
             auto_import=True),
+
     setting('USERS_FLOW_DOWN',
             ('userflow.pipeline.auth.signout',
              'userflow.pipeline.redirects.next_redirect',
              'userflow.pipeline.redirects.index_redirect', ),
             auto_import=True),
 
-    setting('USERS_SIGNUP_FORM',
-            'userflow.forms.signup.SignupForm',
+    setting('USERS_SIGNUP_FORM', 'userflow.forms.signup.SignupForm',
             auto_import=True),
-    setting('USERS_SIGNIN_FORM',
-            'userflow.forms.signin.SigninForm',
+    setting('USERS_SIGNIN_FORM', 'userflow.forms.signin.SigninForm',
             auto_import=True),
 
-    setting('USERS_SITE_URL',
-            utils.dummy_site_url),
-    setting('USERS_SITE_NAME',
-            utils.dummy_site_name),
+    setting('USERS_SIGNIN_ON_EMAIL_CONFIRM', True),
 
-    setting('USERS_DUMMY_EMAIL',
-            None),
+    setting('USERS_SITE_URL', utils.dummy_site_url),
+    setting('USERS_SITE_NAME', utils.dummy_site_name),
 
-    setting('USERS_PERSONAL_MIXIN',
-            'userflow.models.personal.UserInfoMixin',
-            auto_import=True),
+    setting('USERS_DUMMY_EMAIL', None),
 
-    setting('USERS_CONFIRMATION_EXPIRATION',
-            datetime.timedelta(days=3)),
+    setting('USERS_CONFIRMATION_EXPIRATION', datetime.timedelta(days=3)),
 
 )
 
@@ -104,10 +97,6 @@ class Wrapper(object):
     def __init__(self, wrapped):
         super(Wrapper, self).__init__()
         self.wrapped = wrapped
-
-    @property
-    def is_generic_user_model(self):
-        return getattr(django_settings, 'AUTH_USER_MODEL') == 'userflow.User'
 
     def run_flow(self, flow, *args, **kwargs):
         flow_actions = getattr(self, flow)

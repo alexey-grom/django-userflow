@@ -5,7 +5,6 @@ from django.contrib.auth import get_user_model
 from django.contrib.auth import admin as auth_admin
 from django.utils.translation import ugettext_lazy as _
 
-from userflow import conf
 from userflow.models import UserEmail, Contact
 
 
@@ -40,5 +39,4 @@ class UserAdmin(auth_admin.UserAdmin):
     inlines = UserEmailInline, ContactInline,
 
 
-if conf.is_generic_user_model:
-    admin.site.register(get_user_model(), UserAdmin)
+admin.site.register(get_user_model(), UserAdmin)
