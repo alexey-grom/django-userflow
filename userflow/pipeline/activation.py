@@ -5,16 +5,15 @@ from django.http.response import HttpResponseRedirect
 from userflow.pipeline.decorators import if_new_user
 
 
-def activate_by_default(request, is_new=False, data=None, **kwargs):
-    if not is_new or not data:
-        return
+@if_new_user
+def activate_account(request, is_new=False, data=None, **kwargs):
     data.update({
         'is_active': True,
     })
 
 
 @if_new_user
-def activate_by_email_confirm(request, is_new=False, user=None, **kwargs):
+def send_email_confirm(request, is_new=False, user=None, **kwargs):
     from userflow.models import EmailConfirmation
     email = user.primary_email
     if email.is_dummy:
