@@ -10,8 +10,6 @@ from userflow.models.emails import UserEmail
 
 
 __all__ = 'BaseUser',
-if conf.is_generic_user_model:
-    __all__ += 'User',
 
 
 class UserQueryset(models.QuerySet):
@@ -110,14 +108,3 @@ class BaseUser(auth_models.AbstractBaseUser,
         verbose_name = _('user')
         verbose_name_plural = _('users')
         abstract = True
-
-
-if conf.is_generic_user_model:
-    bases = (BaseUser, )
-
-    if conf.USERS_PERSONAL_MIXIN:
-        bases = (conf.USERS_PERSONAL_MIXIN, ) + bases
-
-    User = type('User', bases, {
-        '__module__': BaseUser.__module__,
-    })

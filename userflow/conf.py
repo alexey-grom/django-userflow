@@ -90,10 +90,6 @@ SETTINGS = settings(
     setting('USERS_DUMMY_EMAIL',
             None),
 
-    setting('USERS_PERSONAL_MIXIN',
-            'userflow.models.personal.UserInfoMixin',
-            auto_import=True),
-
     setting('USERS_CONFIRMATION_EXPIRATION',
             datetime.timedelta(days=3)),
 
@@ -104,10 +100,6 @@ class Wrapper(object):
     def __init__(self, wrapped):
         super(Wrapper, self).__init__()
         self.wrapped = wrapped
-
-    @property
-    def is_generic_user_model(self):
-        return getattr(django_settings, 'AUTH_USER_MODEL') == 'userflow.User'
 
     def run_flow(self, flow, *args, **kwargs):
         flow_actions = getattr(self, flow)
