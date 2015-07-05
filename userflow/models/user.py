@@ -107,7 +107,6 @@ class BaseUser(auth_models.AbstractBaseUser,
         return user_email
 
     class Meta:
-        app_label = 'userflow'
         verbose_name = _('user')
         verbose_name_plural = _('users')
         abstract = True
