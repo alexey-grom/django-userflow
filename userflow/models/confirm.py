@@ -47,6 +47,10 @@ class Confirmation(models.Model):
     def get_email(self):
         raise NotImplementedError
 
+    def get_context(self, user):
+        return {'user': user,
+                'confirmation': self, }
+
     def get_key_params(self):
         return self.pk,
 
@@ -71,8 +75,7 @@ class Confirmation(models.Model):
         self.save()
 
     def send(self, email_template, user, request=None):
-        context = {'user': user,
-                   'confirmation': self, }
+        context = self.get_context(user)
         send_mail(self.get_email(),
                   email_template=email_template,
                   request=request,
@@ -91,6 +94,13 @@ class EmailConfirmation(Confirmation):
 
     def get_email(self):
         return self.email.email
+
+    def get_context(self, user):
+        context = super(EmailConfirmation, self).get_context(user)
+        context.update({
+            'is_first': not user.emails.active().exists(),
+        })
+        return context
 
     def confirm(self):
         self.email.is_active = True

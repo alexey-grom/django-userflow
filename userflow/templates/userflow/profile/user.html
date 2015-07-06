@@ -13,8 +13,6 @@
                 <div class="ui large breadcrumb">
                     <a href="/" class="section">{% trans 'Main' %}</a>
                     <i class="right chevron icon divider"></i>
-                    <a href="{% url 'users:rating' %}" class="section">{% trans 'Users' %}</a>
-                    <i class="right chevron icon divider"></i>
                     {% if is_me %}
                         <div class="active section">{% trans 'My profile' %}</div>
                     {% else %}

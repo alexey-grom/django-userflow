@@ -3,7 +3,9 @@
 {% load i18n %}
 
 {% block content %}
+{% if is_first %}
 {% trans 'Hey, we want to verify that you are indeed' %} “{{ user.name }}”.
+{% endif %}
 {% trans 'Verifying this address will let you receive notifications and password resets from' %} {{ site_name }}.
 {% trans 'If you wish to continue, please follow the link below:' %}
 {{ site_url }}{{ confirmation.get_absolute_url }}

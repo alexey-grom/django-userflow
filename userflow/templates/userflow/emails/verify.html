@@ -3,7 +3,9 @@
 {% load i18n %}
 
 {% block content %}
-    <p>{% trans 'Hey, we want to verify that you are indeed' %} “{{ user.name }}”.</p>
+    {% if is_first %}
+        <p>{% trans 'Hey, we want to verify that you are indeed' %} “{{ user.name }}”.</p>
+    {% endif %}
     <p>{% trans 'Verifying this address will let you receive notifications and password resets from' %} {{ site_name }}.</p>
     <p>{% trans 'If you wish to continue, please follow the link below:' %}</p>
     <a href="{{ site_url }}{{ confirmation.get_absolute_url }}">{% trans 'Confirm' %}</a>
