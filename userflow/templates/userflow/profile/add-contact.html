@@ -1,0 +1,35 @@
+{% extends 'userflow/base.html' %}
+
+{% load i18n %}
+{% load userflow_gravatar %}
+{% load userflow_tags %}
+
+{% block title %}{% trans 'New contact' %}{% endblock %}
+
+{% block content %}
+    <div class="ui grid">
+        <div class="row">
+            <div class="column">
+                <div class="ui large breadcrumb">
+                    <a href="/" class="section">{% trans 'Main' %}</a>
+                    <i class="right chevron icon divider"></i>
+                    <a href="{% url 'users:profile:view' %}" class="section">{% trans 'My profile' %}</a>
+                    <i class="right chevron icon divider"></i>
+                    <a class="section" href="{% url 'users:profile:edit' %}#emails">{% trans 'Edit' %}</a>
+                    <i class="right chevron icon divider"></i>
+                    <div class="active section">{% trans 'New contact' %}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui doubling three column centered grid">
+        <div class="column">
+            <div class="ui orange segment">
+                <h3>{% trans 'New contact' %}</h3>
+                {% include 'userflow/forms/add-contact.html' %}
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -69,6 +69,9 @@ class SkypeContactType(RegexContactType):
     icon = 'skype'
     regex = re.compile(r'^[a-z][[a-z0-9.-]{5,31}$', re.IGNORECASE or re.UNICODE)
 
+    def as_link(self, value):
+        return 'skype:{}'.format(value)
+
 
 class PhoneContactType(RegexContactType):
     alias = 'phone'

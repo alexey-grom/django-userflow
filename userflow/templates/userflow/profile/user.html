@@ -4,7 +4,9 @@
 {% load userflow_gravatar %}
 {% load userflow_tags %}
 
-{% block title %}{% trans 'My profile' %}{% endblock %}
+{% block title %}
+    {% if is_me %}{% trans 'My profile' %}{% else %}{{ user.name }}{% endif %}
+{% endblock %}
 
 {% block content %}
     <div class="ui grid">
@@ -27,9 +29,16 @@
         <div class="row">
             <div class="three wide column">
                 <img class="ui image" src="{% gravatar user.email size=200 default='identicon' %}">
+                {% block user-profile-actions %}{% endblock %}
             </div>
-            <div class="thirteen wide column"> {% comment %}thirteen{% endcomment %}
-                <div class="ui horizontal divider">{% trans 'Personal info' %}</div>
+            <div class="thirteen wide column">
+                    <div class="ui horizontal divider">
+                        <span>{% trans 'Personal info' %}</span>
+                        {% if is_me %}
+                            <span>&nbsp;</span>
+                            <a class="ui tiny icon" href="{% url 'users:profile:edit' %}#personal"><i class="edit icon"></i></a>
+                        {% endif %}
+                    </div>
 
                 <div class="ui list">
                     <div class="item">
@@ -54,15 +63,26 @@
                 <br/>
 
                 {% if user.about %}
-                    <div class="ui horizontal divider">{% trans 'About' %}</div>
+                    <div class="ui horizontal divider">
+                        <span>{% trans 'About' %}&nbsp;</span>
+                        {% if is_me %}
+                            <span>&nbsp;</span>
+                            <a class="ui tiny icon" href="{% url 'users:profile:edit' %}#about"><i class="edit icon"></i></a>
+                        {% endif %}
+                    </div>
                     <p>{{ user.about }}</p>
                     <br/>
                 {% endif %}
 
                 {% if user.emails.public.active.exists or contact in user.contacts.exists %}
-                    <div class="ui horizontal divider">{% trans 'Contacts' %}</div>
-
-                    <div class="ui list">
+                    <div class="ui horizontal divider">
+                        <span>{% trans 'Contacts' %}</span>
+                        {% if is_me %}
+                            <span>&nbsp;</span>
+                            <a class="ui tiny icon" href="{% url 'users:profile:edit' %}#emails"><i class="edit icon"></i></a>
+                        {% endif %}
+                    </div>
+                    <div class="ui animated list">
                         {% for email in user.emails.public.active %}
                             <a class="item" href="mailto:{{ email.email }}">
                                 <i class="mail icon"></i>

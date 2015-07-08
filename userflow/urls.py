@@ -44,7 +44,10 @@ emails_urls = patterns('',
     url(r'^add/$', views.profile.emails.create.AddEmailView.as_view(), name='add'),
 )
 
-# contacts_urls = patterns('', [])
+contacts_urls = patterns('',
+    url(r'^(?P<pk>\d+)/remove/$', views.profile.contacts.remove.RemoveView.as_view(), name='remove'),
+    url(r'^add/$', views.profile.contacts.create.AddContactView.as_view(), name='add'),
+)
 
 urlpatterns = patterns('',
     url(r'^', include(patterns('',
@@ -56,7 +59,7 @@ urlpatterns = patterns('',
             url(r'^', include(profile_view_urls)),
             url(r'^edit/', include(profile_edit_urls)),
             url(r'^emails/', include(emails_urls, namespace='emails')),
-            # url(r'contacts/', include(contacts_urls, namespace='contacts')),
+            url(r'contacts/', include(contacts_urls, namespace='contacts')),
         ), namespace='profile')),
 
         # url(r'rating/', include(patterns('',
