@@ -39,4 +39,7 @@ class UserAdmin(auth_admin.UserAdmin):
     inlines = UserEmailInline, ContactInline,
 
 
+UserModel = get_user_model()
+if admin.site.is_registered(UserModel):
+    admin.site.unregister(UserModel)
 admin.site.register(get_user_model(), UserAdmin)
