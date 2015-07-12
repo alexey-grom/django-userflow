@@ -30,7 +30,7 @@ class ProfileEditMixin(ContextMixin):
         form = context.get('form')
 
         forms = {}
-        for key, form_class in self.form_classes.iteritems():
+        for key, form_class in self.form_classes.items():
             forms[key] = form_class(self.request)
             if forms[key].__class__ == form.__class__:
                 forms[key] = form

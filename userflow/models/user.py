@@ -80,6 +80,7 @@ class BaseUser(auth_models.AbstractBaseUser,
 
     def __unicode__(self):
         return self.get_full_name()
+    __str__ = __unicode__
 
     def get_full_name(self):
         return self.name or self.get_short_name()

@@ -27,7 +27,7 @@ class setting(object):
                 raise ImproperlyConfigured()
         if self.auto_import:
             if isinstance(result, (list, tuple)):
-                result = map(import_attr, result)
+                result = list(map(import_attr, result))
             else:
                 result = import_attr(result)
         return result
@@ -100,7 +100,7 @@ class Wrapper(object):
 
     def run_flow(self, flow, *args, **kwargs):
         flow_actions = getattr(self, flow)
-        for action in flow_actions:
+        for action in list(flow_actions):
             result = action(*args, **kwargs)
             if isinstance(result, HttpResponse):
                 return result
@@ -126,7 +126,6 @@ class Wrapper(object):
         except AttributeError:
             if hasattr(self.wrapped, name):
                 return getattr(self.wrapped, name)
-
             return self.wrapped.SETTINGS[name]
 
 sys.modules[__name__] = Wrapper(sys.modules[__name__])

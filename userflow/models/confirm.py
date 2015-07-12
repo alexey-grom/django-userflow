@@ -64,10 +64,11 @@ class Confirmation(models.Model):
 
     def key(self, *args, **kwargs):
         result = sha()
-        result.update(repr((settings.SECRET_KEY,
-                            self.get_key_params(),
-                            args,
-                            kwargs)))
+        data = repr((settings.SECRET_KEY,
+                     self.get_key_params(),
+                     args,
+                     kwargs))
+        result.update(data.encode('utf-8'))
         return result.hexdigest()
 
     def confirm(self):

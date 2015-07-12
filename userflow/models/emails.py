@@ -35,6 +35,7 @@ class UserEmail(models.Model):
 
     def __unicode__(self):
         return self.email
+    __str__ = __unicode__
 
     @property
     def is_dummy(self):

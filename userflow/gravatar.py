@@ -1,7 +1,8 @@
 # encoding: utf-8
 
 from hashlib import md5
-from urllib import urlencode
+
+from django.utils.http import urlencode
 
 
 class Gravatar(object):
@@ -24,7 +25,7 @@ class Gravatar(object):
         self.default = None
         self.rating = None
 
-        for key, value in options.iteritems():
+        for key, value in options.items():
             if not hasattr(self, key):
                 continue
             setattr(self, key, value)
@@ -34,7 +35,7 @@ class Gravatar(object):
         https://gravatar.com/site/implement/hash/
         """
         email_hash = md5()
-        email_hash.update(self.email)
+        email_hash.update(self.email.encode('utf-8'))
         return email_hash.hexdigest()
 
     def get_url(self):
