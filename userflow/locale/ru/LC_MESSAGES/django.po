@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-14 18:49+0000\n"
+"POT-Creation-Date: 2015-07-13 01:21+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,59 +19,38 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: userflow/admin.py:28
+#: admin.py:31 templates/userflow/profile/edit.html:31
+#: templates/userflow/profile/user.html:36
 msgid "Personal info"
 msgstr ""
 
-#: userflow/admin.py:29
+#: admin.py:34
 msgid "Permissions"
 msgstr ""
 
-#: userflow/admin.py:31
+#: admin.py:36
 msgid "Important dates"
 msgstr ""
 
-#: userflow/apps.py:12
+#: apps.py:12
 msgid "Users"
 msgstr "Пользователи"
 
-#: userflow/forms/password.py:19 userflow/forms/signin.py:18
-#: userflow/forms/signup.py:16
+#: forms/password.py:13 forms/signin.py:14 forms/signup.py:13
+#: templates/userflow/profile/user.html:90
 msgid "Email"
 msgstr ""
 
-#: userflow/forms/password.py:25
-msgid "Submit"
-msgstr "Отправить"
-
-#: userflow/forms/password.py:26
-#: userflow/templates/userflow/sign/sign-ajax.html:9
-#: userflow/templates/userflow/sign/sign-default.html:9
-#: userflow/templates/userflow/sign/signin.html:7
-msgid "Sign In"
-msgstr "Вход"
-
-#: userflow/forms/password.py:40
+#: forms/password.py:25
 msgid "Can't find that email, sorry"
 msgstr "Это email не найден, извините"
 
-#: userflow/forms/password.py:51 userflow/forms/password.py:57
-msgid "Change"
-msgstr "Изменить"
-
-#: userflow/forms/signin.py:19 userflow/forms/signup.py:18
+#: forms/signin.py:15 forms/signup.py:15
+#: templates/userflow/profile/edit.html:45
 msgid "Password"
 msgstr "Пароль"
 
-#: userflow/forms/signin.py:25
-msgid "Signin"
-msgstr "Войти"
-
-#: userflow/forms/signin.py:26
-msgid "Lost your password?"
-msgstr "Забыли пароль?"
-
-#: userflow/forms/signin.py:30
+#: forms/signin.py:18
 msgid ""
 "Please enter a correct email and password. Note that both fields may be case-"
 "sensitive."
@@ -79,81 +58,160 @@ msgstr ""
 "Пожалуйста, введите правильный email и пароль. Оба поля могут быть "
 "чувствительны к регистру."
 
-#: userflow/forms/signin.py:32 userflow/forms/signup.py:27
+#: forms/signin.py:20 forms/signup.py:20
 msgid "This account is inactive."
 msgstr "Этот аккаунт неактивен."
 
-#: userflow/forms/signin.py:33 userflow/forms/signup.py:28
+#: forms/signin.py:21 forms/signup.py:21
 msgid "This account is removed."
 msgstr "Аккаунт удален."
 
-#: userflow/forms/signup.py:17
+#: forms/signup.py:14
 msgid "Your name"
 msgstr "Ваше имя"
 
-#: userflow/forms/signup.py:19
+#: forms/signup.py:16
 msgid "Password confirm"
 msgstr "Подтверждение пароля"
 
-#: userflow/forms/signup.py:23
-msgid "Signup"
-msgstr "Зарегистрироваться"
-
-#: userflow/forms/signup.py:26
+#: forms/signup.py:19
 msgid "This email already exists."
 msgstr "Это email уже зарегистрирован."
 
-#: userflow/forms/signup.py:29
+#: forms/signup.py:22
 msgid "Password and confirmation does not match."
 msgstr "Пароль и подтверждение не совпадают"
 
-#: userflow/models/emails.py:20
+#: models/contacts.py:56
+msgid "Site"
+msgstr "Сайт"
+
+#: models/contacts.py:68
+msgid "Skype"
+msgstr ""
+
+#: models/contacts.py:78
+msgid "Phone"
+msgstr "Номер телефона"
+
+#: models/contacts.py:85
+msgid "Facebook"
+msgstr ""
+
+#: models/contacts.py:101
+msgid "Contact type"
+msgstr "Тип контакта"
+
+#: models/contacts.py:102
+msgid "Contact value"
+msgstr "Контакт"
+
+#: models/contacts.py:126
+msgid "Unknown contact type"
+msgstr "Неизвестный типа контакта"
+
+#: models/contacts.py:131
+msgid "contact"
+msgstr "контакт"
+
+#: models/contacts.py:132
+msgid "contacts"
+msgstr "контакты"
+
+#: models/emails.py:26
 msgid "email address"
 msgstr "адрес электронной почты"
 
-#: userflow/models/emails.py:38
+#: models/emails.py:28
+msgid "Is primary"
+msgstr ""
+
+#: models/emails.py:29
+#, fuzzy
+#| msgid "active"
+msgid "Is active"
+msgstr "активен"
+
+#: models/emails.py:30
+msgid "Is public"
+msgstr ""
+
+#: models/emails.py:46
 msgid "email"
 msgstr "адрес электронной почты"
 
-#: userflow/models/emails.py:39
+#: models/emails.py:47
 msgid "emails"
 msgstr "адреса электронной почты"
 
-#: userflow/models/user.py:71
+#: models/personal.py:11
+msgid "Female"
+msgstr "Женский"
+
+#: models/personal.py:12
+msgid "Male"
+msgstr "Мужской"
+
+#: models/personal.py:16 templates/userflow/profile/user.html:49
+msgid "Real name"
+msgstr "Настоящее имя"
+
+#: models/personal.py:17
+msgid "Birthday"
+msgstr "Дата рождения"
+
+#: models/personal.py:18
+msgid "Gender"
+msgstr "Пол"
+
+#: models/personal.py:19 templates/userflow/profile/user.html:53
+msgid "Location"
+msgstr "Местонахождение"
+
+#: models/personal.py:20 templates/userflow/profile/edit.html:38
+#: templates/userflow/profile/user.html:67
+msgid "About"
+msgstr "О себе"
+
+#: models/personal.py:21
+msgid "Photo"
+msgstr "Фото"
+
+#: models/user.py:69
 msgid "display name"
 msgstr "отображаемое имя"
 
-#: userflow/models/user.py:73
+#: models/user.py:71
 msgid "staff status"
 msgstr "статус персонала"
 
-#: userflow/models/user.py:73
+#: models/user.py:71
 msgid "Designates whether the user can log into this admin site."
 msgstr ""
 
-#: userflow/models/user.py:74
+#: models/user.py:72
 msgid "active"
 msgstr "активен"
 
-#: userflow/models/user.py:74
+#: models/user.py:72
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
 
-#: userflow/models/user.py:75
+#: models/user.py:73
 msgid "removed"
 msgstr "удален"
 
-#: userflow/models/user.py:105
+#: models/user.py:109
 msgid "user"
 msgstr "пользователь"
 
-#: userflow/models/user.py:106
+#: models/user.py:110
 msgid "users"
 msgstr "пользователи"
 
-#: userflow/templates/userflow/emails/_sign.html:5
+#: templates/userflow/emails/_sign.html:5
 #, python-format
 msgid ""
 "\n"
@@ -166,7 +224,7 @@ msgstr ""
 "        Команда %(site_name)s\n"
 "    "
 
-#: userflow/templates/userflow/emails/_sign.txt:3
+#: templates/userflow/emails/_sign.txt:3
 #, python-format
 msgid ""
 "\n"
@@ -177,41 +235,44 @@ msgstr ""
 "С наилучшими пожеланиями,\n"
 "Команда %(site_name)s\n"
 
-#: userflow/templates/userflow/emails/reset-subject.txt:3
-#: userflow/templates/userflow/reset/request.html:12
+#: templates/userflow/emails/reset-subject.txt:3
+#: templates/userflow/reset/change.html:5
+#: templates/userflow/reset/request.html:5
+#: templates/userflow/reset/request.html:11
+#: templates/userflow/reset/wait.html:5
 msgid "Reset password"
 msgstr "Сброс пароля"
 
-#: userflow/templates/userflow/emails/reset.html:6
-#: userflow/templates/userflow/emails/reset.txt:6
+#: templates/userflow/emails/reset.html:6
+#: templates/userflow/emails/reset.txt:6
 msgid "Please follow link for reset your password:"
 msgstr "Пожалуйста, перейдите по ссылки для сброса пароля"
 
-#: userflow/templates/userflow/emails/signup-subject.txt:3
+#: templates/userflow/emails/signup-subject.txt:3
 msgid "Thanks for Joining"
 msgstr "Спасибо что присоединились к"
 
-#: userflow/templates/userflow/emails/signup.html:6
-#: userflow/templates/userflow/emails/signup.txt:6
+#: templates/userflow/emails/signup.html:6
+#: templates/userflow/emails/signup.txt:6
 msgid "Welcome to"
 msgstr "Добро пожаловать на"
 
-#: userflow/templates/userflow/emails/signup.html:7
-#: userflow/templates/userflow/emails/signup.txt:7
+#: templates/userflow/emails/signup.html:7
+#: templates/userflow/emails/signup.txt:7
 msgid "You’ve taken your first step into a larger world"
 msgstr "Вы только что сделали первый шаг в огромный мир"
 
-#: userflow/templates/userflow/emails/verify-subject.txt:3
+#: templates/userflow/emails/verify-subject.txt:3
 msgid "Please verify your email"
 msgstr "Пожалуйста, подтвердите свой email"
 
-#: userflow/templates/userflow/emails/verify.html:6
-#: userflow/templates/userflow/emails/verify.txt:6
+#: templates/userflow/emails/verify.html:7
+#: templates/userflow/emails/verify.txt:7
 msgid "Hey, we want to verify that you are indeed"
 msgstr "Мы хотим убедиться что это действительно вы"
 
-#: userflow/templates/userflow/emails/verify.html:7
-#: userflow/templates/userflow/emails/verify.txt:7
+#: templates/userflow/emails/verify.html:9
+#: templates/userflow/emails/verify.txt:9
 msgid ""
 "Verifying this address will let you receive notifications and password "
 "resets from"
@@ -219,90 +280,237 @@ msgstr ""
 "Подтверждение этого адреса позволит Вам получать уведомления и "
 "восстанавливать доступ к"
 
-#: userflow/templates/userflow/emails/verify.html:8
-#: userflow/templates/userflow/emails/verify.txt:8
+#: templates/userflow/emails/verify.html:10
+#: templates/userflow/emails/verify.txt:10
 msgid "If you wish to continue, please follow the link below:"
 msgstr "Для продолжения, пожалуйста, пройдите по ссылке:"
 
-#: userflow/templates/userflow/emails/verify.html:9
+#: templates/userflow/emails/verify.html:11
 msgid "Confirm"
 msgstr "Подтверждение"
 
-#: userflow/templates/userflow/emails/verify.html:10
-#: userflow/templates/userflow/emails/verify.txt:10
+#: templates/userflow/emails/verify.html:12
+#: templates/userflow/emails/verify.txt:12
 msgid "If you’re not"
 msgstr "Если это не вы"
 
-#: userflow/templates/userflow/emails/verify.html:10
-#: userflow/templates/userflow/emails/verify.txt:10
+#: templates/userflow/emails/verify.html:12
+#: templates/userflow/emails/verify.txt:12
 msgid "or didn’t request verification, you can ignore this email."
 msgstr "или не запрашивали верификацию, то просто игнорируйте это письмо."
 
-#: userflow/templates/userflow/reset/change.html:10
-#: userflow/templates/userflow/reset/wait.html:9
-#: userflow/templates/userflow/verify/confirm.html:7
-#: userflow/templates/userflow/verify/wait.html:7
-msgid "Expired link :("
-msgstr "Ссылка просрочена :("
+#: templates/userflow/forms/add-contact.html:10
+#: templates/userflow/forms/add-email.html:10
+msgid "Add"
+msgstr "Добавить"
 
-#: userflow/templates/userflow/reset/change.html:11
-#: userflow/templates/userflow/reset/wait.html:10
-#: userflow/templates/userflow/verify/confirm.html:8
-#: userflow/templates/userflow/verify/wait.html:8
-msgid "Sorry, your link is expired"
-msgstr "Извините, Ваша ссылка просрочена"
+#: templates/userflow/forms/profile-about.html:10
+#: templates/userflow/forms/profile-contacts.html:20
+#: templates/userflow/forms/profile-personal.html:10
+msgid "Change"
+msgstr "Изменить"
 
-#: userflow/templates/userflow/reset/change.html:14
-msgid "Password changed"
-msgstr "Пароль изменен"
-
-#: userflow/templates/userflow/reset/change.html:15
-msgid "Please"
-msgstr "Пожалуйста,"
-
-#: userflow/templates/userflow/reset/change.html:15
-msgid "do signin"
-msgstr "войдите"
-
-#: userflow/templates/userflow/reset/change.html:15
-msgid "using new password."
-msgstr "используя новый пароль"
-
-#: userflow/templates/userflow/reset/change.html:20
+#: templates/userflow/forms/profile-password.html:11
+#: templates/userflow/reset/change.html:19
 msgid "Change password"
 msgstr "Смена пароля"
 
-#: userflow/templates/userflow/reset/wait.html:12
+#: templates/userflow/forms/profile-password.html:13
+#: templates/userflow/forms/reset-change.html:10
+#, fuzzy
+#| msgid "Reset password"
+msgid "Set password"
+msgstr "Сброс пароля"
+
+#: templates/userflow/forms/reset-request.html:10
+msgid "Submit"
+msgstr "Отправить"
+
+#: templates/userflow/forms/reset-request.html:11
+#: templates/userflow/sign/sign-ajax.html:9
+#: templates/userflow/sign/sign-default.html:9
+#: templates/userflow/sign/signin.html:6
+msgid "Sign In"
+msgstr "Вход"
+
+#: templates/userflow/forms/signin.html:10
+msgid "Signin"
+msgstr "Войти"
+
+#: templates/userflow/forms/signin.html:11
+msgid "Lost your password?"
+msgstr "Забыли пароль?"
+
+#: templates/userflow/forms/signup.html:10
+msgid "Signup"
+msgstr "Зарегистрироваться"
+
+#: templates/userflow/profile/add-contact.html:7
+#: templates/userflow/profile/add-contact.html:20
+#: templates/userflow/profile/add-contact.html:29
+msgid "New contact"
+msgstr "Новый контакт"
+
+#: templates/userflow/profile/add-contact.html:14
+#: templates/userflow/profile/add-email.html:14
+#: templates/userflow/profile/edit.html:14
+#: templates/userflow/profile/user.html:16
+msgid "Main"
+msgstr "Главная"
+
+#: templates/userflow/profile/add-contact.html:16
+#: templates/userflow/profile/add-email.html:16
+#: templates/userflow/profile/edit.html:7
+#: templates/userflow/profile/edit.html:16
+#: templates/userflow/profile/user.html:8
+#: templates/userflow/profile/user.html:19
+msgid "My profile"
+msgstr "Мой профиль"
+
+#: templates/userflow/profile/add-contact.html:18
+#: templates/userflow/profile/add-email.html:18
+#: templates/userflow/profile/edit.html:18
+msgid "Edit"
+msgstr "Редактирование"
+
+#: templates/userflow/profile/add-email.html:7
+#: templates/userflow/profile/add-email.html:20
+#: templates/userflow/profile/add-email.html:29
+#| msgid "email"
+msgid "New email"
+msgstr "Новая почта"
+
+#: templates/userflow/profile/edit.html:52
+#| msgid "emails"
+msgid "Emails"
+msgstr "Электронная почта"
+
+#: templates/userflow/profile/edit.html:59
+msgid "Verified"
+msgstr "Подтвержденный"
+
+#: templates/userflow/profile/edit.html:61
+msgid "Public"
+msgstr "Публичный"
+
+#: templates/userflow/profile/edit.html:62
+msgid "Make private"
+msgstr "Сделать непубличным"
+
+#: templates/userflow/profile/edit.html:64
+msgid "Private"
+msgstr "Непубличный"
+
+#: templates/userflow/profile/edit.html:65
+msgid "Make public"
+msgstr "Сделать публичным"
+
+#: templates/userflow/profile/edit.html:68
+msgid "Primary"
+msgstr "Основной"
+
+#: templates/userflow/profile/edit.html:70
+msgid "Make primary"
+msgstr "Сделать основным"
+
+#: templates/userflow/profile/edit.html:73
+msgid "Unverified"
+msgstr "Подтвержденный"
+
+#: templates/userflow/profile/edit.html:74
+msgid "Verify"
+msgstr "Подтвердить"
+
+#: templates/userflow/profile/edit.html:78
+#| msgid "email"
+msgid "Add email"
+msgstr "Добавить почту"
+
+#: templates/userflow/profile/edit.html:82
+#: templates/userflow/profile/user.html:79
+msgid "Contacts"
+msgstr "Контакты"
+
+#: templates/userflow/profile/edit.html:99
+msgid "Add contact"
+msgstr "Добавить контакт"
+
+#: templates/userflow/profile/user.html:45
+#, fuzzy
+#| msgid "display name"
+msgid "Display name"
+msgstr "отображаемое имя"
+
+#: templates/userflow/profile/user.html:58
+msgid "Age"
+msgstr "Возраст"
+
+#: templates/userflow/reset/change.html:9 templates/userflow/reset/wait.html:9
+#: templates/userflow/verify/confirm.html:9
+#: templates/userflow/verify/wait.html:9
+msgid "Expired link :("
+msgstr "Ссылка просрочена :("
+
+#: templates/userflow/reset/change.html:10
+#: templates/userflow/reset/wait.html:10
+#: templates/userflow/verify/confirm.html:10
+#: templates/userflow/verify/wait.html:10
+msgid "Sorry, your link is expired"
+msgstr "Извините, Ваша ссылка просрочена"
+
+#: templates/userflow/reset/change.html:13
+msgid "Password changed"
+msgstr "Пароль изменен"
+
+#: templates/userflow/reset/change.html:14
+msgid "Please"
+msgstr "Пожалуйста,"
+
+#: templates/userflow/reset/change.html:14
+msgid "do signin"
+msgstr "войдите"
+
+#: templates/userflow/reset/change.html:14
+msgid "using new password."
+msgstr "используя новый пароль"
+
+#: templates/userflow/reset/wait.html:12
 msgid "Password reset"
 msgstr "Сброс пароля"
 
-#: userflow/templates/userflow/reset/wait.html:13
-#: userflow/templates/userflow/verify/wait.html:11
+#: templates/userflow/reset/wait.html:13
+#: templates/userflow/verify/wait.html:13
 msgid "We have sent your confirmation email to"
 msgstr "Мы отправили Вам подтверждение на"
 
-#: userflow/templates/userflow/reset/wait.html:17
-#: userflow/templates/userflow/verify/wait.html:12
+#: templates/userflow/reset/wait.html:17
+#: templates/userflow/verify/wait.html:14
 msgid "Resend"
 msgstr "Отправить еще раз"
 
-#: userflow/templates/userflow/sign/sign-ajax.html:15
-#: userflow/templates/userflow/sign/sign-default.html:15
-#: userflow/templates/userflow/sign/signup.html:7
+#: templates/userflow/sign/sign-ajax.html:15
+#: templates/userflow/sign/sign-default.html:15
+#: templates/userflow/sign/signup.html:6
 msgid "Sign Up"
 msgstr "Регистрация"
 
-#: userflow/templates/userflow/verify/confirm.html:10
+#: templates/userflow/verify/confirm.html:5
+#: templates/userflow/verify/wait.html:5
+#: templates/userflow/verify/wait.html:12
+msgid "Email verify"
+msgstr "Подтверждение почты"
+
+#: templates/userflow/verify/confirm.html:12
 msgid "Email verify success"
 msgstr "Подтверждение успешно завершено"
 
-#: userflow/templates/userflow/verify/confirm.html:11
+#: templates/userflow/verify/confirm.html:13
 msgid "Thank you for confirm your email"
 msgstr "Спасибо что подтвердили свой адрес электронной почты"
 
-#: userflow/templates/userflow/verify/wait.html:10
-msgid "Email verify"
-msgstr "Подтверждение почты"
+#: views/profile/emails/remove.py:16
+msgid "You can't remove last email"
+msgstr "Вы не можете удалить последний email"
 
 #~ msgid ""
 #~ "\n"

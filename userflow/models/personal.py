@@ -17,7 +17,7 @@ class UserInfoMixin(models.Model):
     birthday = models.DateField(default=None, null=True, blank=True, verbose_name=_('Birthday'))
     gender = models.CharField(max_length=1, choices=GENDERS.items(), blank=True, verbose_name=_('Gender'))
     location = models.CharField(max_length=255, blank=True, verbose_name=_('Location'))
-    about = models.TextField(blank=True)
+    about = models.TextField(blank=True, verbose_name=_('About'))
     photo = models.ImageField(upload_to='avatars', blank=True, verbose_name=_('Photo'))
 
     class Meta:

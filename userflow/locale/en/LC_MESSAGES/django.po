@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-06-14 18:49+0000\n"
+"POT-Creation-Date: 2015-07-13 01:21+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,139 +17,195 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: userflow/admin.py:28
+#: admin.py:31 templates/userflow/profile/edit.html:31
+#: templates/userflow/profile/user.html:36
 msgid "Personal info"
 msgstr ""
 
-#: userflow/admin.py:29
+#: admin.py:34
 msgid "Permissions"
 msgstr ""
 
-#: userflow/admin.py:31
+#: admin.py:36
 msgid "Important dates"
 msgstr ""
 
-#: userflow/apps.py:12
+#: apps.py:12
 msgid "Users"
 msgstr ""
 
-#: userflow/forms/password.py:19 userflow/forms/signin.py:18
-#: userflow/forms/signup.py:16
+#: forms/password.py:13 forms/signin.py:14 forms/signup.py:13
+#: templates/userflow/profile/user.html:90
 msgid "Email"
 msgstr ""
 
-#: userflow/forms/password.py:25
-msgid "Submit"
-msgstr ""
-
-#: userflow/forms/password.py:26
-#: userflow/templates/userflow/sign/sign-ajax.html:9
-#: userflow/templates/userflow/sign/sign-default.html:9
-#: userflow/templates/userflow/sign/signin.html:7
-msgid "Sign In"
-msgstr ""
-
-#: userflow/forms/password.py:40
+#: forms/password.py:25
 msgid "Can't find that email, sorry"
 msgstr ""
 
-#: userflow/forms/password.py:51 userflow/forms/password.py:57
-msgid "Change"
-msgstr ""
-
-#: userflow/forms/signin.py:19 userflow/forms/signup.py:18
+#: forms/signin.py:15 forms/signup.py:15
+#: templates/userflow/profile/edit.html:45
 msgid "Password"
 msgstr ""
 
-#: userflow/forms/signin.py:25
-msgid "Signin"
-msgstr "Sign in"
-
-#: userflow/forms/signin.py:26
-msgid "Lost your password?"
-msgstr ""
-
-#: userflow/forms/signin.py:30
+#: forms/signin.py:18
 msgid ""
 "Please enter a correct email and password. Note that both fields may be case-"
 "sensitive."
 msgstr ""
 
-#: userflow/forms/signin.py:32 userflow/forms/signup.py:27
+#: forms/signin.py:20 forms/signup.py:20
 msgid "This account is inactive."
 msgstr ""
 
-#: userflow/forms/signin.py:33 userflow/forms/signup.py:28
+#: forms/signin.py:21 forms/signup.py:21
 msgid "This account is removed."
 msgstr ""
 
-#: userflow/forms/signup.py:17
+#: forms/signup.py:14
 msgid "Your name"
 msgstr ""
 
-#: userflow/forms/signup.py:19
+#: forms/signup.py:16
 msgid "Password confirm"
 msgstr ""
 
-#: userflow/forms/signup.py:23
-msgid "Signup"
-msgstr "Sign up"
-
-#: userflow/forms/signup.py:26
+#: forms/signup.py:19
 msgid "This email already exists."
 msgstr ""
 
-#: userflow/forms/signup.py:29
+#: forms/signup.py:22
 msgid "Password and confirmation does not match."
 msgstr ""
 
-#: userflow/models/emails.py:20
+#: models/contacts.py:56
+msgid "Site"
+msgstr ""
+
+#: models/contacts.py:68
+msgid "Skype"
+msgstr ""
+
+#: models/contacts.py:78
+msgid "Phone"
+msgstr ""
+
+#: models/contacts.py:85
+msgid "Facebook"
+msgstr ""
+
+#: models/contacts.py:101
+msgid "Contact type"
+msgstr ""
+
+#: models/contacts.py:102
+msgid "Contact value"
+msgstr ""
+
+#: models/contacts.py:126
+msgid "Unknown contact type"
+msgstr ""
+
+#: models/contacts.py:131
+msgid "contact"
+msgstr ""
+
+#: models/contacts.py:132
+msgid "contacts"
+msgstr ""
+
+#: models/emails.py:26
 msgid "email address"
 msgstr ""
 
-#: userflow/models/emails.py:38
+#: models/emails.py:28
+msgid "Is primary"
+msgstr ""
+
+#: models/emails.py:29
+msgid "Is active"
+msgstr ""
+
+#: models/emails.py:30
+msgid "Is public"
+msgstr ""
+
+#: models/emails.py:46
 msgid "email"
 msgstr ""
 
-#: userflow/models/emails.py:39
+#: models/emails.py:47
 msgid "emails"
 msgstr ""
 
-#: userflow/models/user.py:71
+#: models/personal.py:11
+msgid "Female"
+msgstr ""
+
+#: models/personal.py:12
+msgid "Male"
+msgstr ""
+
+#: models/personal.py:16 templates/userflow/profile/user.html:49
+msgid "Real name"
+msgstr ""
+
+#: models/personal.py:17
+msgid "Birthday"
+msgstr ""
+
+#: models/personal.py:18
+msgid "Gender"
+msgstr ""
+
+#: models/personal.py:19 templates/userflow/profile/user.html:53
+msgid "Location"
+msgstr ""
+
+#: models/personal.py:20 templates/userflow/profile/edit.html:38
+#: templates/userflow/profile/user.html:67
+msgid "About"
+msgstr ""
+
+#: models/personal.py:21
+msgid "Photo"
+msgstr ""
+
+#: models/user.py:69
 msgid "display name"
 msgstr ""
 
-#: userflow/models/user.py:73
+#: models/user.py:71
 msgid "staff status"
 msgstr ""
 
-#: userflow/models/user.py:73
+#: models/user.py:71
 msgid "Designates whether the user can log into this admin site."
 msgstr ""
 
-#: userflow/models/user.py:74
+#: models/user.py:72
 msgid "active"
 msgstr ""
 
-#: userflow/models/user.py:74
+#: models/user.py:72
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
 
-#: userflow/models/user.py:75
+#: models/user.py:73
 msgid "removed"
 msgstr ""
 
-#: userflow/models/user.py:105
+#: models/user.py:109
 msgid "user"
 msgstr ""
 
-#: userflow/models/user.py:106
+#: models/user.py:110
 msgid "users"
 msgstr ""
 
-#: userflow/templates/userflow/emails/_sign.html:5
+#: templates/userflow/emails/_sign.html:5
 #, python-format
 msgid ""
 "\n"
@@ -158,7 +214,7 @@ msgid ""
 "    "
 msgstr ""
 
-#: userflow/templates/userflow/emails/_sign.txt:3
+#: templates/userflow/emails/_sign.txt:3
 #, python-format
 msgid ""
 "\n"
@@ -166,127 +222,270 @@ msgid ""
 "Your %(site_name)s Team\n"
 msgstr ""
 
-#: userflow/templates/userflow/emails/reset-subject.txt:3
-#: userflow/templates/userflow/reset/request.html:12
+#: templates/userflow/emails/reset-subject.txt:3
+#: templates/userflow/reset/change.html:5
+#: templates/userflow/reset/request.html:5
+#: templates/userflow/reset/request.html:11
+#: templates/userflow/reset/wait.html:5
 msgid "Reset password"
 msgstr ""
 
-#: userflow/templates/userflow/emails/reset.html:6
-#: userflow/templates/userflow/emails/reset.txt:6
+#: templates/userflow/emails/reset.html:6
+#: templates/userflow/emails/reset.txt:6
 msgid "Please follow link for reset your password:"
 msgstr ""
 
-#: userflow/templates/userflow/emails/signup-subject.txt:3
+#: templates/userflow/emails/signup-subject.txt:3
 msgid "Thanks for Joining"
 msgstr ""
 
-#: userflow/templates/userflow/emails/signup.html:6
-#: userflow/templates/userflow/emails/signup.txt:6
+#: templates/userflow/emails/signup.html:6
+#: templates/userflow/emails/signup.txt:6
 msgid "Welcome to"
 msgstr ""
 
-#: userflow/templates/userflow/emails/signup.html:7
-#: userflow/templates/userflow/emails/signup.txt:7
+#: templates/userflow/emails/signup.html:7
+#: templates/userflow/emails/signup.txt:7
 msgid "You’ve taken your first step into a larger world"
 msgstr ""
 
-#: userflow/templates/userflow/emails/verify-subject.txt:3
+#: templates/userflow/emails/verify-subject.txt:3
 msgid "Please verify your email"
 msgstr ""
 
-#: userflow/templates/userflow/emails/verify.html:6
-#: userflow/templates/userflow/emails/verify.txt:6
+#: templates/userflow/emails/verify.html:7
+#: templates/userflow/emails/verify.txt:7
 msgid "Hey, we want to verify that you are indeed"
 msgstr ""
 
-#: userflow/templates/userflow/emails/verify.html:7
-#: userflow/templates/userflow/emails/verify.txt:7
+#: templates/userflow/emails/verify.html:9
+#: templates/userflow/emails/verify.txt:9
 msgid ""
 "Verifying this address will let you receive notifications and password "
 "resets from"
 msgstr ""
 
-#: userflow/templates/userflow/emails/verify.html:8
-#: userflow/templates/userflow/emails/verify.txt:8
+#: templates/userflow/emails/verify.html:10
+#: templates/userflow/emails/verify.txt:10
 msgid "If you wish to continue, please follow the link below:"
 msgstr ""
 
-#: userflow/templates/userflow/emails/verify.html:9
+#: templates/userflow/emails/verify.html:11
 msgid "Confirm"
 msgstr ""
 
-#: userflow/templates/userflow/emails/verify.html:10
-#: userflow/templates/userflow/emails/verify.txt:10
+#: templates/userflow/emails/verify.html:12
+#: templates/userflow/emails/verify.txt:12
 msgid "If you’re not"
 msgstr ""
 
-#: userflow/templates/userflow/emails/verify.html:10
-#: userflow/templates/userflow/emails/verify.txt:10
+#: templates/userflow/emails/verify.html:12
+#: templates/userflow/emails/verify.txt:12
 msgid "or didn’t request verification, you can ignore this email."
 msgstr ""
 
-#: userflow/templates/userflow/reset/change.html:10
-#: userflow/templates/userflow/reset/wait.html:9
-#: userflow/templates/userflow/verify/confirm.html:7
-#: userflow/templates/userflow/verify/wait.html:7
-msgid "Expired link :("
+#: templates/userflow/forms/add-contact.html:10
+#: templates/userflow/forms/add-email.html:10
+msgid "Add"
 msgstr ""
 
-#: userflow/templates/userflow/reset/change.html:11
-#: userflow/templates/userflow/reset/wait.html:10
-#: userflow/templates/userflow/verify/confirm.html:8
-#: userflow/templates/userflow/verify/wait.html:8
-msgid "Sorry, your link is expired"
+#: templates/userflow/forms/profile-about.html:10
+#: templates/userflow/forms/profile-contacts.html:20
+#: templates/userflow/forms/profile-personal.html:10
+msgid "Change"
 msgstr ""
 
-#: userflow/templates/userflow/reset/change.html:14
-msgid "Password changed"
-msgstr ""
-
-#: userflow/templates/userflow/reset/change.html:15
-msgid "Please"
-msgstr ""
-
-#: userflow/templates/userflow/reset/change.html:15
-msgid "do signin"
-msgstr "signin"
-
-#: userflow/templates/userflow/reset/change.html:15
-msgid "using new password."
-msgstr ""
-
-#: userflow/templates/userflow/reset/change.html:20
+#: templates/userflow/forms/profile-password.html:11
+#: templates/userflow/reset/change.html:19
 msgid "Change password"
 msgstr ""
 
-#: userflow/templates/userflow/reset/wait.html:12
+#: templates/userflow/forms/profile-password.html:13
+#: templates/userflow/forms/reset-change.html:10
+msgid "Set password"
+msgstr ""
+
+#: templates/userflow/forms/reset-request.html:10
+msgid "Submit"
+msgstr ""
+
+#: templates/userflow/forms/reset-request.html:11
+#: templates/userflow/sign/sign-ajax.html:9
+#: templates/userflow/sign/sign-default.html:9
+#: templates/userflow/sign/signin.html:6
+msgid "Sign In"
+msgstr ""
+
+#: templates/userflow/forms/signin.html:10
+msgid "Signin"
+msgstr "Sign in"
+
+#: templates/userflow/forms/signin.html:11
+msgid "Lost your password?"
+msgstr ""
+
+#: templates/userflow/forms/signup.html:10
+msgid "Signup"
+msgstr "Sign up"
+
+#: templates/userflow/profile/add-contact.html:7
+#: templates/userflow/profile/add-contact.html:20
+#: templates/userflow/profile/add-contact.html:29
+msgid "New contact"
+msgstr ""
+
+#: templates/userflow/profile/add-contact.html:14
+#: templates/userflow/profile/add-email.html:14
+#: templates/userflow/profile/edit.html:14
+#: templates/userflow/profile/user.html:16
+msgid "Main"
+msgstr ""
+
+#: templates/userflow/profile/add-contact.html:16
+#: templates/userflow/profile/add-email.html:16
+#: templates/userflow/profile/edit.html:7
+#: templates/userflow/profile/edit.html:16
+#: templates/userflow/profile/user.html:8
+#: templates/userflow/profile/user.html:19
+msgid "My profile"
+msgstr ""
+
+#: templates/userflow/profile/add-contact.html:18
+#: templates/userflow/profile/add-email.html:18
+#: templates/userflow/profile/edit.html:18
+msgid "Edit"
+msgstr ""
+
+#: templates/userflow/profile/add-email.html:7
+#: templates/userflow/profile/add-email.html:20
+#: templates/userflow/profile/add-email.html:29
+msgid "New email"
+msgstr ""
+
+#: templates/userflow/profile/edit.html:52
+msgid "Emails"
+msgstr ""
+
+#: templates/userflow/profile/edit.html:59
+msgid "Verified"
+msgstr ""
+
+#: templates/userflow/profile/edit.html:61
+msgid "Public"
+msgstr ""
+
+#: templates/userflow/profile/edit.html:62
+msgid "Make private"
+msgstr ""
+
+#: templates/userflow/profile/edit.html:64
+msgid "Private"
+msgstr ""
+
+#: templates/userflow/profile/edit.html:65
+msgid "Make public"
+msgstr ""
+
+#: templates/userflow/profile/edit.html:68
+msgid "Primary"
+msgstr ""
+
+#: templates/userflow/profile/edit.html:70
+msgid "Make primary"
+msgstr ""
+
+#: templates/userflow/profile/edit.html:73
+msgid "Unverified"
+msgstr ""
+
+#: templates/userflow/profile/edit.html:74
+msgid "Verify"
+msgstr ""
+
+#: templates/userflow/profile/edit.html:78
+msgid "Add email"
+msgstr ""
+
+#: templates/userflow/profile/edit.html:82
+#: templates/userflow/profile/user.html:79
+msgid "Contacts"
+msgstr ""
+
+#: templates/userflow/profile/edit.html:99
+msgid "Add contact"
+msgstr ""
+
+#: templates/userflow/profile/user.html:45
+msgid "Display name"
+msgstr ""
+
+#: templates/userflow/profile/user.html:58
+msgid "Age"
+msgstr ""
+
+#: templates/userflow/reset/change.html:9 templates/userflow/reset/wait.html:9
+#: templates/userflow/verify/confirm.html:9
+#: templates/userflow/verify/wait.html:9
+msgid "Expired link :("
+msgstr ""
+
+#: templates/userflow/reset/change.html:10
+#: templates/userflow/reset/wait.html:10
+#: templates/userflow/verify/confirm.html:10
+#: templates/userflow/verify/wait.html:10
+msgid "Sorry, your link is expired"
+msgstr ""
+
+#: templates/userflow/reset/change.html:13
+msgid "Password changed"
+msgstr ""
+
+#: templates/userflow/reset/change.html:14
+msgid "Please"
+msgstr ""
+
+#: templates/userflow/reset/change.html:14
+msgid "do signin"
+msgstr "signin"
+
+#: templates/userflow/reset/change.html:14
+msgid "using new password."
+msgstr ""
+
+#: templates/userflow/reset/wait.html:12
 msgid "Password reset"
 msgstr ""
 
-#: userflow/templates/userflow/reset/wait.html:13
-#: userflow/templates/userflow/verify/wait.html:11
+#: templates/userflow/reset/wait.html:13
+#: templates/userflow/verify/wait.html:13
 msgid "We have sent your confirmation email to"
 msgstr ""
 
-#: userflow/templates/userflow/reset/wait.html:17
-#: userflow/templates/userflow/verify/wait.html:12
+#: templates/userflow/reset/wait.html:17
+#: templates/userflow/verify/wait.html:14
 msgid "Resend"
 msgstr ""
 
-#: userflow/templates/userflow/sign/sign-ajax.html:15
-#: userflow/templates/userflow/sign/sign-default.html:15
-#: userflow/templates/userflow/sign/signup.html:7
+#: templates/userflow/sign/sign-ajax.html:15
+#: templates/userflow/sign/sign-default.html:15
+#: templates/userflow/sign/signup.html:6
 msgid "Sign Up"
 msgstr ""
 
-#: userflow/templates/userflow/verify/confirm.html:10
+#: templates/userflow/verify/confirm.html:5
+#: templates/userflow/verify/wait.html:5
+#: templates/userflow/verify/wait.html:12
+msgid "Email verify"
+msgstr ""
+
+#: templates/userflow/verify/confirm.html:12
 msgid "Email verify success"
 msgstr ""
 
-#: userflow/templates/userflow/verify/confirm.html:11
+#: templates/userflow/verify/confirm.html:13
 msgid "Thank you for confirm your email"
 msgstr ""
 
-#: userflow/templates/userflow/verify/wait.html:10
-msgid "Email verify"
+#: views/profile/emails/remove.py:16
+msgid "You can't remove last email"
 msgstr ""
