@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 from django.contrib.auth import models as auth_models
+from django.core.exceptions import ObjectDoesNotExist
 from django.db import models
 from django.db.transaction import atomic
 from django.utils.translation import ugettext_lazy as _
@@ -40,9 +41,10 @@ class UserManager(auth_models.BaseUserManager.from_queryset(UserQueryset)):
             user.set_password(password)
             user.save(using=self._db)
 
-            user_email = UserEmail(email=email,
-                                   user=user)
-            user_email.save(using=self._db)
+            if email:
+                user_email = UserEmail(email=email,
+                                       user=user)
+                user_email.save(using=self._db)
 
         return user
 
@@ -56,6 +58,8 @@ class UserManager(auth_models.BaseUserManager.from_queryset(UserQueryset)):
                                  **extra_fields)
 
     def get_by_natural_key(self, username):
+        if not username:
+            raise self.model.DoesNotExist
         qs = self.filter(emails__email=username)
         return qs.get()
 
@@ -88,13 +92,19 @@ class BaseUser(auth_models.AbstractBaseUser,
     def get_short_name(self):
         return self.email
 
-    @property
-    def email(self):
+    def set_email(self, value):
+        if not value:
+            return
+        UserEmail.objects.get_or_create(user=self, email=value)  #
+
+    def get_email(self):
         # compat
         user_email = self.primary_email
         if user_email:
             return user_email.email
         return conf.USERS_DUMMY_EMAIL
+
+    email = property(get_email, fset=set_email)
 
     def has_usable_email(self):
         return self.email != conf.USERS_DUMMY_EMAIL
@@ -104,6 +114,8 @@ class BaseUser(auth_models.AbstractBaseUser,
         user_email = self.emails.filter(is_primary=True).first() or \
                      self.emails.first()
         return user_email
+
+
 
     class Meta:
         verbose_name = _('user')

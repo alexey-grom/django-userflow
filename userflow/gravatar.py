@@ -18,7 +18,7 @@ class Gravatar(object):
         :param default:
         """
 
-        self.email = email
+        self.email = email or ''
 
         self.size = None
         self.file_ext = None
