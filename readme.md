@@ -135,6 +135,16 @@ Settings
 Quick start
 ===========
 
+Requirements
+------------
+
+* python 2.7+/3.4+
+* django 1.7+
+
+
+Setup
+-----
+
 * Install app
 
 * Inherit user model `yourapp/models.py`
