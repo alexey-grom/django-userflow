@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-13 01:21+0600\n"
+"POT-Creation-Date: 2015-07-18 22:15+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -291,16 +291,15 @@ msgstr ""
 
 #: templates/userflow/forms/profile-about.html:10
 #: templates/userflow/forms/profile-contacts.html:20
+#: templates/userflow/forms/profile-password.html:11
 #: templates/userflow/forms/profile-personal.html:10
 msgid "Change"
 msgstr ""
 
-#: templates/userflow/forms/profile-password.html:11
-#: templates/userflow/reset/change.html:19
-msgid "Change password"
+#: templates/userflow/forms/profile-password.html:13
+msgid "Set"
 msgstr ""
 
-#: templates/userflow/forms/profile-password.html:13
 #: templates/userflow/forms/reset-change.html:10
 msgid "Set password"
 msgstr ""
@@ -450,6 +449,10 @@ msgstr "signin"
 
 #: templates/userflow/reset/change.html:14
 msgid "using new password."
+msgstr ""
+
+#: templates/userflow/reset/change.html:19
+msgid "Change password"
 msgstr ""
 
 #: templates/userflow/reset/wait.html:12

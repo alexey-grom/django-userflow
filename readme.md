@@ -4,7 +4,7 @@ Features
 * email as primary auth credential
 * flexible sign(in/up/out) flow by **pipelines** *(like python-social-auth)*
 * customizable user model
-* multiple emails
+* multiple emails (+ contacts)
 * mailing
 * optional confirm emails and restore accounts
 * optional build-in profile page and users top
@@ -125,6 +125,7 @@ Settings
     - `USERS_SITE_NAME`
     - `USERS_DUMMY_EMAIL`
 
+
 Quick start
 ===========
 
@@ -150,4 +151,21 @@ AUTH_USER_MODEL = 'yourapp.User'
 
 ```
 url(r'^', include('userflow.urls')),  # or your urls composition 
+```
+
+
+Python-social-auth
+==================
+
+* `settings.py`
+
+```
+SOCIAL_AUTH_STORAGE = 'userflow.psa.storage.UserflowStorage'
+SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True
+```
+
+Strongly recommend also
+
+```
+SOCIAL_AUTH_INACTIVE_USER_LOGIN = True
 ```

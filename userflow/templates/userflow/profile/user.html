@@ -43,7 +43,7 @@
                 <div class="ui list">
                     <div class="item">
                         <div class="header">{% trans 'Display name' %}</div>
-                        <span>{{ user.name }}</span>
+                        <span>{{ user.name|default:'&mdash;' }}</span>
                     </div>
                     <div class="item">
                         <div class="header">{% trans 'Real name' %}</div>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-13 01:21+0600\n"
+"POT-Creation-Date: 2015-07-18 22:15+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -306,19 +306,16 @@ msgstr "Добавить"
 
 #: templates/userflow/forms/profile-about.html:10
 #: templates/userflow/forms/profile-contacts.html:20
+#: templates/userflow/forms/profile-password.html:11
 #: templates/userflow/forms/profile-personal.html:10
 msgid "Change"
 msgstr "Изменить"
 
-#: templates/userflow/forms/profile-password.html:11
-#: templates/userflow/reset/change.html:19
-msgid "Change password"
-msgstr "Смена пароля"
-
 #: templates/userflow/forms/profile-password.html:13
+msgid "Set"
+msgstr "Установить"
+
 #: templates/userflow/forms/reset-change.html:10
-#, fuzzy
-#| msgid "Reset password"
 msgid "Set password"
 msgstr "Сброс пароля"
 
@@ -376,12 +373,10 @@ msgstr "Редактирование"
 #: templates/userflow/profile/add-email.html:7
 #: templates/userflow/profile/add-email.html:20
 #: templates/userflow/profile/add-email.html:29
-#| msgid "email"
 msgid "New email"
 msgstr "Новая почта"
 
 #: templates/userflow/profile/edit.html:52
-#| msgid "emails"
 msgid "Emails"
 msgstr "Электронная почта"
 
@@ -415,14 +410,13 @@ msgstr "Сделать основным"
 
 #: templates/userflow/profile/edit.html:73
 msgid "Unverified"
-msgstr "Подтвержденный"
+msgstr "Неподтвержденный"
 
 #: templates/userflow/profile/edit.html:74
 msgid "Verify"
 msgstr "Подтвердить"
 
 #: templates/userflow/profile/edit.html:78
-#| msgid "email"
 msgid "Add email"
 msgstr "Добавить почту"
 
@@ -436,10 +430,8 @@ msgid "Add contact"
 msgstr "Добавить контакт"
 
 #: templates/userflow/profile/user.html:45
-#, fuzzy
-#| msgid "display name"
 msgid "Display name"
-msgstr "отображаемое имя"
+msgstr "Отображаемое имя"
 
 #: templates/userflow/profile/user.html:58
 msgid "Age"
@@ -473,6 +465,10 @@ msgstr "войдите"
 #: templates/userflow/reset/change.html:14
 msgid "using new password."
 msgstr "используя новый пароль"
+
+#: templates/userflow/reset/change.html:19
+msgid "Change password"
+msgstr "Смена пароля"
 
 #: templates/userflow/reset/wait.html:12
 msgid "Password reset"

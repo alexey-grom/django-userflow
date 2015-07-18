@@ -10,3 +10,6 @@ from userflow import conf
 class UsersConfig(AppConfig):
     name = 'userflow'
     verbose_name = _('Users')
+
+    def ready(self):
+        super(UsersConfig, self).ready()

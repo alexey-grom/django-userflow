@@ -1,0 +1,10 @@
+{% load i18n %}
+{% load userflow_psa %}
+
+{% get_psa_backends as backends %}
+{% if backends %}
+    <div class="ui divider"></div>
+    {% for backend in backends %}
+        <a href="{% url 'social:begin' backend=backend.name %}?next={{ request.get_full_path }}">{{ backend.name }}</a>
+    {% endfor %}
+{% endif %}
