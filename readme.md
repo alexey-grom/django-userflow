@@ -11,6 +11,67 @@ Features
 * and a lot of other stuff
 
 
+Quick start
+===========
+
+Requirements
+------------
+
+* python 2.7+/3.4+
+* django 1.7+
+* django-braces
+
+
+Setup
+-----
+
+* Install app
+
+```
+pip install git+https://github.com/alexey-grom/django-userflow
+```
+
+* Inherit user model `yourapp/models.py`
+
+```
+from userflow.models import BaseUser, UserInfoMixin
+
+class User(UserInfoMixin, BaseUser):
+    pass
+```
+
+* `settings.py`
+
+```
+INSTALLED_APPS += ('userflow', )
+AUTH_USER_MODEL = 'yourapp.User' 
+```
+
+* `urls.py`
+
+```
+url(r'^', include('userflow.urls')),  # or your urls composition 
+```
+
+
+Python-social-auth
+------------------
+
+* `settings.py`
+
+```
+SOCIAL_AUTH_STORAGE = 'userflow.psa.storage.UserflowStorage'
+SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True
+```
+
+Strongly recommend also
+
+```
+SOCIAL_AUTH_INACTIVE_USER_LOGIN = True
+```
+
+
+
 Pipelines
 =========
 
@@ -130,58 +191,3 @@ Settings
 
     - `USERS_SIGNIN_ON_EMAIL_CONFIRM`
     - `USERS_CAN_SUICIDE`
-
-
-Quick start
-===========
-
-Requirements
-------------
-
-* python 2.7+/3.4+
-* django 1.7+
-
-
-Setup
------
-
-* Install app
-
-* Inherit user model `yourapp/models.py`
-
-```
-from userflow.models import BaseUser, UserInfoMixin
-
-class User(UserInfoMixin, BaseUser):
-    pass
-```
-
-* `settings.py`
-
-```
-INSTALLED_APPS += ('userflow', )
-AUTH_USER_MODEL = 'yourapp.User' 
-```
-
-* `urls.py`
-
-```
-url(r'^', include('userflow.urls')),  # or your urls composition 
-```
-
-
-Python-social-auth
-==================
-
-* `settings.py`
-
-```
-SOCIAL_AUTH_STORAGE = 'userflow.psa.storage.UserflowStorage'
-SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True
-```
-
-Strongly recommend also
-
-```
-SOCIAL_AUTH_INACTIVE_USER_LOGIN = True
-```
