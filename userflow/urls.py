@@ -2,7 +2,7 @@
 
 from django.conf.urls import url, include, patterns
 
-from userflow import views
+from userflow import conf, views
 
 
 sign_urls = patterns('',
@@ -48,22 +48,21 @@ contacts_urls = patterns('',
     url(r'^add/$', views.profile.contacts.create.AddContactView.as_view(), name='add'),
 )
 
+profile_urls = patterns('',
+    url(r'^', include(profile_view_urls)),
+    url(r'^edit/', include(profile_edit_urls)),
+    url(r'^emails/', include(emails_urls, namespace='emails')),
+    url(r'contacts/', include(contacts_urls, namespace='contacts')),
+)
+if conf.USERS_CAN_SUICIDE:
+    profile_urls.append(url('^delete/', views.profile.suicide.SuicideView.as_view(), name='suicide'))
+
 urlpatterns = patterns('',
     url(r'^', include(patterns('',
         url(r'^', include(sign_urls)),
         url(r'^reset/', include(reset_urls, namespace='reset')),
         url(r'^verify/', include(verify_urls, namespace='verify')),
-
-        url(r'^profile/', include(patterns('',
-            url(r'^', include(profile_view_urls)),
-            url(r'^edit/', include(profile_edit_urls)),
-            url(r'^emails/', include(emails_urls, namespace='emails')),
-            url(r'contacts/', include(contacts_urls, namespace='contacts')),
-        ), namespace='profile')),
-
-        # url(r'rating/', include(patterns('',
-        #     url(r'^$', RedirectView.as_view(url='/'), name='rating'),
-        # ))),
+        url(r'^profile/', include(profile_urls, namespace='profile')),
 
     ), namespace='users')),
 )

@@ -87,6 +87,7 @@ SETTINGS = settings(
     setting('USERS_SITE_NAME', utils.dummy_site_name),
 
     setting('USERS_DUMMY_EMAIL', None),
+    setting('USERS_CAN_SUICIDE', False),
 
     setting('USERS_CONFIRMATION_EXPIRATION', datetime.timedelta(days=3)),
 

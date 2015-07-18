@@ -1,0 +1,43 @@
+{% extends 'userflow/base.html' %}
+
+{% load i18n %}
+{% load userflow_gravatar %}
+{% load userflow_tags %}
+
+{% block title %}{% trans 'Remove account' %}{% endblock %}
+
+{% block content %}
+    <div class="ui grid">
+        <div class="row">
+            <div class="column">
+                <div class="ui large breadcrumb">
+                    <a href="/" class="section">{% trans 'Main' %}</a>
+                    <i class="right chevron icon divider"></i>
+                    <a href="{% url 'users:profile:view' %}" class="section">{% trans 'My profile' %}</a>
+                    <i class="right chevron icon divider"></i>
+                    <div class="active section">{% trans 'Remove account' %}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui grid">
+        <div class="row">
+            <div class="three wide column">
+                <img class="ui image" src="{% gravatar user.email size=200 default='identicon' %}">
+            </div>
+
+            <div class="thirteen wide column">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <h3>{% trans 'Are you sure you want to delete your account?' %}</h3>
+                    <p>
+                        <input class="ui red button" type="submit" value="{% trans 'Yes, delete me' %}" />
+                        <a class="ui green button" href="{% url 'users:profile:view' %}">{% trans "No, it's mistake" %}</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-18 22:15+0600\n"
+"POT-Creation-Date: 2015-07-18 23:08+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -336,6 +336,7 @@ msgstr ""
 #: templates/userflow/profile/add-contact.html:14
 #: templates/userflow/profile/add-email.html:14
 #: templates/userflow/profile/edit.html:14
+#: templates/userflow/profile/suicide.html:14
 #: templates/userflow/profile/user.html:16
 msgid "Main"
 msgstr ""
@@ -344,6 +345,7 @@ msgstr ""
 #: templates/userflow/profile/add-email.html:16
 #: templates/userflow/profile/edit.html:7
 #: templates/userflow/profile/edit.html:16
+#: templates/userflow/profile/suicide.html:16
 #: templates/userflow/profile/user.html:8
 #: templates/userflow/profile/user.html:19
 msgid "My profile"
@@ -412,6 +414,23 @@ msgstr ""
 
 #: templates/userflow/profile/edit.html:99
 msgid "Add contact"
+msgstr ""
+
+#: templates/userflow/profile/suicide.html:7
+#: templates/userflow/profile/suicide.html:18
+msgid "Remove account"
+msgstr ""
+
+#: templates/userflow/profile/suicide.html:33
+msgid "Are you sure you want to delete your account?"
+msgstr ""
+
+#: templates/userflow/profile/suicide.html:35
+msgid "Yes, delete me"
+msgstr ""
+
+#: templates/userflow/profile/suicide.html:36
+msgid "No, it's mistake"
 msgstr ""
 
 #: templates/userflow/profile/user.html:45
