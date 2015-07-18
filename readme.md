@@ -124,6 +124,12 @@ Settings
     - `USERS_SITE_URL`
     - `USERS_SITE_NAME`
     - `USERS_DUMMY_EMAIL`
+    - `USERS_CONFIRMATION_EXPIRATION`
+
+* Features
+
+    - `USERS_SIGNIN_ON_EMAIL_CONFIRM`
+    - `USERS_CAN_SUICIDE`
 
 
 Quick start
