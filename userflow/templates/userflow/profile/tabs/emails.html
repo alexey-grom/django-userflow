@@ -1,0 +1,28 @@
+{% load i18n %}
+
+{# TODO message if none #}
+{% for email in user.emails.all %}
+    <p>
+        <strong>{{ email.email }}&nbsp;</strong>
+        <a class="ui tiny icon basic button right floated" href="{% url 'users:profile:emails:remove' pk=email.pk %}"><i class="trash icon"></i></a>
+        {% if email.is_active %}
+            <span class="ui green label">{% trans 'Verified' %}</span>
+            {% if email.is_public %}
+                <span class="ui blue label">{% trans 'Public' %}</span>
+                <a class="ui basic tiny button right floated" href="{% url 'users:profile:emails:public' pk=email.pk action='private' %}">{% trans 'Make private' %}</a>
+            {% else %}
+                <span class="ui label">{% trans 'Private' %}</span>
+                <a class="ui basic tiny button right floated" href="{% url 'users:profile:emails:public' pk=email.pk action='public' %}">{% trans 'Make public' %}</a>
+            {% endif %}
+            {% if email.is_primary %}
+                <span class="ui blue label">{% trans 'Primary' %}</span>
+            {% else %}
+                <a class="ui basic tiny button right floated" href="{% url 'users:profile:emails:primary' pk=email.pk %}">{% trans 'Make primary' %}</a>
+            {% endif %}
+        {% else %}
+            <span class="ui orange label">{% trans 'Unverified' %}</span>
+            <a class="ui basic tiny button right floated" href="{% url 'users:profile:emails:verify' pk=email.pk %}">{% trans 'Verify' %}</a>
+        {% endif %}
+    </p>
+{% endfor %}
+<a class="ui primary button" href="{% url 'users:profile:emails:add' %}">{% trans 'Add email' %}</a>

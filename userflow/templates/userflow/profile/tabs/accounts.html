@@ -1,0 +1,33 @@
+{% load i18n %}
+{% load userflow_psa %}
+
+<div>
+    <span>{% trans 'Connect account' %}&nbsp;</span>
+    {% get_psa_backends as backends %}
+    {% for backend in backends %}
+        {% get_psa_backend_context backend as context %}
+        <a class="ui {{ context.name }} tiny button" href="{% url 'social:begin' backend=backend.name %}?next={{ request.get_full_path }}">
+            <i class="{{ context.name }} icon"></i>
+            <span>{{ context.title }}</span>
+        </a>
+    {% endfor %}
+</div>
+
+<div class="ui middle aligned divided list">
+    {% for social_auth in user.social_auth.all %}
+        {% get_psa_backend_context social_auth.provider as context %}
+
+        <div class="item">
+            <div class="right floated content">
+                <form action="{% url 'social:disconnect_individual' backend=social_auth.provider association_id=social_auth.pk %}?next={{ request.get_full_path }}" method="post">
+                    {% csrf_token %}
+                    <button class="ui tiny button" type="submit">{% trans 'Disconnect' %}</button>
+                </form>
+            </div>
+            <i class="{{ context.name }} icon" title="{{ context.title }}"></i>
+            <div class="content">{{ social_auth.uid }}</div>
+        </div>
+
+    {% endfor %}
+
+</div>

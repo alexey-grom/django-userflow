@@ -1,0 +1,19 @@
+{% load i18n %}
+
+{# TODO message if none #}
+<div class="ui list">
+    {% for contact in user.contacts.all %}
+        {% with link=contact.as_link %}
+            <div class="item">
+                {% with type=contact.contact_type %}
+                    <i class="{{ type.icon|default_if_none:type.alias }} icon"></i>
+                {% endwith %}
+                <div class="content">
+                    <a{% if link %} href="{{ link|safe }}" target="_blank"{% else %}{% endif %}>{{ contact.value }}</a>
+                    <a class="ui tiny icon" href="{% url 'users:profile:contacts:remove' pk=contact.pk %}"><i class="trash icon"></i></a>
+                </div>
+            </div>
+        {% endwith %}
+    {% endfor %}
+</div>
+<a class="ui primary button" href="{% url 'users:profile:contacts:add' %}">{% trans 'Add contact' %}</a>

@@ -29,119 +29,26 @@
             </div>
 
             <div class="thirteen wide column">
-                <div class="ui horizontal divider" id="personal">{% trans 'Personal info' %}</div>
-                {% with form=forms.personal %}
-                    {% include 'userflow/forms/profile-personal.html' %}
-                {% endwith %}
 
-                <br/>
-                <br/>
+                <div class="ui horizontal divider" id="personal">{% trans 'Personal info' %}</div>
+                {% include 'userflow/profile/tabs/personal.html' %}
 
                 <div class="ui horizontal divider" id="about">{% trans 'About' %}</div>
-                {% with form=forms.about %}
-                    {% include 'userflow/forms/profile-about.html' %}
-                {% endwith %}
-
-                <br/>
-                <br/>
+                {% include 'userflow/forms/profile-about.html' %}
 
                 <div class="ui horizontal divider" id="password">{% trans 'Password' %}</div>
-                {% with form=forms.password %}
-                    {% include 'userflow/forms/profile-password.html' %}
-                {% endwith %}
-
-                <br/>
-                <br/>
+                {% include 'userflow/profile/tabs/password.html' %}
 
                 <div class="ui horizontal divider" id="emails">{% trans 'Emails' %}</div>
-                {# TODO message if none #}
-                {% for email in user.emails.all %}
-                    <p>
-                        <strong>{{ email.email }}&nbsp;</strong>
-                        <a class="ui tiny icon basic button right floated" href="{% url 'users:profile:emails:remove' pk=email.pk %}"><i class="trash icon"></i></a>
-                        {% if email.is_active %}
-                            <span class="ui green label">{% trans 'Verified' %}</span>
-                            {% if email.is_public %}
-                                <span class="ui blue label">{% trans 'Public' %}</span>
-                                <a class="ui basic tiny button right floated" href="{% url 'users:profile:emails:public' pk=email.pk action='private' %}">{% trans 'Make private' %}</a>
-                            {% else %}
-                                <span class="ui label">{% trans 'Private' %}</span>
-                                <a class="ui basic tiny button right floated" href="{% url 'users:profile:emails:public' pk=email.pk action='public' %}">{% trans 'Make public' %}</a>
-                            {% endif %}
-                            {% if email.is_primary %}
-                                <span class="ui blue label">{% trans 'Primary' %}</span>
-                            {% else %}
-                                <a class="ui basic tiny button right floated" href="{% url 'users:profile:emails:primary' pk=email.pk %}">{% trans 'Make primary' %}</a>
-                            {% endif %}
-                        {% else %}
-                            <span class="ui orange label">{% trans 'Unverified' %}</span>
-                            <a class="ui basic tiny button right floated" href="{% url 'users:profile:emails:verify' pk=email.pk %}">{% trans 'Verify' %}</a>
-                        {% endif %}
-                    </p>
-                {% endfor %}
-                <a class="ui primary button" href="{% url 'users:profile:emails:add' %}">{% trans 'Add email' %}</a>
-
-                <br/>
-                <br/>
+                {% include 'userflow/profile/tabs/emails.html' %}
 
                 <div class="ui horizontal divider" id="contacts">{% trans 'Contacts' %}</div>
-                {# TODO message if none #}
-                <div class="ui list">
-                    {% for contact in user.contacts.all %}
-                        {% with link=contact.as_link %}
-                            <div class="item">
-                                {% with type=contact.contact_type %}
-                                    <i class="{{ type.icon|default_if_none:type.alias }} icon"></i>
-                                {% endwith %}
-                                <div class="content">
-                                    <a{% if link %} href="{{ link|safe }}" target="_blank"{% else %}{% endif %}>{{ contact.value }}</a>
-                                    <a class="ui tiny icon" href="{% url 'users:profile:contacts:remove' pk=contact.pk %}"><i class="trash icon"></i></a>
-                                </div>
-                            </div>
-                        {% endwith %}
-                    {% endfor %}
-                </div>
-                <a class="ui primary button" href="{% url 'users:profile:contacts:add' %}">{% trans 'Add contact' %}</a>
+                {% include 'userflow/profile/tabs/contacts.html' %}
 
                 {% is_psa_enabled as psa_enabled %}
                 {% if psa_enabled %}
-                    <br/>
-                    <br/>
-
-                    <div class="ui horizontal divider" id="contacts">{% trans 'Social accounts' %}</div>
-
-                    <div>
-                        <span>{% trans 'Connect account' %}&nbsp;</span>
-                        {% get_psa_backends as backends %}
-                        {% for backend in backends %}
-                            {% get_psa_backend_context backend as context %}
-                            <a class="ui {{ context.name }} tiny button" href="{% url 'social:begin' backend=backend.name %}?next={{ request.get_full_path }}">
-                                <i class="{{ context.name }} icon"></i>
-                                <span>{{ context.title }}</span>
-                            </a>
-                        {% endfor %}
-                    </div>
-
-                    <div class="ui middle aligned divided list">
-
-                        {% for social_auth in user.social_auth.all %}
-                            {% get_psa_backend_context social_auth.provider as context %}
-
-                            <div class="item">
-                                <div class="right floated content">
-                                    <form action="{% url 'social:disconnect_individual' backend=social_auth.provider association_id=social_auth.pk %}?next={{ request.get_full_path }}" method="post">
-                                        {% csrf_token %}
-                                        <button class="ui tiny button" type="submit">{% trans 'Disconnect' %}</button>
-                                    </form>
-                                </div>
-                                <i class="{{ context.name }} icon" title="{{ context.title }}"></i>
-                                <div class="content">{{ social_auth.uid }}</div>
-                            </div>
-
-                        {% endfor %}
-
-                    </div>
-
+                    <div class="ui horizontal divider" id="accounts">{% trans 'Social accounts' %}</div>
+                    {% include 'userflow/profile/tabs/accounts.html' %}
                 {% endif %}
 
             </div>
