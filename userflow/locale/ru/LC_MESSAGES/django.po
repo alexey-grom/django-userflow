@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-18 23:08+0600\n"
+"POT-Creation-Date: 2015-07-19 15:05+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: admin.py:31 templates/userflow/profile/edit.html:31
+#: admin.py:31 templates/userflow/profile/edit.html:32
 #: templates/userflow/profile/user.html:36
 msgid "Personal info"
 msgstr ""
@@ -36,6 +36,18 @@ msgstr ""
 msgid "Users"
 msgstr "Пользователи"
 
+#: conf.py:98
+msgid "VK"
+msgstr ""
+
+#: conf.py:102
+msgid "Google"
+msgstr ""
+
+#: conf.py:106 models/contacts.py:85
+msgid "Facebook"
+msgstr ""
+
 #: forms/password.py:13 forms/signin.py:14 forms/signup.py:13
 #: templates/userflow/profile/user.html:90
 msgid "Email"
@@ -46,7 +58,7 @@ msgid "Can't find that email, sorry"
 msgstr "Это email не найден, извините"
 
 #: forms/signin.py:15 forms/signup.py:15
-#: templates/userflow/profile/edit.html:45
+#: templates/userflow/profile/edit.html:48
 msgid "Password"
 msgstr "Пароль"
 
@@ -93,10 +105,6 @@ msgstr ""
 #: models/contacts.py:78
 msgid "Phone"
 msgstr "Номер телефона"
-
-#: models/contacts.py:85
-msgid "Facebook"
-msgstr ""
 
 #: models/contacts.py:101
 msgid "Contact type"
@@ -168,7 +176,7 @@ msgstr "Пол"
 msgid "Location"
 msgstr "Местонахождение"
 
-#: models/personal.py:20 templates/userflow/profile/edit.html:38
+#: models/personal.py:20 templates/userflow/profile/edit.html:40
 #: templates/userflow/profile/user.html:67
 msgid "About"
 msgstr "О себе"
@@ -177,37 +185,37 @@ msgstr "О себе"
 msgid "Photo"
 msgstr "Фото"
 
-#: models/user.py:69
+#: models/user.py:73
 msgid "display name"
 msgstr "отображаемое имя"
 
-#: models/user.py:71
+#: models/user.py:75
 msgid "staff status"
 msgstr "статус персонала"
 
-#: models/user.py:71
+#: models/user.py:75
 msgid "Designates whether the user can log into this admin site."
 msgstr ""
 
-#: models/user.py:72
+#: models/user.py:76
 msgid "active"
 msgstr "активен"
 
-#: models/user.py:72
+#: models/user.py:76
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
 
-#: models/user.py:73
+#: models/user.py:77
 msgid "removed"
 msgstr "удален"
 
-#: models/user.py:109
+#: models/user.py:121
 msgid "user"
 msgstr "пользователь"
 
-#: models/user.py:110
+#: models/user.py:122
 msgid "users"
 msgstr "пользователи"
 
@@ -350,7 +358,7 @@ msgstr "Новый контакт"
 
 #: templates/userflow/profile/add-contact.html:14
 #: templates/userflow/profile/add-email.html:14
-#: templates/userflow/profile/edit.html:14
+#: templates/userflow/profile/edit.html:15
 #: templates/userflow/profile/suicide.html:14
 #: templates/userflow/profile/user.html:16
 msgid "Main"
@@ -358,8 +366,8 @@ msgstr "Главная"
 
 #: templates/userflow/profile/add-contact.html:16
 #: templates/userflow/profile/add-email.html:16
-#: templates/userflow/profile/edit.html:7
-#: templates/userflow/profile/edit.html:16
+#: templates/userflow/profile/edit.html:8
+#: templates/userflow/profile/edit.html:17
 #: templates/userflow/profile/suicide.html:16
 #: templates/userflow/profile/user.html:8
 #: templates/userflow/profile/user.html:19
@@ -368,7 +376,7 @@ msgstr "Мой профиль"
 
 #: templates/userflow/profile/add-contact.html:18
 #: templates/userflow/profile/add-email.html:18
-#: templates/userflow/profile/edit.html:18
+#: templates/userflow/profile/edit.html:19
 msgid "Edit"
 msgstr "Редактирование"
 
@@ -378,58 +386,72 @@ msgstr "Редактирование"
 msgid "New email"
 msgstr "Новая почта"
 
-#: templates/userflow/profile/edit.html:52
+#: templates/userflow/profile/edit.html:56
 msgid "Emails"
 msgstr "Электронная почта"
 
-#: templates/userflow/profile/edit.html:59
+#: templates/userflow/profile/edit.html:63
 msgid "Verified"
 msgstr "Подтвержденный"
 
-#: templates/userflow/profile/edit.html:61
+#: templates/userflow/profile/edit.html:65
 msgid "Public"
 msgstr "Публичный"
 
-#: templates/userflow/profile/edit.html:62
+#: templates/userflow/profile/edit.html:66
 msgid "Make private"
 msgstr "Сделать непубличным"
 
-#: templates/userflow/profile/edit.html:64
+#: templates/userflow/profile/edit.html:68
 msgid "Private"
 msgstr "Непубличный"
 
-#: templates/userflow/profile/edit.html:65
+#: templates/userflow/profile/edit.html:69
 msgid "Make public"
 msgstr "Сделать публичным"
 
-#: templates/userflow/profile/edit.html:68
+#: templates/userflow/profile/edit.html:72
 msgid "Primary"
 msgstr "Основной"
 
-#: templates/userflow/profile/edit.html:70
+#: templates/userflow/profile/edit.html:74
 msgid "Make primary"
 msgstr "Сделать основным"
 
-#: templates/userflow/profile/edit.html:73
+#: templates/userflow/profile/edit.html:77
 msgid "Unverified"
 msgstr "Неподтвержденный"
 
-#: templates/userflow/profile/edit.html:74
+#: templates/userflow/profile/edit.html:78
 msgid "Verify"
 msgstr "Подтвердить"
 
-#: templates/userflow/profile/edit.html:78
+#: templates/userflow/profile/edit.html:82
 msgid "Add email"
 msgstr "Добавить почту"
 
-#: templates/userflow/profile/edit.html:82
+#: templates/userflow/profile/edit.html:87
 #: templates/userflow/profile/user.html:79
 msgid "Contacts"
 msgstr "Контакты"
 
-#: templates/userflow/profile/edit.html:99
+#: templates/userflow/profile/edit.html:104
 msgid "Add contact"
 msgstr "Добавить контакт"
+
+#: templates/userflow/profile/edit.html:111
+#| msgid "Remove account"
+msgid "Social accounts"
+msgstr "Аккаунты социальных сетей"
+
+#: templates/userflow/profile/edit.html:114
+#| msgid "Remove account"
+msgid "Connect account"
+msgstr "Присоединить аккаунт"
+
+#: templates/userflow/profile/edit.html:134
+msgid "Disconnect"
+msgstr "Отсоединить"
 
 #: templates/userflow/profile/suicide.html:7
 #: templates/userflow/profile/suicide.html:18
@@ -508,6 +530,11 @@ msgstr "Отправить еще раз"
 #: templates/userflow/sign/signup.html:6
 msgid "Sign Up"
 msgstr "Регистрация"
+
+#: templates/userflow/sign/signin-by.html:7
+#| msgid "Signin"
+msgid "Sign with"
+msgstr "Войти через"
 
 #: templates/userflow/verify/confirm.html:5
 #: templates/userflow/verify/wait.html:5

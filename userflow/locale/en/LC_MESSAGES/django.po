@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-07-18 23:08+0600\n"
+"POT-Creation-Date: 2015-07-19 15:05+0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: admin.py:31 templates/userflow/profile/edit.html:31
+#: admin.py:31 templates/userflow/profile/edit.html:32
 #: templates/userflow/profile/user.html:36
 msgid "Personal info"
 msgstr ""
@@ -34,6 +34,18 @@ msgstr ""
 msgid "Users"
 msgstr ""
 
+#: conf.py:98
+msgid "VK"
+msgstr ""
+
+#: conf.py:102
+msgid "Google"
+msgstr ""
+
+#: conf.py:106 models/contacts.py:85
+msgid "Facebook"
+msgstr ""
+
 #: forms/password.py:13 forms/signin.py:14 forms/signup.py:13
 #: templates/userflow/profile/user.html:90
 msgid "Email"
@@ -44,7 +56,7 @@ msgid "Can't find that email, sorry"
 msgstr ""
 
 #: forms/signin.py:15 forms/signup.py:15
-#: templates/userflow/profile/edit.html:45
+#: templates/userflow/profile/edit.html:48
 msgid "Password"
 msgstr ""
 
@@ -88,10 +100,6 @@ msgstr ""
 
 #: models/contacts.py:78
 msgid "Phone"
-msgstr ""
-
-#: models/contacts.py:85
-msgid "Facebook"
 msgstr ""
 
 #: models/contacts.py:101
@@ -162,7 +170,7 @@ msgstr ""
 msgid "Location"
 msgstr ""
 
-#: models/personal.py:20 templates/userflow/profile/edit.html:38
+#: models/personal.py:20 templates/userflow/profile/edit.html:40
 #: templates/userflow/profile/user.html:67
 msgid "About"
 msgstr ""
@@ -171,37 +179,37 @@ msgstr ""
 msgid "Photo"
 msgstr ""
 
-#: models/user.py:69
+#: models/user.py:73
 msgid "display name"
 msgstr ""
 
-#: models/user.py:71
+#: models/user.py:75
 msgid "staff status"
 msgstr ""
 
-#: models/user.py:71
+#: models/user.py:75
 msgid "Designates whether the user can log into this admin site."
 msgstr ""
 
-#: models/user.py:72
+#: models/user.py:76
 msgid "active"
 msgstr ""
 
-#: models/user.py:72
+#: models/user.py:76
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
 
-#: models/user.py:73
+#: models/user.py:77
 msgid "removed"
 msgstr ""
 
-#: models/user.py:109
+#: models/user.py:121
 msgid "user"
 msgstr ""
 
-#: models/user.py:110
+#: models/user.py:122
 msgid "users"
 msgstr ""
 
@@ -335,7 +343,7 @@ msgstr ""
 
 #: templates/userflow/profile/add-contact.html:14
 #: templates/userflow/profile/add-email.html:14
-#: templates/userflow/profile/edit.html:14
+#: templates/userflow/profile/edit.html:15
 #: templates/userflow/profile/suicide.html:14
 #: templates/userflow/profile/user.html:16
 msgid "Main"
@@ -343,8 +351,8 @@ msgstr ""
 
 #: templates/userflow/profile/add-contact.html:16
 #: templates/userflow/profile/add-email.html:16
-#: templates/userflow/profile/edit.html:7
-#: templates/userflow/profile/edit.html:16
+#: templates/userflow/profile/edit.html:8
+#: templates/userflow/profile/edit.html:17
 #: templates/userflow/profile/suicide.html:16
 #: templates/userflow/profile/user.html:8
 #: templates/userflow/profile/user.html:19
@@ -353,7 +361,7 @@ msgstr ""
 
 #: templates/userflow/profile/add-contact.html:18
 #: templates/userflow/profile/add-email.html:18
-#: templates/userflow/profile/edit.html:18
+#: templates/userflow/profile/edit.html:19
 msgid "Edit"
 msgstr ""
 
@@ -363,57 +371,69 @@ msgstr ""
 msgid "New email"
 msgstr ""
 
-#: templates/userflow/profile/edit.html:52
+#: templates/userflow/profile/edit.html:56
 msgid "Emails"
 msgstr ""
 
-#: templates/userflow/profile/edit.html:59
+#: templates/userflow/profile/edit.html:63
 msgid "Verified"
 msgstr ""
 
-#: templates/userflow/profile/edit.html:61
+#: templates/userflow/profile/edit.html:65
 msgid "Public"
 msgstr ""
 
-#: templates/userflow/profile/edit.html:62
+#: templates/userflow/profile/edit.html:66
 msgid "Make private"
 msgstr ""
 
-#: templates/userflow/profile/edit.html:64
+#: templates/userflow/profile/edit.html:68
 msgid "Private"
 msgstr ""
 
-#: templates/userflow/profile/edit.html:65
+#: templates/userflow/profile/edit.html:69
 msgid "Make public"
 msgstr ""
 
-#: templates/userflow/profile/edit.html:68
+#: templates/userflow/profile/edit.html:72
 msgid "Primary"
 msgstr ""
 
-#: templates/userflow/profile/edit.html:70
+#: templates/userflow/profile/edit.html:74
 msgid "Make primary"
 msgstr ""
 
-#: templates/userflow/profile/edit.html:73
+#: templates/userflow/profile/edit.html:77
 msgid "Unverified"
 msgstr ""
 
-#: templates/userflow/profile/edit.html:74
+#: templates/userflow/profile/edit.html:78
 msgid "Verify"
 msgstr ""
 
-#: templates/userflow/profile/edit.html:78
+#: templates/userflow/profile/edit.html:82
 msgid "Add email"
 msgstr ""
 
-#: templates/userflow/profile/edit.html:82
+#: templates/userflow/profile/edit.html:87
 #: templates/userflow/profile/user.html:79
 msgid "Contacts"
 msgstr ""
 
-#: templates/userflow/profile/edit.html:99
+#: templates/userflow/profile/edit.html:104
 msgid "Add contact"
+msgstr ""
+
+#: templates/userflow/profile/edit.html:111
+msgid "Social accounts"
+msgstr ""
+
+#: templates/userflow/profile/edit.html:114
+msgid "Connect account"
+msgstr ""
+
+#: templates/userflow/profile/edit.html:134
+msgid "Disconnect"
 msgstr ""
 
 #: templates/userflow/profile/suicide.html:7
@@ -493,6 +513,12 @@ msgstr ""
 #: templates/userflow/sign/signup.html:6
 msgid "Sign Up"
 msgstr ""
+
+#: templates/userflow/sign/signin-by.html:7
+#, fuzzy
+#| msgid "Signin"
+msgid "Sign with"
+msgstr "Sign in"
 
 #: templates/userflow/verify/confirm.html:5
 #: templates/userflow/verify/wait.html:5
