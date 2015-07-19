@@ -23,5 +23,4 @@ def psa_backends():
 @register.assignment_tag(name='get_psa_backend_context')
 def psa_backends_context(backend):
     backend_name = backend.name if not isinstance(backend, string_types) else backend
-    print(backend_name)
     return conf.USERS_PSA_BACKENDS_CONTEXT.get(backend_name) or {}
