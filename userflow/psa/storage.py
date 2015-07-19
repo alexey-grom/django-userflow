@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 from social.apps.django_app.default.models import DjangoStorage, UserSocialAuth
+
 from userflow.models.emails import UserEmail
 
 
@@ -13,14 +14,11 @@ class UserSocialAuthProxy(UserSocialAuth):
     @classmethod
     def user_exists(cls, *args, **kwargs):
         return cls.user_model().objects.\
-            filter(emails__email=kwargs.pop('username')).\
+            filter(emails__email=kwargs.get('username')).\
             exists()
 
     @classmethod
     def create_user(cls, *args, **kwargs):
-        from pprint import pprint
-        pprint([args, kwargs])
-
         username = kwargs.pop('username')
         user = cls.user_model().objects.\
             create_user(name=username,

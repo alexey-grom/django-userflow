@@ -4,7 +4,12 @@
 {% get_psa_backends as backends %}
 {% if backends %}
     <div class="ui divider"></div>
+    <span>{% trans 'Sign with' %}&nbsp;</span>
     {% for backend in backends %}
-        <a href="{% url 'social:begin' backend=backend.name %}?next={{ request.get_full_path }}">{{ backend.name }}</a>
+        {% get_psa_backend_context backend as context %}
+        <a class="ui {{ context.name }} button" href="{% url 'social:begin' backend=backend.name %}?next={{ request.get_full_path }}">
+            <i class="{{ context.name }} icon"></i>
+            <span>{{ context.title }}</span>
+        </a>
     {% endfor %}
 {% endif %}

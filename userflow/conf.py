@@ -7,6 +7,7 @@ import importlib
 from django.conf import settings as django_settings
 from django.core.exceptions import ImproperlyConfigured
 from django.http.response import HttpResponse
+from django.utils.translation import ugettext_lazy as _
 
 from userflow import utils
 
@@ -90,6 +91,21 @@ SETTINGS = settings(
     setting('USERS_CAN_SUICIDE', False),
 
     setting('USERS_CONFIRMATION_EXPIRATION', datetime.timedelta(days=3)),
+
+    setting('USERS_PSA_BACKENDS_CONTEXT', {
+        'vk-oauth2': {
+            'name': 'vk',
+            'title': _('VK'),
+        },
+        'google-oauth2': {
+            'name': 'google plus',
+            'title': _('Google'),
+        },
+        'facebook-oauth2': {
+            'name': 'facebook',
+            'title': _('Facebook'),
+        },
+    }),
 
 )
 
