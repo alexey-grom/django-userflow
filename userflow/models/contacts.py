@@ -92,8 +92,10 @@ class FacebookContactType(RegexContactType):
 
 
 def get_contact_types():
-    return ((item.alias, item.title)
-            for item in ContactTypeMeta.register.values())
+    items = ((item.alias, item.title)
+             for item in ContactTypeMeta.register.values())
+    items = sorted(items, key=lambda item: item[0])
+    return items
 
 
 class Contact(models.Model):

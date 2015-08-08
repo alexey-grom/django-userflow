@@ -2,7 +2,6 @@
 
 from django.apps import apps
 from django.contrib.auth import get_backends
-from social.backends.base import BaseAuth
 
 
 def is_psa_installed():
@@ -20,6 +19,7 @@ def is_psa_installed():
 def get_psa_backends():
     if not is_psa_installed():
         return ()
+    from social.backends.base import BaseAuth
     return (
         backend
         for backend in get_backends()
