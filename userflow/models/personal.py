@@ -1,4 +1,4 @@
-# encoding: utf-8
+from collections import OrderedDict
 
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
@@ -7,9 +7,11 @@ from django.utils.translation import ugettext_lazy as _
 __all__ = 'UserInfoMixin',
 
 
-GENDER_MALE, GENDER_FEMALE = 'm', 'f'
-GENDERS = {GENDER_FEMALE: _(u'Female'),
-           GENDER_MALE: _(u'Male')}
+GENDER_MALE, GENDER_FEMALE = 'm', 'f',
+GENDERS = OrderedDict((
+    (GENDER_MALE, _(u'Male')),
+    (GENDER_FEMALE, _(u'Female')),
+))
 
 
 class UserInfoMixin(models.Model):
