@@ -47,7 +47,8 @@ class SignupForm(forms.Form):
     def check_user(self, email=None, **kwargs):
         user = None
         try:
-            user = get_user_model().objects.get_by_natural_key(email)
+            user = get_user_model().objects.\
+                get_by_natural_key(email)
         except MultipleObjectsReturned:
             return
         except ObjectDoesNotExist:

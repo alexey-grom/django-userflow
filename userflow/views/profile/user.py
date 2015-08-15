@@ -40,6 +40,6 @@ class UserProfileView(DetailView):
         is_anon = not self.request.user.is_authenticated()
 
         if is_long_url and is_mine:
-            return HttpResponseRedirect(reverse('users:profile'))
+            return HttpResponseRedirect(reverse('users:profile:view'))
         if is_mine and is_anon:
             return redirect_to_signin(self.request)

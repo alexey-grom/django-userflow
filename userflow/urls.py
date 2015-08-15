@@ -63,6 +63,5 @@ urlpatterns = patterns('',
         url(r'^reset/', include(reset_urls, namespace='reset')),
         url(r'^verify/', include(verify_urls, namespace='verify')),
         url(r'^profile/', include(profile_urls, namespace='profile')),
-
     ), namespace='users')),
 )

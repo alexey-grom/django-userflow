@@ -41,10 +41,11 @@ class UserManager(auth_models.BaseUserManager.from_queryset(UserQueryset)):
             user.set_password(password)
             user.save(using=self._db)
 
+        with atomic():
             if email:
-                user_email = UserEmail(email=email,
-                                       user=user)
-                user_email.save(using=self._db)
+                user_email, _ = UserEmail.objects.\
+                    get_or_create(email=email,
+                                  user=user)
 
         return user
 
@@ -94,6 +95,8 @@ class BaseUser(auth_models.AbstractBaseUser,
 
     def set_email(self, value):
         if not value:
+            return
+        if not self.id:
             return
         UserEmail.objects.get_or_create(user=self, email=value)  #
 
